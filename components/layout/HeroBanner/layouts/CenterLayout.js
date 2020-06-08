@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Box } from "theme-ui";
 import Wysiwyg from "../../../renderer/wysiwyg";
 import { getWysiwygOverrides } from "../utils";
@@ -9,7 +9,7 @@ const CenterLayout = ({ banner }) => {
   return (
     <Image
       hasMasterSpinner={false}
-      src={getImageUrl(banner?.media?.image)}
+      src={getImageUrl(banner?.media?.image, undefined, true)}
       isBgImage
       tag="div"
       className="bg-center"

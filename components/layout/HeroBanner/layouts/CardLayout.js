@@ -9,7 +9,7 @@ import { getWysiwygOverrides } from "../utils";
 const CardLayout = ({ banner }) => {
   return (
     <Image
-      src={getImageUrl(banner?.media?.image)}
+      src={getImageUrl(banner?.media?.image, undefined, true)}
       isBgImage
       tag="div"
       alt={getImageAlt(banner?.media?.image)}
