@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "theme-ui";
 import Metadata from "../../metadata/Metadata";
 import HeroBanner from "../HeroBanner";
+import Sections from "../Sections";
 
 const splitBanners = (banners) => {
   return {
@@ -16,7 +17,11 @@ const Page = ({ page: { metadata, banners, sections } }) => {
     <Box>
       <Metadata metadata={metadata} />
       <HeroBanner banners={heroes} />
-      {/*{JSON.stringify(page)}*/}
+      <Box className="flex items-center flex-col justify-center w-full">
+        <Box className="container">
+          <Sections sections={sections} />
+        </Box>
+      </Box>
     </Box>
   );
 };
