@@ -1,4 +1,5 @@
 export const preprocessBlocks = (blocks) => {
+  if (!blocks) return [];
   const result = [];
 
   let currentBlocks = [];

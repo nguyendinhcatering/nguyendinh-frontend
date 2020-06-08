@@ -1,18 +1,22 @@
 /** @jsx jsx */
 import React from "react";
-import { Styled, jsx } from "theme-ui";
+import { Styled, jsx, Box } from "theme-ui";
 import ImageRenderer from "./renderers/ImageRenderer";
 import ParagraphRenderer from "./renderers/ParagraphRenderer";
 import HeadingRenderer from "./renderers/HeadingRenderer";
 import ListRenderer from "./renderers/ListRenderer";
 import { parseData, preprocessBlocks } from "./utils";
 import WysiwygContextProvider from "./WysiwygContext";
+import LinkButtonRenderer from "./renderers/LinkButtonRenderer";
+import AccordionRenderer from "./renderers/AccordionRenderer";
 
 const RendererMap = {
   image: ImageRenderer,
   paragraph: ParagraphRenderer,
   header: HeadingRenderer,
   list: ListRenderer,
+  linkButton: LinkButtonRenderer,
+  accordion: AccordionRenderer,
 };
 
 const Wysiwyg = ({ data, sx = {}, overrides }) => {
@@ -26,7 +30,9 @@ const Wysiwyg = ({ data, sx = {}, overrides }) => {
         return null;
       }
       return (
-        <div>Sorry, block {block.type}'s renderer hasn't been implemented</div>
+        <Box className="text-purple-5 font-bold">
+          Sorry, block {block.type}'s renderer hasn't been implemented
+        </Box>
       );
     }
 
