@@ -152,6 +152,16 @@ const buttons = {
       outline: "none",
     },
   },
+  primary: {
+    py: 2,
+    px: 3,
+    backgroundColor: "red.6",
+    fontFamily: "heading",
+    fontSize: "2",
+    "&:hover": {
+      backgroundColor: "red.7",
+    },
+  },
 };
 
 const inputs = {

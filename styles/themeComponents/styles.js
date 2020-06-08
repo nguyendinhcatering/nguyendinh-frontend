@@ -74,6 +74,14 @@ const styles = {
     height: "1px",
     m: 3,
   },
+  ul: {
+    listStyle: "disc",
+    listStylePosition: "inside",
+  },
+  ol: {
+    listStyle: "decimal",
+    listStylePosition: "inside",
+  },
 };
 
 module.exports = styles;

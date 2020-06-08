@@ -9,7 +9,7 @@ module.exports = {
   ...config,
   theme: {
     ...config.theme,
-    inset: (theme, {negative}) => ({
+    inset: (theme, { negative }) => ({
       auto: "auto",
       ...theme("spacing"),
       ...negative(theme("spacing")),
@@ -20,8 +20,8 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(function ({addVariant, e}) {
-      addVariant("important", ({container, separator}) => {
+    plugin(function ({ addVariant, e }) {
+      addVariant("important", ({ container, separator }) => {
         container.walkRules((rule) => {
           rule.selector = `.${e(
             `important${separator}${rule.selector.slice(1)}`
@@ -35,6 +35,7 @@ module.exports = {
     backgroundOpacity: ["responsive", "hover", "focus", "important"],
     backgroundColor: ["responsive", "hover", "focus", "important"],
     display: ["responsive", "important"],
+    margin: ["responsive", "important"],
     textColor: ["responsive", "hover", "focus", "important"],
   },
 };
