@@ -5,7 +5,6 @@ import SectionsWrapper from "./SectionsWrapper";
 
 const Sections = ({ sections }) => {
   const splittedSections = splitSections(sections);
-  console.log(splittedSections);
   return (
     <Box className="flex flex-col">
       {splittedSections.map((sectionGroup) => (

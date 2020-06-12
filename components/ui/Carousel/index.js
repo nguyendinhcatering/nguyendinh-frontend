@@ -17,6 +17,8 @@ const Carousel = ({
   isPlaying = false,
   renderDots = true,
   renderNavigation = true,
+  isIntrinsicHeight = false,
+  buttonProps,
   children,
 }) => {
   const [hasOneSlide, setHasOneSlide] = useState(false);
@@ -43,7 +45,10 @@ const Carousel = ({
 
   return (
     <CarouselHeightProvider height={containerHeight}>
-      <Box className="relative max-h-screen overflow-hidden" ref={containerRef}>
+      <Box
+        className="relative max-h-screen overflow-hidden h-full"
+        ref={containerRef}
+      >
         <CarouselProvider
           naturalSlideHeight={aspectRatio[0]}
           naturalSlideWidth={aspectRatio[1]}
@@ -53,10 +58,18 @@ const Carousel = ({
           interval={interval}
           isPlaying={isPlaying}
           totalSlides={totalSlides}
+          isIntrinsicHeight={isIntrinsicHeight}
+          className="h-full"
         >
-          <Slider>{children}</Slider>
-          {renderNavigation && !hasOneSlide && <BackButton />}
-          {renderNavigation && !hasOneSlide && <NextButton />}
+          <Slider
+            className="h-full"
+            classNameTray="h-full"
+            classNameTrayWrap="h-full"
+          >
+            {children}
+          </Slider>
+          {renderNavigation && !hasOneSlide && <BackButton {...buttonProps} />}
+          {renderNavigation && !hasOneSlide && <NextButton {...buttonProps} />}
           {renderDots && !hasOneSlide && <Dots />}
         </CarouselProvider>
       </Box>

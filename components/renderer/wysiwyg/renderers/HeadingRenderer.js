@@ -26,6 +26,7 @@ const HeadingRenderer = ({ block }) => {
   return (
     <Heading
       sx={{
+        textAlign: block.data.alignment,
         ...getSx(overrides, block.data.level),
       }}
     >

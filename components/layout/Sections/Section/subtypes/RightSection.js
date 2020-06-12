@@ -5,12 +5,13 @@ import Image from "../../../../ui/Image";
 import AspectRatioBox from "../../../../ui/AspectRatioBox";
 import Wysiwyg from "../../../../renderer/wysiwyg";
 import SectionAddon from "../../SectionAddons";
+import { getWysiwygOverrides } from "../../../HeroBanner/utils";
 
 const RightSection = ({ section }) => {
   return (
     <Box className={cn("flex flex-col md:flex-row")}>
       <Box className="w-full p-4">
-        <Wysiwyg data={section.text} />
+        <Wysiwyg data={section.text} overrides={getWysiwygOverrides(section)} />
         {section.addons.map((addon) => (
           <SectionAddon addon={addon} />
         ))}

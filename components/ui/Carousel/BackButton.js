@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { CarouselContext } from "pure-react-carousel";
 import { IconButton } from "theme-ui";
 import { MdNavigateBefore } from "react-icons/md";
+import cn from "classnames";
 
-const BackButton = ({ ...props }) => {
+const BackButton = ({ className, ...props }) => {
   const carouselContext = useContext(CarouselContext);
 
   const handleClick = () => {
@@ -30,7 +31,10 @@ const BackButton = ({ ...props }) => {
       size="unset"
       aria-label="Back"
       onClick={handleClick}
-      className="top-0 left-0 bottom-0 absolute bg-opacity-0 transition-all duration-200 hover:bg-black hover:bg-opacity-50 hover:text-white"
+      className={cn(
+        "top-0 left-0 bottom-0 absolute bg-opacity-0 transition-all duration-200 hover:bg-black hover:bg-opacity-50 hover:text-white",
+        className
+      )}
       {...props}
     >
       <MdNavigateBefore className="w-4 h-4" />

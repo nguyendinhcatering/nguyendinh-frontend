@@ -15,6 +15,7 @@ const PartialWrapper = ({ sections }) => {
         <Card
           className="important:mb-5 "
           sx={{ width: ["100%", "100%", `${getWidth(sections)}%`] }}
+          key={section.id}
         >
           <Section section={section} key={section.id} />
         </Card>

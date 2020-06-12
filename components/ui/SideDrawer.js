@@ -14,7 +14,7 @@ const SideDrawer = ({ isOpen, setIsOpen, children, direction = "right" }) => {
       isOpen={isOpen}
       overlayClassName={{
         base:
-          "bg-black fixed top-0 left-0 right-0 bottom-0 bg-opacity-0 transition-all duration-500 z-top",
+          "bg-black fixed top-0 left-0 right-0 bottom-0 bg-opacity-0 transition-all duration-200 z-top",
         afterOpen: "bg-opacity-25",
         beforeClose: "important:bg-opacity-0",
       }}
@@ -23,7 +23,7 @@ const SideDrawer = ({ isOpen, setIsOpen, children, direction = "right" }) => {
       onRequestClose={() => setIsOpen(false)}
       className={{
         base: cn(
-          "h-screen absolute top-0 w-0 bg-red-6 text-white animate__animated animate__faster z-top",
+          "h-screen absolute top-0 w-0 bg-red-6 text-white animate__animated z-top",
           openAnimationClassName,
           position
         ),

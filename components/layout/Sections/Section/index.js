@@ -19,7 +19,7 @@ const DICTIONARY = {
 };
 
 const Section = ({ section }) => {
-  const Component = DICTIONARY[section.mediaPlacement] || Box;
+  const Component = DICTIONARY[section.mediaPlacement] || NoneSection;
   return <Component section={section}>HI</Component>;
 };
 

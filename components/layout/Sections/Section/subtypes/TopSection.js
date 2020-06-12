@@ -5,6 +5,7 @@ import Image from "../../../../ui/Image";
 import AspectRatioBox from "../../../../ui/AspectRatioBox";
 import Wysiwyg from "../../../../renderer/wysiwyg";
 import SectionAddon from "../../SectionAddons";
+import { getWysiwygOverrides } from "../../../HeroBanner/utils";
 
 const TopSection = ({ section }) => {
   return (
@@ -22,7 +23,8 @@ const TopSection = ({ section }) => {
         </AspectRatioBox>
       )}
       <Box className="w-full p-4 text-center">
-        <Wysiwyg data={section.text} />
+        <Wysiwyg data={section.text} overrides={getWysiwygOverrides(section)} />
+
         {section.addons.map((addon) => (
           <SectionAddon addon={addon} />
         ))}

@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import React, { useContext } from "react";
 import { CarouselContext } from "pure-react-carousel";
-import { jsx, IconButton } from "theme-ui";
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { IconButton, jsx } from "theme-ui";
+import { MdNavigateNext } from "react-icons/md";
+import cn from "classnames";
 
-const NextButton = ({ ...props }) => {
+const NextButton = ({ className, ...props }) => {
   const carouselContext = useContext(CarouselContext);
 
   const handleClick = () => {
@@ -31,7 +32,10 @@ const NextButton = ({ ...props }) => {
       size="unset"
       aria-label="Next"
       onClick={handleClick}
-      className="top-0 right-0 bottom-0 absolute bg-opacity-0 transition-all duration-200 hover:bg-black hover:bg-opacity-50 hover:text-white"
+      className={cn(
+        "top-0 right-0 bottom-0 absolute bg-opacity-0 transition-all duration-200 hover:bg-black hover:bg-opacity-50 hover:text-white",
+        className
+      )}
       {...props}
     >
       <MdNavigateNext className="w-4 h-4" />

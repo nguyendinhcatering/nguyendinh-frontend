@@ -6,9 +6,13 @@ import AspectRatioBox from "../../../../ui/AspectRatioBox";
 import Wysiwyg from "../../../../renderer/wysiwyg";
 import SectionAddon from "../../SectionAddons";
 import { getImageUrl } from "../../../../../utils/getImageSrc";
+import { getWysiwygOverrides } from "../../../HeroBanner/utils";
 
 const BackgroundSection = ({ section }) => {
-  console.log(section);
+  const imageUrl = section.media[0]?.image
+    ? getImageUrl(section.media[0]?.image)
+    : "/images/defaultBackground.jpg";
+
   return (
     <Box className={cn("flex flex-col")}>
       <AspectRatioBox
@@ -22,10 +26,13 @@ const BackgroundSection = ({ section }) => {
         <Box
           className="w-full p-4 bg-center bg-cover"
           sx={{
-            backgroundImage: `url(${getImageUrl(section.media[0].image)})`,
+            backgroundImage: `url(${imageUrl})`,
           }}
         >
-          <Wysiwyg data={section.text} />
+          <Wysiwyg
+            data={section.text}
+            overrides={getWysiwygOverrides(section)}
+          />
           {section.addons.map((addon) => (
             <SectionAddon addon={addon} />
           ))}

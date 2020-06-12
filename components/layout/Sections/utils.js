@@ -77,3 +77,23 @@ export const splitSections = (sections) => {
     sections: sectionGroup,
   }));
 };
+
+export const getWysiwygOverrides = (section) => {
+  const headingOverrides = {
+    color: getColor(section.headerColor),
+  };
+
+  const paragraphOverrides = {
+    color: getColor(section.textColor),
+  };
+
+  return {
+    heading: headingOverrides,
+    paragraph: paragraphOverrides,
+  };
+};
+
+const getColor = (color) => {
+  if (!color) return undefined;
+  return color === "primary" ? "red.6" : color;
+};

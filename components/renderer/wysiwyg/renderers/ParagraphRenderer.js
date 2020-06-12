@@ -15,7 +15,7 @@ const getSx = (overrides) => {
 const ParagraphRenderer = ({ block }) => {
   const { overrides } = useContext(WysiwygContext);
   return (
-    <Styled.p sx={{ ...getSx(overrides) }}>
+    <Styled.p sx={{ textAlign: block.data.alignment, ...getSx(overrides) }}>
       <ReactMarkdown>{block.data.text}</ReactMarkdown>
     </Styled.p>
   );
