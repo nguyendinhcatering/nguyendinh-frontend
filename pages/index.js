@@ -10,7 +10,7 @@ import Page from "../components/layout/Page";
 export default function Home({ layout, page }) {
   return (
     <DefaultLayout layout={layout}>
-      <Page page={page} />
+      {page && <Page page={page} />}
     </DefaultLayout>
   );
 }

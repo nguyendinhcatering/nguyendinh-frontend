@@ -19,7 +19,9 @@ const Page = ({ page: { metadata, banners, sections } }) => {
   useEffect(() => {
     const currentHero = heroes[currentHeroIndex];
 
-    console.log(currentHero);
+    if (!currentHero) {
+      setMainContentMargin(5);
+    }
 
     if (currentHero.layout === "card") {
       setMainContentMargin(0);
