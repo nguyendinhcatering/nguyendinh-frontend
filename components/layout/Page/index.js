@@ -21,14 +21,14 @@ const Page = ({ page: { metadata, banners, sections } }) => {
 
     if (!currentHero) {
       setMainContentMargin(5);
-    }
-
-    if (currentHero.layout === "card") {
-      setMainContentMargin(0);
-    } else if (currentHero.layout === "center") {
-      setMainContentMargin(-5);
-    } else if (currentHero.layout === "video") {
-      setMainContentMargin(0);
+    } else {
+      if (currentHero?.layout === "card") {
+        setMainContentMargin(0);
+      } else if (currentHero?.layout === "center") {
+        setMainContentMargin(-5);
+      } else if (currentHero?.layout === "video") {
+        setMainContentMargin(0);
+      }
     }
   }, [currentHeroIndex]);
 
@@ -40,10 +40,10 @@ const Page = ({ page: { metadata, banners, sections } }) => {
         setCurrentIndex={setCurrentHeroIndex}
         name="hero"
       >
-        {heroes ? (
+        {heroes && heroes.length > 0 ? (
           <HeroBanner banners={heroes} carouselName="hero" />
         ) : (
-          <Box sx={{ height: 6 }} />
+          <Box sx={{ marginTop: 6, height: 0 }} />
         )}
         <Box
           className="flex items-center flex-col justify-center w-full relative transition-all duration-200"
