@@ -3,6 +3,10 @@ import Head from "next/head";
 import { getImageUrl } from "../../../utils/getImageSrc";
 
 const Metadata = ({ metadata }) => {
+  if (!metadata) {
+    return null;
+  }
+
   const title = metadata.title;
   const description = metadata.description;
   const contentType = metadata.contentType ?? "article";
