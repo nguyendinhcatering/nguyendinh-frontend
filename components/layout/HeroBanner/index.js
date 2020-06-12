@@ -1,15 +1,13 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from "react";
-import { jsx, Box } from "theme-ui";
-import Wysiwyg from "../../renderer/wysiwyg";
+import React, { useEffect, useState } from "react";
+import { Box, jsx } from "theme-ui";
 import Carousel from "../../ui/Carousel";
-import { Slider, Slide } from "pure-react-carousel";
-import CenterLayout from "./layouts/CenterLayout";
+import { Slide } from "pure-react-carousel";
 import Hero from "./Hero";
 import { BREAKPOINTS } from "utils/useBreakpoint";
 import { useBreakpointIndex } from "@theme-ui/match-media";
 
-const HeroBanner = ({ banners }) => {
+const HeroBanner = ({ banners, carouselName }) => {
   if (!banners) return <Box className="h-6" />;
   const breakpointIndex = useBreakpointIndex();
   const [aspectRatio, setAspectRatio] = useState([]);
@@ -23,19 +21,18 @@ const HeroBanner = ({ banners }) => {
   }, [breakpointIndex]);
 
   return (
-    <div>
-      <Carousel
-        totalSlides={banners.length}
-        renderDots={false}
-        aspectRatio={aspectRatio}
-      >
-        {banners.map((banner) => (
-          <Slide key={banner.id}>
-            <Hero layout={banner.layout} banner={banner} />
-          </Slide>
-        ))}
-      </Carousel>
-    </div>
+    <Carousel
+      totalSlides={banners.length}
+      renderDots={false}
+      aspectRatio={aspectRatio}
+      name={carouselName}
+    >
+      {banners.map((banner) => (
+        <Slide key={banner.id}>
+          <Hero layout={banner.layout} banner={banner} />
+        </Slide>
+      ))}
+    </Carousel>
   );
 };
 

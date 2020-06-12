@@ -6,6 +6,7 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import Dots from "./Dots";
 import CarouselHeightProvider from "./CarouselHeightContext";
+import CarouselAgent from "./CarouselAgent";
 
 const Carousel = ({
   aspectRatio = [9, 16],
@@ -19,6 +20,7 @@ const Carousel = ({
   renderNavigation = true,
   isIntrinsicHeight = false,
   buttonProps,
+  name,
   children,
 }) => {
   const [hasOneSlide, setHasOneSlide] = useState(false);
@@ -71,6 +73,7 @@ const Carousel = ({
           {renderNavigation && !hasOneSlide && <BackButton {...buttonProps} />}
           {renderNavigation && !hasOneSlide && <NextButton {...buttonProps} />}
           {renderDots && !hasOneSlide && <Dots />}
+          <CarouselAgent name={name} />
         </CarouselProvider>
       </Box>
     </CarouselHeightProvider>
