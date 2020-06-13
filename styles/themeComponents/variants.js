@@ -13,19 +13,19 @@ const text = {
   },
   styledH1: {
     variant: "text.styled",
-    fontSize: [6, 9, 10, 11],
+    fontSize: [8, 9, 10, 11],
   },
   styledH2: {
     variant: "text.styled",
-    fontSize: [5, 8, 9, 10],
+    fontSize: [7, 8, 9, 10],
   },
   styledH3: {
     variant: "text.styled",
-    fontSize: [4, 7, 8, 9],
+    fontSize: [6, 7, 8, 9],
   },
   styledH4: {
     variant: "text.styled",
-    fontSize: [3, 6, 7, 8],
+    fontSize: [5, 6, 7, 8],
   },
 };
 

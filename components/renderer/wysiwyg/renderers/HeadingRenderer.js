@@ -3,9 +3,10 @@ import { jsx, Styled } from "theme-ui";
 import ReactMarkdown from "../../ReactMarkdown";
 import { WysiwygContext } from "../WysiwygContext";
 import { useContext } from "react";
+import { omitBy, isEmpty } from "lodash";
 
 const getSx = (overrides, level) => {
-  const headingOverrides = overrides?.heading || {};
+  const headingOverrides = omitBy(overrides?.heading || {}, isEmpty);
 
   let variant = "text.heading";
 

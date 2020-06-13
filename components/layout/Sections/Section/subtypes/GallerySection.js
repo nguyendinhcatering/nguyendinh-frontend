@@ -26,7 +26,7 @@ const GallerySection = ({ section }) => {
             <Image image={section?.media[0]?.image} />
           </AspectRatioBox>
         )}
-        <Box className="w-full p-4 text-center">
+        <Box className="w-full p-3 text-center">
           <Wysiwyg
             data={section.text}
             overrides={getWysiwygOverrides(section)}

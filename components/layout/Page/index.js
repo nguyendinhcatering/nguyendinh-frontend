@@ -25,7 +25,7 @@ const Page = ({ page: { metadata, banners, sections } }) => {
       if (currentHero?.layout === "card") {
         setMainContentMargin(0);
       } else if (currentHero?.layout === "center") {
-        setMainContentMargin(-5);
+        setMainContentMargin([0, 0, 0, -5]);
       } else if (currentHero?.layout === "video") {
         setMainContentMargin(0);
       }

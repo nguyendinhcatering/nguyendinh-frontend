@@ -8,7 +8,7 @@ import { getWysiwygOverrides } from "../../../HeroBanner/utils";
 const NoneSection = ({ section }) => {
   return (
     <Box className={cn("flex flex-col")}>
-      <Box className="w-full p-4">
+      <Box className="w-full p-4 md:p-5">
         <Wysiwyg data={section.text} overrides={getWysiwygOverrides(section)} />
         {section.addons.map((addon) => (
           <SectionAddon addon={addon} />

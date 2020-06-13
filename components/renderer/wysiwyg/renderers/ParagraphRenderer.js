@@ -3,9 +3,10 @@ import React, { useContext } from "react";
 import { jsx, Styled } from "theme-ui";
 import ReactMarkdown from "../../ReactMarkdown";
 import { WysiwygContext } from "../WysiwygContext";
+import { omitBy, isEmpty } from "lodash";
 
 const getSx = (overrides) => {
-  const paragraphOverrides = overrides?.paragraph || {};
+  const paragraphOverrides = omitBy(overrides?.paragraph || {}, isEmpty);
 
   return {
     ...paragraphOverrides,

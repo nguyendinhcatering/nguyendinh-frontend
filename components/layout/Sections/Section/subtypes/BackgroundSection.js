@@ -24,7 +24,7 @@ const BackgroundSection = ({ section }) => {
         keepAspectRatio={!section.offsetMedia}
       >
         <Box
-          className="w-full p-4 bg-center bg-cover"
+          className="w-full p-4 md:p-5 bg-center bg-cover"
           sx={{
             backgroundImage: `url(${imageUrl})`,
           }}
