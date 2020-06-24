@@ -1,10 +1,39 @@
+const qualities = ["large", "medium", "small", "thumbnail"];
+
+const getBestAvailableQuality = (image) => {
+  if (!image.formats) {
+    return null;
+  }
+
+  const imageQualities = qualities
+    .map((quality) => {
+      if (image.formats[quality]) {
+        return quality;
+      }
+    })
+    .filter(Boolean);
+
+  return imageQualities[0];
+};
+
 export const getImageUrl = (image, quality, useOriginal = false) => {
   if (!image) return null;
 
   let src = image.url;
 
   if (quality) {
-    return process.env.NEXT_PUBLIC_BACKEND_URL + image.formats[quality].url;
+    if (image.formats) {
+      const bestAvailableQuality = getBestAvailableQuality(image);
+
+      if (bestAvailableQuality) {
+        return (
+          process.env.NEXT_PUBLIC_BACKEND_URL +
+          image.formats[bestAvailableQuality].url
+        );
+      }
+
+      return process.env.NEXT_PUBLIC_BACKEND_URL + src;
+    }
   }
 
   if (useOriginal) {

@@ -45,6 +45,7 @@ const Modal = ({ children, isOpen, setOpen, ...props }) => {
         size="unset"
         sx={{
           position: "absolute",
+          zIndex: "9999",
           top: 0,
           right: 0,
           color: "gray.5",
