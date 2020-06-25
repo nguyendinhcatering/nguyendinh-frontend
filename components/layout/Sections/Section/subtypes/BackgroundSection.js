@@ -33,8 +33,8 @@ const BackgroundSection = ({ section }) => {
             data={section.text}
             overrides={getWysiwygOverrides(section)}
           />
-          {section.addons.map((addon) => (
-            <SectionAddon addon={addon} />
+          {section.addons.map((addon, index) => (
+            <SectionAddon addon={addon} key={index} />
           ))}
         </Box>
       </AspectRatioBox>

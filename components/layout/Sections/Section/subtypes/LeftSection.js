@@ -24,8 +24,8 @@ const LeftSection = ({ section }) => {
       )}
       <Box className="w-full p-4 xl:p-5">
         <Wysiwyg data={section.text} overrides={getWysiwygOverrides(section)} />
-        {section.addons.map((addon) => (
-          <SectionAddon addon={addon} />
+        {section.addons.map((addon, index) => (
+          <SectionAddon addon={addon} key={index} />
         ))}
       </Box>
     </Box>

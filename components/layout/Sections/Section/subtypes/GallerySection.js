@@ -34,8 +34,8 @@ const GallerySection = ({ section }) => {
           <Button className="important:mt-3" onClick={() => setOpen(true)}>
             Xem thêm
           </Button>
-          {section.addons.map((addon) => (
-            <SectionAddon addon={addon} />
+          {section.addons.map((addon, index) => (
+            <SectionAddon addon={addon} key={index} />
           ))}
         </Box>
       </Box>

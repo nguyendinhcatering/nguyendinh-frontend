@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Flex } from "theme-ui";
 import Wysiwyg from "../../renderer/wysiwyg";
 import { useBreakpointIndex } from "@theme-ui/match-media";
@@ -6,6 +6,27 @@ import { BREAKPOINTS } from "../../../utils/useBreakpoint";
 
 const Footer = ({ footer }) => {
   const breakpointIndex = useBreakpointIndex();
+  const [overrides, setOverrides] = useState({ paragraph: { width: "100%" } });
+
+  useEffect(() => {
+    if (breakpointIndex <= BREAKPOINTS.MD) {
+      setOverrides({
+        ...overrides,
+        paragraph: {
+          ...overrides.paragraph,
+          textAlign: "center",
+        },
+      });
+    } else {
+      setOverrides({
+        ...overrides,
+        paragraph: {
+          ...overrides.paragraph,
+          textAlign: undefined,
+        },
+      });
+    }
+  }, [breakpointIndex]);
 
   return (
     <Box
@@ -22,13 +43,7 @@ const Footer = ({ footer }) => {
             width: "100%",
             justifyContent: "space-between",
           }}
-          overrides={{
-            paragraph: {
-              textAlign:
-                breakpointIndex <= BREAKPOINTS.MD ? "center" : undefined,
-              width: "100%",
-            },
-          }}
+          overrides={overrides}
         />
       </Flex>
     </Box>

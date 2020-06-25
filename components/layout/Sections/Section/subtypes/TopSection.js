@@ -25,8 +25,8 @@ const TopSection = ({ section }) => {
       <Box className="w-full p-3 text-center">
         <Wysiwyg data={section.text} overrides={getWysiwygOverrides(section)} />
 
-        {section.addons.map((addon) => (
-          <SectionAddon addon={addon} />
+        {section.addons.map((addon, index) => (
+          <SectionAddon addon={addon} key={index} />
         ))}
       </Box>
     </Box>

@@ -22,7 +22,7 @@ const RendererMap = {
 const Wysiwyg = ({ data, sx = {}, overrides }) => {
   const blockRows = preprocessBlocks(parseData(data));
 
-  const renderBlock = (block) => {
+  const renderBlock = (block, index) => {
     const Renderer = RendererMap[block.type];
 
     if (!Renderer) {
@@ -30,13 +30,13 @@ const Wysiwyg = ({ data, sx = {}, overrides }) => {
         return null;
       }
       return (
-        <Box className="text-purple-5 font-bold">
+        <Box className="text-purple-5 font-bold" key={index}>
           Sorry, block {block.type}'s renderer hasn't been implemented
         </Box>
       );
     }
 
-    return <Renderer block={block} />;
+    return <Renderer block={block} key={index} />;
   };
 
   console.log(blockRows);
@@ -56,7 +56,9 @@ const Wysiwyg = ({ data, sx = {}, overrides }) => {
       <Styled.div key={rowIndex} className="flex flex-col md:flex-row w-full">
         {row.blocks.map((rowBlocks, index) => (
           <Styled.div key={index} className="flex flex-col w-full">
-            {rowBlocks.map((block) => renderBlock(block))}
+            {rowBlocks.map((block, blockIndex) =>
+              renderBlock(block, blockIndex)
+            )}
           </Styled.div>
         ))}
       </Styled.div>
