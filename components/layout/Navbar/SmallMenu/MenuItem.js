@@ -1,23 +1,22 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from "react";
-import { jsx, Box, Flex, IconButton, useThemeUI } from "theme-ui";
-import { useBreakpointIndex } from "@theme-ui/match-media";
+import { Box, Flex, IconButton, jsx, useThemeUI } from "theme-ui";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import Link from "next/link";
 import { getHref } from "../../../../utils/getHref";
 import { useRouter } from "next/router";
 import cn from "classnames";
 import { sortBy } from "lodash";
-import { BREAKPOINTS } from "../../../../utils/useBreakpoint";
 
 const ITEM_HEIGHT = 48;
 
 const MenuItem = ({ menu }) => {
   const router = useRouter();
-  const theme = useThemeUI();
 
   const [showChildMenu, setShowChildMenu] = useState(false);
-  const sortedChildMenus = sortBy(menu.childMenus, ["order"]);
+  const sortedChildMenus = sortBy(menu.childMenus, ["order"]).filter(
+    (childMenu) => !childMenu.isHidden
+  );
 
   const isUrlActive = (url) => {
     return router.asPath === url;

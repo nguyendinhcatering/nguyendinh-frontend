@@ -39,19 +39,39 @@ const Wysiwyg = ({ data, sx = {}, overrides }) => {
     return <Renderer block={block} />;
   };
 
+  console.log(blockRows);
+
+  const renderColumn = (row, rowIndex) => {
+    return (
+      <Styled.div key={rowIndex} className="flex flex-col w-full">
+        {row.blocks.map((block, index) => (
+          <Styled.div key={index}>{renderBlock(block)}</Styled.div>
+        ))}
+      </Styled.div>
+    );
+  };
+
+  const renderRow = (row, rowIndex) => {
+    return (
+      <Styled.div key={rowIndex} className="flex flex-col md:flex-row w-full">
+        {row.blocks.map((rowBlocks, index) => (
+          <Styled.div key={index} className="flex flex-col w-full">
+            {rowBlocks.map((block) => renderBlock(block))}
+          </Styled.div>
+        ))}
+      </Styled.div>
+    );
+  };
+
   return (
     <WysiwygContextProvider overrides={overrides}>
-      <Styled.div className="flex-col md:flex-row flex" sx={sx}>
-        {blockRows.map((blockCols, rowIndex) => {
-          return (
-            <Styled.div className="flex flex-col w-full" key={rowIndex}>
-              {blockCols.map((block, colIndex) => (
-                <Styled.div key={colIndex}>{renderBlock(block)}</Styled.div>
-              ))}
-            </Styled.div>
-          );
-        })}
-      </Styled.div>
+      {blockRows.map((row, index) => {
+        if (row.type === "col") {
+          return renderColumn(row, index);
+        } else {
+          return renderRow(row, index);
+        }
+      })}
     </WysiwygContextProvider>
   );
 };

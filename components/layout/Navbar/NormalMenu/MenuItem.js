@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Popover from "react-tiny-popover";
 import cn from "classnames";
-import { isEmpty } from "lodash";
+import { isEmpty, sortBy } from "lodash";
 import { getHref } from "utils/getHref";
 import { MenuContext } from "./MenuContext";
 
@@ -66,6 +66,11 @@ const MenuItem = ({ menu }) => {
   }) => {
     if (!currentMenu.childMenus || isEmpty(currentMenu.childMenus)) return null;
 
+    const sortedChildMenus = sortBy(
+      currentMenu.childMenus.filter((childMenu) => !childMenu.isHidden),
+      ["order"]
+    );
+
     return (
       <Box
         position={position}
@@ -75,7 +80,7 @@ const MenuItem = ({ menu }) => {
         onMouseEnter={handleContentEnter}
         onMouseLeave={handleContentLeave}
       >
-        {currentMenu.childMenus.map((childMenu) => (
+        {sortedChildMenus.map((childMenu) => (
           <Link
             href={getHref(childMenu.url)}
             as={childMenu.url}

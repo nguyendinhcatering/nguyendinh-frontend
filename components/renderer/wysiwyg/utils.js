@@ -2,19 +2,45 @@ export const preprocessBlocks = (blocks) => {
   if (!blocks) return [];
   const result = [];
 
-  let currentBlocks = [];
+  let currentBlocks = { type: "col", blocks: [] };
+  let currentRowBlocks = [];
 
   blocks.forEach((block) => {
-    if (block.type === "delimiter") {
-      result.push([...currentBlocks]);
+    if (block.type === "columnStart") {
+      if (currentBlocks.blocks.length !== 0) {
+        result.push(currentBlocks);
+      }
 
-      currentBlocks = [];
+      currentBlocks = { type: "row", blocks: [] };
+    } else if (block.type === "columnEnd") {
+      if (currentRowBlocks.length !== 0) {
+        currentBlocks.blocks.push(currentRowBlocks);
+        currentRowBlocks = [];
+      }
+      if (currentBlocks.blocks.length !== 0) {
+        result.push(currentBlocks);
+      }
+
+      currentBlocks = { type: "col", blocks: [] };
     } else {
-      currentBlocks.push(block);
+      if (currentBlocks.type === "row") {
+        if (block.type === "columnSplit") {
+          if (currentRowBlocks.length !== 0) {
+            currentBlocks.blocks.push(currentRowBlocks);
+            currentRowBlocks = [];
+          }
+        } else {
+          currentRowBlocks.push(block);
+        }
+      } else {
+        currentBlocks.blocks.push(block);
+      }
     }
   });
 
-  result.push([...currentBlocks]);
+  if (currentBlocks.blocks.length !== 0) {
+    result.push(currentBlocks);
+  }
 
   return result;
 };
