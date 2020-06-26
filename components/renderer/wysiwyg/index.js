@@ -39,8 +39,6 @@ const Wysiwyg = ({ data, sx = {}, overrides }) => {
     return <Renderer block={block} key={index} />;
   };
 
-  console.log(blockRows);
-
   const renderColumn = (row, rowIndex) => {
     return (
       <Styled.div key={rowIndex} className="flex flex-col w-full">

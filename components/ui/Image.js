@@ -14,26 +14,26 @@ const Image = ({ image, ...props }) => {
 
   return (
     <picture>
-      <source
+      {image.formats.large && <source
         media={`(min-width: ${breakpoints[2]})`}
         srcSet={getImageUrl(image, "large")}
-        type={image.formats.large.mime}
-      />
-      <source
+        type={image?.formats?.large?.mime}
+      />}
+      {image.formats.medium && <source
         media={`(min-width: ${breakpoints[1]})`}
         srcSet={getImageUrl(image, "medium")}
-        type={image.formats.medium.mime}
-      />
-      <source
+        type={image?.formats?.medium?.mime}
+      />}
+      {image.formats.medium && <source
         media={`(min-width: ${breakpoints[0]})`}
         srcSet={getImageUrl(image, "medium")}
-        type={image.formats.medium.mime}
-      />
-      <source
+        type={image?.formats?.medium?.mime}
+      />}
+      {image.formats.small && <source
         media={`(max-width: ${breakpoints[0]})`}
         srcSet={getImageUrl(image, "small")}
-        type={image.formats.small.mime}
-      />
+        type={image?.formats?.small?.mime}
+      />}
       <StyledImage
         src={getImageUrl(image, "large")}
         alt={image.alternativeText || image.name}
