@@ -10,11 +10,16 @@ import { getWysiwygOverrides } from "../../../HeroBanner/utils";
 const RightSection = ({ section }) => {
   return (
     <Box className={cn("flex flex-col md:flex-row")}>
-      <Box className="w-full p-4 xl:p-5">
-        <Wysiwyg data={section.text} overrides={getWysiwygOverrides(section)} />
-        {section.addons.map((addon, index) => (
-          <SectionAddon addon={addon} key={index} />
-        ))}
+      <Box className="w-full">
+        <Box className="p-4 xl:p-5">
+          <Wysiwyg
+            data={section.text}
+            overrides={getWysiwygOverrides(section)}
+          />
+          {section.addons.map((addon, index) => (
+            <SectionAddon addon={addon} key={index} />
+          ))}
+        </Box>
       </Box>
       {section?.media[0]?.image && (
         <AspectRatioBox
