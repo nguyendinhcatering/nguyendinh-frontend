@@ -36,6 +36,7 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "focus", "important"],
     display: ["responsive", "important"],
     margin: ["responsive", "important"],
+    padding: ["responsive", "important", "first", "last"],
     textColor: ["responsive", "hover", "focus", "important"],
   },
 };
