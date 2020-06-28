@@ -4,7 +4,13 @@ import Section from "../Section";
 import Card from "../../../ui/Card";
 
 const getWidth = (sections) => {
-  const sectionsPerLine = sections.length > 3 ? 3 : sections.length;
+  if (sections.length === 1) {
+    return 100;
+  }
+
+  // const sectionsPerLine = sections.length > 3 ? 3 : sections.length;
+  const sectionsPerLine = 3;
+
   return (100 - 10) / sectionsPerLine;
 };
 
