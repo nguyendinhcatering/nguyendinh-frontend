@@ -6,8 +6,8 @@ import { Box, Flex, Link as ThemeLink, Image } from "theme-ui";
 
 const Logo = () => {
   return (
-    <Flex className="bg-white w-6 justify-center h-full">
-      <Flex className="w-6 px-3">
+    <Flex className="bg-white w-32 justify-center h-full">
+      <Flex className="w-32 px-3">
         <Link href="/" passHref>
           <ThemeLink className="h-full w-full flex justify-center align-center">
             <Image
@@ -25,7 +25,7 @@ const Logo = () => {
         }}
       >
         <Box
-          className="bg-white shadow-elevation-12 w-6 h-4"
+          className="bg-white shadow-elevation-12 w-32 h-8"
           css={{
             clipPath: "polygon(100% 0, 100% 100%, 50% 25%, 0 100%, 0 0)",
           }}

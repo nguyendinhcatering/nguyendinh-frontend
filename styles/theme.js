@@ -15,6 +15,22 @@ const theme = {
   ...animations,
   ...variants,
   styles,
+  forms: {
+    input: {
+      borderWidth: "1px",
+      borderColor: "gray.5",
+      borderRadius: "0",
+      paddingLeft: "3",
+      paddingRight: "3",
+    },
+    textarea: {
+      borderWidth: "1px",
+      borderColor: "gray.5",
+      borderRadius: "0",
+      paddingLeft: "3",
+      paddingRight: "3",
+    },
+  },
 };
 
 module.exports = theme;

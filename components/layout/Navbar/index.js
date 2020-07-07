@@ -9,7 +9,7 @@ const Navbar = ({ menus = [] }) => {
   return (
     <Flex
       as="nav"
-      className="bg-red-6 text-white h-5 w-full justify-center shadow-elevation-4 absolute z-50"
+      className="bg-red-6 text-white h-16 w-full justify-center shadow-elevation-4 absolute z-50"
     >
       <Flex className="container items-center">
         <Logo />

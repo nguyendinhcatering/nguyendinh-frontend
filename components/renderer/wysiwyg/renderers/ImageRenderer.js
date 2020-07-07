@@ -5,7 +5,7 @@ import Image from "../../../ui/Image";
 const ImageRenderer = ({ block }) => {
   return (
     <Styled.div className="relative">
-      <Image image={block.data.file} />
+      <Image image={block.data.file} className="w-full" />
     </Styled.div>
   );
 };

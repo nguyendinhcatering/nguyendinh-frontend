@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.required {
+    @apply .w-full .relative .inline-block;
+}
+
+.required input {
+    @apply .pr-4;
+}
+
+.required:after {
+    @apply .text-red-7 .absolute .right-3 .top-2;
+    content: '(*)';
+}

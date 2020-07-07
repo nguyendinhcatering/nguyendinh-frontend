@@ -32,6 +32,8 @@ module.exports = {
     }),
   ],
   variants: {
+    width: ["responsive", "important"],
+    minWidth: ["responsive", "important"],
     backgroundOpacity: ["responsive", "hover", "focus", "important"],
     backgroundColor: ["responsive", "hover", "focus", "important"],
     display: ["responsive", "important"],

@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const axios = Axios.create({baseURL: process.env.NEXT_PUBLIC_BACKEND_URL});
+const axios = Axios.create({ baseURL: process.env.NEXT_PUBLIC_BACKEND_URL });
 
 export default class API {
   static async getLayoutData() {
@@ -39,6 +39,17 @@ export default class API {
         return response.data[0];
       }
 
+      return null;
+    } catch {
+      return null;
+    }
+  }
+
+  static async sendContactEmail(payload) {
+    try {
+      const response = await axios.post(`/mails/contact`, payload);
+
+      console.log(response.data);
       return null;
     } catch {
       return null;

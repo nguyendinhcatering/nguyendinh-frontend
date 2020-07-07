@@ -13,31 +13,27 @@ const BackgroundSection = ({ section }) => {
     ? getImageUrl(section.media[0]?.image)
     : "/images/defaultBackground.jpg";
 
+  const hasDefaultBackground = imageUrl === "/images/defaultBackground.jpg";
+
   return (
     <Box className={cn("flex flex-col")}>
-      <AspectRatioBox
-        ratio={[1, 1, 2]}
-        sx={{ width: "100%" }}
+      <Box
         className={cn(
-          section.offsetMedia && "top-0 md:-top-5 left-0 md:-left-5"
+          "w-full p-4 md:p-5 bg-center bg-cover",
+          hasDefaultBackground && "text-white"
         )}
-        keepAspectRatio={!section.offsetMedia}
+        sx={{
+          backgroundImage: `url(${imageUrl})`,
+        }}
       >
-        <Box
-          className="w-full p-4 md:p-5 bg-center bg-cover"
-          sx={{
-            backgroundImage: `url(${imageUrl})`,
-          }}
-        >
-          <Wysiwyg
-            data={section.text}
-            overrides={getWysiwygOverrides(section)}
-          />
-          {section.addons.map((addon, index) => (
-            <SectionAddon addon={addon} key={index} />
-          ))}
-        </Box>
-      </AspectRatioBox>
+        <Wysiwyg
+          data={section.text}
+          overrides={{ ...getWysiwygOverrides(section) }}
+        />
+        {section.addons.map((addon, index) => (
+          <SectionAddon addon={addon} key={index} />
+        ))}
+      </Box>
     </Box>
   );
 };

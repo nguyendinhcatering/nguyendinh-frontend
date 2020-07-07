@@ -9,7 +9,7 @@ const KEY_MAPPING = {
   fontWeights: "fontWeight",
   lineHeights: "lineHeight",
   letterSpacings: "letterSpacing",
-  size: ["height", "maxHeight", "width", "maxWidth"],
+  sizes: ["height", "maxHeight", "width", "maxWidth", "minHeight", "minWidth"],
   zIndices: "zIndex",
 };
 
