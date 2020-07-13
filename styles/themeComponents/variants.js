@@ -156,10 +156,27 @@ const buttons = {
     py: 2,
     px: 3,
     backgroundColor: "red.6",
+    borderColor: "white",
+    borderWidth: "2px",
+    borderStyle: "solid",
     fontFamily: "heading",
     fontSize: "2",
     "&:hover": {
       backgroundColor: "red.7",
+    },
+  },
+  secondary: {
+    py: 2,
+    px: 3,
+    color: "red.6",
+    backgroundColor: "white",
+    borderColor: "red.6",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    fontFamily: "heading",
+    fontSize: "2",
+    "&:hover": {
+      backgroundColor: "gray.1",
     },
   },
 };

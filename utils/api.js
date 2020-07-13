@@ -55,4 +55,23 @@ export default class API {
       return null;
     }
   }
+
+  static async download(url) {
+    try {
+      const response = await axios.get(`${url}`, {
+        responseType: "blob",
+      });
+
+      const newUrl = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = newUrl;
+      link.setAttribute("download", url.split(/([\\|\/])/g).pop());
+      document.body.appendChild(link);
+      link.click();
+
+      return null;
+    } catch {
+      return null;
+    }
+  }
 }

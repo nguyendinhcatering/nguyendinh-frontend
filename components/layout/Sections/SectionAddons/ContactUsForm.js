@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Input, Textarea } from "theme-ui";
 import API from "../../../../utils/api";
 
-const ContactUsForm = () => {
+const ContactUsForm = ({ onDone }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
@@ -19,11 +19,17 @@ const ContactUsForm = () => {
     e.preventDefault();
 
     await API.sendContactEmail({
-      to: email,
+      email,
       name,
       address,
       message,
     });
+
+    clear();
+
+    if (onDone) {
+      onDone();
+    }
   };
 
   return (
