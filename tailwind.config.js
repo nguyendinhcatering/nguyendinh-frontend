@@ -18,6 +18,14 @@ module.exports = {
       ...config.theme.zIndex,
       bottom: "-9999",
     },
+    maxHeight: {
+      ...config.theme.maxHeight,
+      screen: "100vh",
+    },
+    maxWidth: {
+      ...config.theme.maxWidth,
+      screen: "100vw",
+    },
   },
   plugins: [
     plugin(function ({ addVariant, e }) {

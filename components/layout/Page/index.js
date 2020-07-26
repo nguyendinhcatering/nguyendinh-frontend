@@ -11,7 +11,12 @@ const splitBanners = (banners) => {
   };
 };
 
-const Page = ({ page: { metadata, banners, sections } }) => {
+const Page = ({
+  page: { metadata, banners, sections },
+  preSections,
+  postSections,
+  children,
+}) => {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [mainContentMargin, setMainContentMargin] = useState(0);
   const { heroes } = splitBanners(banners);
@@ -50,7 +55,10 @@ const Page = ({ page: { metadata, banners, sections } }) => {
           sx={{ marginTop: mainContentMargin }}
         >
           <Box className="container">
+            {preSections && <Sections sections={preSections} />}
             <Sections sections={sections} />
+            {postSections && <Sections sections={postSections} />}
+            {children}
           </Box>
         </Box>
       </NDCarouselContextProvider>

@@ -8,8 +8,9 @@ import SectionAddon from "../../SectionAddons";
 import { getWysiwygOverrides } from "../../../HeroBanner/utils";
 
 const LeftSection = ({ section }) => {
+  console.log(section.media[0]);
   return (
-    <Box className={cn("flex flex-col md:flex-row")}>
+    <Box className={cn("flex flex-col md:flex-row")} data-testid="left-section">
       {section?.media[0]?.image && (
         <AspectRatioBox
           ratio={1}
@@ -28,7 +29,7 @@ const LeftSection = ({ section }) => {
             data={section.text}
             overrides={getWysiwygOverrides(section)}
           />
-          {section.addons.map((addon, index) => (
+          {section?.addons.map((addon, index) => (
             <SectionAddon addon={addon} key={index} />
           ))}
         </Box>

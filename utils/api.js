@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { isEmpty } from "lodash";
 
 const axios = Axios.create({ baseURL: process.env.NEXT_PUBLIC_BACKEND_URL });
 
@@ -72,6 +73,64 @@ export default class API {
       return null;
     } catch {
       return null;
+    }
+  }
+
+  static async getFoodCategories() {
+    try {
+      const response = await axios.get("/food-categories");
+
+      if (response.data) {
+        return response.data;
+      }
+
+      return [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  static async getFoodPresetTypes() {
+    try {
+      const response = await axios.get("/food-preset-types");
+
+      if (response.data) {
+        return response.data;
+      }
+
+      return [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  static async getFoodPresetType(slug) {
+    try {
+      const response = await axios.get(`/food-preset-types?slug=${slug}`);
+
+      if (response.data && !isEmpty(response.data)) {
+        return response.data[0];
+      }
+
+      return null;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  static async getFoodPresetsByPresetTypeSlug(slug) {
+    try {
+      const response = await axios.get(
+        `/food-presets?foodPresetType.slug=${slug}`
+      );
+
+      if (response.data) {
+        return response.data;
+      }
+
+      return [];
+    } catch (err) {
+      return [];
     }
   }
 }

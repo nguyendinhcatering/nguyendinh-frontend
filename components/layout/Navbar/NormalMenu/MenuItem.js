@@ -90,7 +90,7 @@ const MenuItem = ({ menu }) => {
             <Box
               as="a"
               className={cn(
-                "hover:bg-red-7 w-7 text-right block py-2 px-3",
+                "hover:bg-red-7 w-64 text-right block py-2 px-3",
                 isUrlActive(childMenu.url) ? "bg-red-7" : ""
               )}
               sx={{ fontFamily: "heading" }}

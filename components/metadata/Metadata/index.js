@@ -10,7 +10,7 @@ const Metadata = ({ metadata }) => {
   const title = metadata.title;
   const description = metadata.description;
   const contentType = metadata.contentType ?? "article";
-  const url = metadata?.menu.url;
+  const url = metadata?.menu?.url;
   const imageUrl = getImageUrl(metadata?.image);
 
   return (
