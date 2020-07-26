@@ -17,8 +17,9 @@
     "babel-plugin-lodash": "^3.3.4",
     "body-scroll-lock": "^3.0.3",
     "classnames": "^2.2.6",
+    "connected-next-router": "^3.1.0",
     "dotenv": "^8.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "markdown-to-jsx": "^6.11.4",
     "next": "^9.4.4",
     "next-redux-wrapper": "^6.0.2",
@@ -26,20 +27,20 @@
     "postcss-preset-env": "^6.7.0",
     "pure-react-carousel": "^1.27.1",
     "react": "16.13.1",
-    "react-animate-height": "^2.0.21",
+    "react-animate-height": "^2.0.22",
     "react-dom": "16.13.1",
     "react-icons": "^3.10.0",
     "react-modal": "^3.11.2",
-    "react-redux": "^7.2.0",
-    "react-tiny-popover": "^4.1.0",
+    "react-redux": "^7.2.1",
+    "react-tiny-popover": "^5.1.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "tailwindcss": "^1.4.6",
+    "tailwindcss": "^1.5.2",
     "theme-ui": "^0.4.0-alpha.3"
   },
   "devDependencies": {
-    "eslint": "^7.0.0",
+    "eslint": "^7.5.0",
     "prettier": "^2.0.5"
   }
 }

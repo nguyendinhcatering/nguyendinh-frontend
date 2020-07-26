@@ -9,7 +9,7 @@ import React from "react";
 import { Box, Styled, Button } from "theme-ui";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { clearOrder, selectPreset } from "../../../store/actions";
+import { selectPreset } from "../../../store/order/actions";
 
 const IMAGE_URL = "/images/defaultBackground.jpg";
 
@@ -37,7 +37,6 @@ const TablePreset = ({
   );
 
   const handleOrder = (foodPreset) => (e) => {
-    dispatch(clearOrder());
     dispatch(
       selectPreset({
         meta: {
