@@ -99,15 +99,15 @@ const SelectExtra = ({ layout }) => {
                   validationSchema={validationSchema}
                   initialValues={{
                     title: "Ông",
-                    fullName: "Kien Nguyen",
-                    email: "kien.nguyen@your.rentals",
-                    phone: "0904515297",
+                    fullName: "",
+                    email: "",
+                    phone: "",
                     alternativePhone: "",
                     orderType: orderTypes[0],
                     orderPlaceType: orderTypes[0],
                     orderDate: moment(),
                     orderTime: moment(),
-                    note: "Xin chao",
+                    note: "",
                   }}
                 >
                   <Form>
