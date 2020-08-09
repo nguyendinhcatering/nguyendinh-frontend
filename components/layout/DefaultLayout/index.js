@@ -4,7 +4,10 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 
 const DefaultLayout = ({ layout, children }) => {
-  const { menus, footer } = layout;
+  const { menus, footer } = layout || {
+    menus: [],
+    footer: {},
+  };
 
   return (
     <div className="min-h-screen flex flex-col">

@@ -19,7 +19,6 @@ const bindMiddleware = (...middlewares) => {
 };
 
 const makeStore = (ctx) => {
-  console.log(ctx);
   const routerMiddleware = createRouterMiddleware();
   const { asPath, pathname, query } = ctx.ctx || Router.router || {};
 
@@ -50,5 +49,6 @@ const makeStore = (ctx) => {
 };
 
 export const wrapper = createWrapper(makeStore, {
-  debug: process.env.NODE_ENV !== "production",
+  // debug: process.env.NODE_ENV !== "production",
+  debug: false,
 });

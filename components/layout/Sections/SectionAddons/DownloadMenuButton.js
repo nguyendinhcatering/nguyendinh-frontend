@@ -5,13 +5,10 @@ import API from "../../../../utils/api";
 
 const DownloadMenuButton = ({ data }) => {
   const handleClick = async () => {
-    console.log(data);
     if (data && data.url) {
       try {
         await API.download(data.url);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     }
   };
   return (

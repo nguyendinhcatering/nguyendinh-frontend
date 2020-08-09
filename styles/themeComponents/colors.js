@@ -16,16 +16,16 @@ const colors = {
   ],
   red: [
     null,
-    "#FDECEB",
-    "#F9C8C3",
-    "#F5A49B",
-    "#F28074",
-    "#EE5C4C",
-    "#ca1f26",
-    "#b61c21",
-    "#962418",
-    "#6B1A11",
-    "#41100B",
+    "#F9CCD1",
+    "#F399A3",
+    "#ED6675",
+    "#E73347",
+    "#e10019",
+    "#c00015",
+    "#a00011",
+    "#80000E",
+    "#60000A",
+    "#400007",
   ],
   orange: [
     null,
@@ -126,8 +126,8 @@ const colors = {
   grayDark: "#2d3748",
   text: "#2d3748",
   background: "#fff",
-  primary: "#2b6cb0",
-  primaryHover: "#2c5282",
+  primary: "#e10019",
+  primaryHover: "#a00011",
   secondary: "#718096",
   muted: "#e2e8f0",
   success: "#9ae6b4",
@@ -139,4 +139,4 @@ const colors = {
   textMuted: "#718096",
 };
 
-module.exports = {colors};
+module.exports = { colors };

@@ -156,7 +156,7 @@ const buttons = {
     py: 2,
     px: 3,
     backgroundColor: "red.6",
-    borderColor: "white",
+    borderColor: "red.6",
     borderWidth: "2px",
     borderStyle: "solid",
     fontFamily: "heading",

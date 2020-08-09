@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { isEmpty } from "lodash";
+import { isEmpty, isString } from "lodash";
 
 const axios = Axios.create({ baseURL: process.env.NEXT_PUBLIC_BACKEND_URL });
 
@@ -50,7 +50,6 @@ export default class API {
     try {
       const response = await axios.post(`/mails/contact`, payload);
 
-      console.log(response.data);
       return null;
     } catch {
       return null;
@@ -129,6 +128,67 @@ export default class API {
       }
 
       return [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  static async getOrderData() {
+    try {
+      const response = await axios.get(`/order-data`);
+
+      if (response.data) {
+        return response.data;
+      }
+
+      return {};
+    } catch (err) {
+      return {};
+    }
+  }
+
+  static async placeOrder(pl) {
+    try {
+      const response = await axios.post("/orders", pl);
+
+      if (response.data) {
+        return response.data;
+      }
+
+      return {};
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  static async getOrderById(id, secret) {
+    try {
+      const sanitizedId = isString(id)
+        ? Number(id.replace(/\D/g, ""))
+        : undefined;
+
+      if (!sanitizedId) {
+        throw new Error("ID is not valid");
+      }
+      const response = await axios.get(
+        `/orders/${sanitizedId}?secret=${secret}`
+      );
+
+      if (response.data) {
+        return response.data;
+      }
+
+      return {};
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  static async getFoodItems() {
+    try {
+      const response = await axios.get("/food-menu-items");
+
+      return response.data;
     } catch (err) {
       return [];
     }

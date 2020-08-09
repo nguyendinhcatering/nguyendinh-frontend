@@ -18,13 +18,29 @@ module.exports = {
       ...config.theme.zIndex,
       bottom: "-9999",
     },
-    maxHeight: {
-      ...config.theme.maxHeight,
+    minWidth: {
+      ...config.theme.minWidth,
+      screen: "100vw",
+    },
+    minHeight: {
+      ...config.theme.minHeight,
+      screen: "100vh",
+    },
+    width: {
+      ...config.theme.width,
+      screen: "100vw",
+    },
+    height: {
+      ...config.theme.height,
       screen: "100vh",
     },
     maxWidth: {
       ...config.theme.maxWidth,
       screen: "100vw",
+    },
+    maxHeight: {
+      ...config.theme.maxHeight,
+      screen: "100vh",
     },
   },
   plugins: [
@@ -42,11 +58,14 @@ module.exports = {
   variants: {
     width: ["responsive", "important"],
     minWidth: ["responsive", "important"],
+    height: ["responsive", "important"],
+    minHeight: ["responsive", "important"],
     backgroundOpacity: ["responsive", "hover", "focus", "important"],
     backgroundColor: ["responsive", "hover", "focus", "important"],
     display: ["responsive", "important"],
-    margin: ["responsive", "important"],
+    margin: ["responsive", "important", "first"],
     padding: ["responsive", "important", "first", "last"],
     textColor: ["responsive", "hover", "focus", "important"],
+    fontWeight: ["responsive", "important"],
   },
 };

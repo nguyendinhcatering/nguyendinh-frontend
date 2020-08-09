@@ -14,28 +14,36 @@ const Image = ({ image, ...props }) => {
 
   return (
     <picture>
-      {image.formats.large && <source
-        media={`(min-width: ${breakpoints[2]})`}
-        srcSet={getImageUrl(image, "large")}
-        type={image?.formats?.large?.mime}
-      />}
-      {image.formats.medium && <source
-        media={`(min-width: ${breakpoints[1]})`}
-        srcSet={getImageUrl(image, "medium")}
-        type={image?.formats?.medium?.mime}
-      />}
-      {image.formats.medium && <source
-        media={`(min-width: ${breakpoints[0]})`}
-        srcSet={getImageUrl(image, "medium")}
-        type={image?.formats?.medium?.mime}
-      />}
-      {image.formats.small && <source
-        media={`(max-width: ${breakpoints[0]})`}
-        srcSet={getImageUrl(image, "small")}
-        type={image?.formats?.small?.mime}
-      />}
+      {image.formats.large && (
+        <source
+          media={`(min-width: ${breakpoints[2]})`}
+          srcSet={getImageUrl(image, null, true)}
+          type={image?.formats?.large?.mime}
+        />
+      )}
+      {image.formats.medium && (
+        <source
+          media={`(min-width: ${breakpoints[1]})`}
+          srcSet={getImageUrl(image, null, true)}
+          type={image?.formats?.medium?.mime}
+        />
+      )}
+      {image.formats.medium && (
+        <source
+          media={`(min-width: ${breakpoints[0]})`}
+          srcSet={getImageUrl(image, "large")}
+          type={image?.formats?.medium?.mime}
+        />
+      )}
+      {image.formats.small && (
+        <source
+          media={`(max-width: ${breakpoints[0]})`}
+          srcSet={getImageUrl(image, "medium")}
+          type={image?.formats?.small?.mime}
+        />
+      )}
       <StyledImage
-        src={getImageUrl(image, "large")}
+        src={getImageUrl(image, null, true)}
         alt={image.alternativeText || image.name}
         {...props}
       />

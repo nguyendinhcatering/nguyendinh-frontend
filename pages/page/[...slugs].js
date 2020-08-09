@@ -58,7 +58,7 @@ export async function getStaticProps(ctx) {
       page,
       layout,
     },
-    unstable_revalidate: 1,
+    revalidate: 1,
   };
 }
 

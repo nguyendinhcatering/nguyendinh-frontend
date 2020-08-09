@@ -11,12 +11,12 @@ const splitBanners = (banners) => {
   };
 };
 
-const Page = ({
-  page: { metadata, banners, sections },
-  preSections,
-  postSections,
-  children,
-}) => {
+const Page = ({ page, preSections, postSections, children }) => {
+  const { metadata, banners, sections } = page || {
+    metadata: {},
+    banners: [],
+    sections: [],
+  };
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [mainContentMargin, setMainContentMargin] = useState(0);
   const { heroes } = splitBanners(banners);

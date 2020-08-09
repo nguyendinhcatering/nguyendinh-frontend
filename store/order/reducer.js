@@ -1,4 +1,5 @@
 import { merge, cloneDeep } from "lodash";
+import { x } from "./data";
 
 const defaultOrder = {
   meta: {
@@ -7,7 +8,9 @@ const defaultOrder = {
     presetType: {
       name: null,
       numberOfPeople: 0,
+      type: null,
     },
+    url: "",
   },
   presetItems: [],
   extraItems: [],
@@ -15,20 +18,23 @@ const defaultOrder = {
   quantity: 0,
   unitPrice: 0,
   orderDetails: {
-    namePrefix: null,
-    fullName: null,
-    email: null,
-    phoneNumber: null,
-    alternativePhoneNumber: null,
-    address: null,
-    orderDate: null,
-    orderTime: null,
-    note: null,
+    title: "Ông",
+    fullName: "",
+    email: "",
+    phone: "",
+    alternativePhone: "",
+    orderDate: "",
+    orderTime: "",
+    note: "",
+    orderType: "",
+    orderPlaceType: "",
   },
+  savedOrder: {},
 };
 
 const initialState = {
   ...defaultOrder,
+  // ...x,
 };
 
 const reducer = (state = initialState, action) => {
@@ -47,6 +53,44 @@ const reducer = (state = initialState, action) => {
         ...defaultOrder,
         orderDetails: { ...state.orderDetails },
       };
+    }
+    case "@ORDER/CHANGE_QUANTITY": {
+      return {
+        ...state,
+        quantity: action.payload,
+      };
+    }
+    case "@ORDER/CHANGE_ORDER_DETAILS": {
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          ...action.payload,
+        },
+      };
+    }
+    case "@ORDER/SENT_ORDER_SUCCESS": {
+      return {
+        ...state,
+        savedOrder: action.payload,
+      };
+    }
+    case "@ORDER/TOGGLE_FOOD_ITEM": {
+      if (action.payload.enabled) {
+        return {
+          ...state,
+          presetItems: [...state.presetItems, action.payload.foodItem],
+          unitPrice: state.unitPrice + action.payload.foodItem.price,
+        };
+      } else {
+        return {
+          ...state,
+          presetItems: state.presetItems.filter(
+            (item) => item.id !== action.payload.foodItem.id
+          ),
+          unitPrice: state.unitPrice - action.payload.foodItem.price,
+        };
+      }
     }
     default: {
       return state;

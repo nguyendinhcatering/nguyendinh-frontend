@@ -1,7 +1,12 @@
+/** @jsx jsx */
 import React from "react";
 import Markdown from "markdown-to-jsx";
-import { Styled } from "theme-ui";
+import { Styled, jsx } from "theme-ui";
 import Link from "../../ui/Link";
+
+const Color = ({ color, children }) => {
+  return <span sx={{ color }}>{children}</span>;
+};
 
 const ReactMarkdown = ({ options: overrideOptions, children }) => {
   const options = {
@@ -10,6 +15,9 @@ const ReactMarkdown = ({ options: overrideOptions, children }) => {
       ...Styled,
       a: {
         component: Link,
+      },
+      font: {
+        component: Color,
       },
     },
     ...overrideOptions,

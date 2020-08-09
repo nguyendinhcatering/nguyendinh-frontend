@@ -8,7 +8,6 @@ import SectionAddon from "../../SectionAddons";
 import { getWysiwygOverrides } from "../../../HeroBanner/utils";
 
 const LeftSection = ({ section }) => {
-  console.log(section.media[0]);
   return (
     <Box className={cn("flex flex-col md:flex-row")} data-testid="left-section">
       {section?.media[0]?.image && (

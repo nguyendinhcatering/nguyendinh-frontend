@@ -1,8 +1,8 @@
 const PRESET_TYPES = [
+  "customizable-table",
+  "customizable-buffet",
   "table",
-  "table-customizable",
   "buffet",
-  "buffet-customizable",
 ];
 
 export const getHref = (url) => {

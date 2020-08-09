@@ -5,8 +5,6 @@ import API from "../../utils/api";
 import { kebabCase } from "lodash";
 
 const Order = ({ layout, page, foodPresetTypes }) => {
-  console.log(foodPresetTypes);
-
   const convertPresetTypesToSection = () => {
     return foodPresetTypes.map((presetType, index) => {
       const text = JSON.parse(presetType.description);
@@ -81,7 +79,7 @@ export const getStaticProps = async ({ store }) => {
       page,
       foodPresetTypes,
     },
-    unstable_revalidate: 1,
+    revalidate: 1,
   };
 };
 

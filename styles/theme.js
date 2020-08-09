@@ -16,6 +16,16 @@ const theme = {
   ...variants,
   styles,
   forms: {
+    label: {
+      fontFamily: "heading",
+    },
+    select: {
+      borderWidth: "1px",
+      borderColor: "gray.5",
+      borderRadius: "0",
+      paddingLeft: "3",
+      paddingRight: "3",
+    },
     input: {
       borderWidth: "1px",
       borderColor: "gray.5",

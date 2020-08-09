@@ -72,7 +72,7 @@ const styles = {
     bg: "muted",
     border: 0,
     height: "1px",
-    m: 3,
+    m: 1,
   },
   ul: {
     listStyle: "disc",

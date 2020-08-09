@@ -10,12 +10,9 @@ import { Box, Styled, Button } from "theme-ui";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { selectPreset } from "../../../store/order/actions";
+import { formatNumber } from "../../../utils/number";
 
 const IMAGE_URL = "/images/defaultBackground.jpg";
-
-const formatNumber = (number) => {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-};
 
 const TablePreset = ({
   layout,
@@ -45,7 +42,9 @@ const TablePreset = ({
           presetType: {
             name: foodPresetType.name,
             numberOfPeople: foodPresetType.numberOfPeople,
+            type: foodPresetType.type,
           },
+          url: router.asPath.replace(/\?.*/g, ""),
         },
         presetItems: foodPreset.foodMenuItems,
       })
@@ -79,7 +78,10 @@ const TablePreset = ({
                   <Box className="flex items-center justify-center">
                     <Button
                       variant="primary"
-                      sx={{ backgroundColor: "transparent" }}
+                      sx={{
+                        backgroundColor: "transparent",
+                        borderColor: "white",
+                      }}
                       onClick={handleOrder(foodPreset)}
                     >
                       Đặt thực đơn này
@@ -143,7 +145,7 @@ export const getStaticProps = async ({ store, params }) => {
       foodPresetType,
       foodCategories,
     },
-    unstable_revalidate: 1,
+    revalidate: 1,
   };
 };
 

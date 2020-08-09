@@ -27,7 +27,7 @@ const SideDrawer = ({ isOpen, setIsOpen, children, direction = "right" }) => {
           openAnimationClassName,
           position
         ),
-        afterOpen: "w-7",
+        afterOpen: "w-64",
         beforeClose: closeAnimationClassName,
       }}
       closeTimeoutMS={500}

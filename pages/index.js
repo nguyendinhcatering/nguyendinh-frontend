@@ -24,6 +24,6 @@ export const getStaticProps = wrapper.getStaticProps(async (ctx) => {
       layout,
       page,
     },
-    unstable_revalidate: 1,
+    revalidate: 1,
   };
 });
