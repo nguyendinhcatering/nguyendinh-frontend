@@ -2,11 +2,11 @@ import React from "react";
 import DefaultLayout from "../../components/layout/DefaultLayout";
 import Page from "../../components/layout/Page";
 import API from "../../utils/api";
-import { kebabCase } from "lodash";
+import { kebabCase, sortBy } from "lodash";
 
 const Order = ({ layout, page, foodPresetTypes }) => {
   const convertPresetTypesToSection = () => {
-    return foodPresetTypes.map((presetType, index) => {
+    return sortBy(foodPresetTypes, ["order"]).map((presetType, index) => {
       const text = JSON.parse(presetType.description);
 
       text.blocks = [
