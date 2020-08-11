@@ -7,11 +7,21 @@ export default class API {
   static async getLayoutData() {
     const menus = await API.getMenus();
     const footer = await API.getFooter();
+    const siteData = await API.getSiteData();
 
     return {
       menus,
       footer,
+      siteData,
     };
+  }
+
+  static async getSiteData() {
+    try {
+      return (await axios.get("/site-generic-data")).data;
+    } catch {
+      return {};
+    }
   }
 
   static async getMenus() {

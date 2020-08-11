@@ -56,12 +56,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-// MyApp.getInitialProps = async (appContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-//   const menu = await API.getMenu();
-//
-//   return { ...appProps, menu };
-// };
-
 export default wrapper.withRedux(MyApp);
