@@ -5,6 +5,9 @@ import { random, times, flatten } from "lodash";
 import { getImageUrl } from "../../utils/getImageSrc";
 
 const Img = ({ image, index }) => {
+  if (!image) {
+    return null;
+  }
   const boxHeight = random(8, 16);
   const width = random(16, 24);
   const margin = random(0, 24);
