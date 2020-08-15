@@ -43,7 +43,12 @@ export const getSortedFoodItems = (
       )
     );
 
-    return secondaryCategory ? secondaryCategory.orderInCustomizable : 9999;
+    const order =
+      primaryCategory === "customizable"
+        ? secondaryCategory.orderInPreset
+        : secondaryCategory.orderInCustomizable;
+
+    return secondaryCategory ? order : 9999;
   };
 
   const sortedFoodItems = primaryCategories.map((category) => {
@@ -55,6 +60,7 @@ export const getSortedFoodItems = (
 
     const sortedFoodItems = sortBy(foodItemsInCategory, [
       secondaryOrder,
+      "order",
       "name",
     ]);
 
