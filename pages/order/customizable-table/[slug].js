@@ -77,7 +77,7 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
               <Box sx={{ minWidth: "1/8" }}>STT</Box>
               <Box sx={{ minWidth: "1/8" }}>Chọn</Box>
               <Box sx={{ minWidth: "5/8" }}>Tên món ăn</Box>
-              <Box sx={{ minWidth: "1/8" }}>Giá (VNĐ)</Box>
+              <Box sx={{ minWidth: "1/8", textAlign: "right" }}>Giá (VNĐ)</Box>
             </Box>
           </ManualSection>
           {sortedFoodCategories.sortedFoodItems.map((sorted) => {
@@ -119,7 +119,7 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
                         </label>
                       </Box>
                       <Box sx={{ minWidth: "5/8" }}>{foodItem.name}</Box>
-                      <Box sx={{ minWidth: "1/8" }}>
+                      <Box sx={{ minWidth: "1/8", textAlign: "right" }}>
                         {formatNumber(foodItem.price)}
                       </Box>
                     </Box>
