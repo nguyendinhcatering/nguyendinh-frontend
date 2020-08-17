@@ -43,6 +43,10 @@ export const getSortedFoodItems = (
       )
     );
 
+    if (!secondaryCategory) {
+      return 9999;
+    }
+
     const order =
       primaryCategory === "customizable"
         ? secondaryCategory.orderInPreset
