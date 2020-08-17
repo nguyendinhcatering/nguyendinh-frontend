@@ -24,7 +24,6 @@ import { getHref } from "../../../utils/getHref";
 
 const SelectExtra = ({ layout }) => {
   const router = useRouter();
-  const order = useSelector((state) => state.order);
   const orderQuantity = useSelector((state) => state.order?.quantity);
   const orderPlaceTypes = useSelector(
     (state) => state.global.orderMasterData.orderPlaceTypes
@@ -82,8 +81,8 @@ const SelectExtra = ({ layout }) => {
   });
 
   return (
-    <DefaultLayout layout={layout}>
-      <Box className="important:mt-6 container important:mx-auto flex">
+    <DefaultLayout layout={layout} pullUp={true}>
+      <Box className="important:mt-6 container important:mx-auto flex important:mb-4">
         <Box className="w-1/3">
           <Styled.h3 className="important:mb-4">Lựa chọn của bạn</Styled.h3>
           <CurrentOrder onChange={handleChange} />

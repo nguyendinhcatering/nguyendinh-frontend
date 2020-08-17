@@ -4,7 +4,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import DynamicBackground from "../../ui/DynamicBackground";
 
-const DefaultLayout = ({ layout, children }) => {
+const DefaultLayout = ({ layout, pullUp, children }) => {
   const { menus, footer, siteData } = layout || {
     menus: [],
     footer: {},
@@ -17,7 +17,7 @@ const DefaultLayout = ({ layout, children }) => {
     <div className="min-h-screen flex flex-col">
       <Navbar menus={menus} />
       <Box className="flex-grow relative overflow-hidden">
-        <DynamicBackground images={siteData.backgroundImages} />
+        <DynamicBackground images={siteData.backgroundImages} pullUp={pullUp} />
         {children}
         <Box className="flex-grow" />
       </Box>

@@ -49,19 +49,23 @@ const Img = ({ image, index }) => {
   );
 };
 
-const DynamicBackground = ({ images }) => {
+const DynamicBackground = ({ images, pullUp }) => {
   const [margin, setMargin] = useState(0);
   const [top, setTop] = useState(0);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setMargin(random(-20, 200));
-      setTop(window.innerHeight + margin);
+      if (pullUp) {
+        setTop(margin);
+      } else {
+        setTop(window.innerHeight + margin);
+      }
     }
   }, []);
 
   return (
-    <Box className="absolute w-full" sx={{ top: `${top}px` }}>
+    <Box className="absolute w-full" sx={{ top: `${top}px`, zIndex: -9999 }}>
       {flatten(times(3, () => images)).map((image, index) => (
         <Img image={image} index={index} />
       ))}

@@ -52,7 +52,7 @@ const TablePreset = ({
   };
 
   return (
-    <DefaultLayout layout={layout}>
+    <DefaultLayout layout={layout} pullUp={true}>
       <Page page={page}>
         <Card className={cn("important:mb-5")}>
           {foodPresets.map((foodPreset) => (

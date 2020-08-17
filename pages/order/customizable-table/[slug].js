@@ -61,7 +61,7 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
   };
 
   return (
-    <DefaultLayout layout={layout}>
+    <DefaultLayout layout={layout} pullUp={true}>
       <Page page={page}>
         <Card className={cn("important:mb-5")}>
           <ManualSection>
