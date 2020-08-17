@@ -17,7 +17,7 @@ const CardLayout = ({ banner }) => {
     >
       <Box className="flex h-full max-h-screen items-center flex-col">
         <Box className="flex-grow" />
-        <Card className="container p-5">
+        <Card className="container p-5 hidden md:block">
           <Wysiwyg data={banner.text} overrides={getWysiwygOverrides(banner)} />
         </Card>
       </Box>

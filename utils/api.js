@@ -196,7 +196,7 @@ export default class API {
 
   static async getFoodItems() {
     try {
-      const response = await axios.get("/food-menu-items");
+      const response = await axios.get("/food-menu-items?_limit=10000");
 
       return response.data;
     } catch (err) {

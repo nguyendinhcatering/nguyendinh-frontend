@@ -19,6 +19,7 @@ const Page = ({ page, preSections, postSections, children }) => {
   };
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [mainContentMargin, setMainContentMargin] = useState(0);
+  const [heroSection, setHeroSections] = useState([]);
   const { heroes } = splitBanners(banners);
 
   useEffect(() => {
@@ -28,11 +29,23 @@ const Page = ({ page, preSections, postSections, children }) => {
       setMainContentMargin(5);
     } else {
       if (currentHero?.layout === "card") {
+        console.log(currentHero);
+        setHeroSections([
+          {
+            type: "SECTION",
+            mediaPlacement: "none",
+            text: currentHero.text,
+            headerColor: currentHero.headerColor,
+            textColor: currentHero.textColor,
+          },
+        ]);
         setMainContentMargin(0);
       } else if (currentHero?.layout === "center") {
         setMainContentMargin([0, 0, 0, -5]);
+        setHeroSections([]);
       } else if (currentHero?.layout === "video") {
         setMainContentMargin(0);
+        setHeroSections([]);
       }
     }
   }, [currentHeroIndex]);
@@ -55,6 +68,13 @@ const Page = ({ page, preSections, postSections, children }) => {
           sx={{ marginTop: mainContentMargin }}
         >
           <Box className="container">
+            <Sections
+              sections={heroSection}
+              sx={{
+                display: ["block", "block", "none", "none"],
+                marginTop: [-5, -5, 0, 0],
+              }}
+            />
             {preSections && <Sections sections={preSections} />}
             <Sections sections={sections} />
             {postSections && <Sections sections={postSections} />}
