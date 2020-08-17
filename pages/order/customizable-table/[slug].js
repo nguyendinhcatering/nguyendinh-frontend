@@ -44,6 +44,14 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
     );
   };
 
+  const renderPrice = (foodItem) => {
+    if (foodItem.isSeasonal) {
+      return "Liên hệ";
+    }
+
+    return foodItem.price ? formatNumber(foodItem.price) : 0;
+  };
+
   const handleOrder = (e) => {
     dispatch(
       selectPreset({
@@ -120,7 +128,7 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
                       </Box>
                       <Box sx={{ minWidth: "5/8" }}>{foodItem.name}</Box>
                       <Box sx={{ minWidth: "1/8", textAlign: "right" }}>
-                        {formatNumber(foodItem.price)}
+                        {renderPrice(foodItem)}
                       </Box>
                     </Box>
                   );
