@@ -8,11 +8,21 @@ const Img = ({ image, index }) => {
   if (!image) {
     return null;
   }
-  const boxHeight = random(8, 16);
-  const width = random(16, 24);
-  const margin = random(0, 24);
-  const isLeft = index % 2;
-  const fromBorder = random(-100, 100);
+
+  const [boxHeight, setBoxHeight] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [margin, setMargin] = useState(0);
+  const [isLeft, setIsLeft] = useState(false);
+  const [fromBorder, setFromBorder] = useState(0);
+
+  useEffect(() => {
+    setBoxHeight(random(8, 16));
+    setWidth(random(16, 24));
+    setMargin(random(0, 24));
+    setIsLeft(index % 2);
+    setFromBorder(random(-100, 100));
+  }, []);
+
   return (
     <Box
       className="relative"
@@ -40,11 +50,12 @@ const Img = ({ image, index }) => {
 };
 
 const DynamicBackground = ({ images }) => {
-  const margin = random(-20, 200);
+  const [margin, setMargin] = useState(0);
   const [top, setTop] = useState(0);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      setMargin(random(-20, 200));
       setTop(window.innerHeight + margin);
     }
   }, []);
