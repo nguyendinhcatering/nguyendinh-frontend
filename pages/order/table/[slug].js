@@ -60,7 +60,8 @@ const TablePreset = ({
               <ManualSection>
                 <Box
                   className={cn(
-                    "w-full px-4 py-2 md:px-5 md:py-4 bg-center bg-cover flex flex-col md:flex-row",
+                    "w-full px-4 py-2 " +
+                      "md:px-5 md:py-4 bg-center bg-cover flex flex-col md:flex-row",
                     "text-white"
                   )}
                   sx={{
@@ -103,6 +104,7 @@ const TablePreset = ({
                         .map((item) => (
                           <Styled.p key={item.id}>{item.name}</Styled.p>
                         ))}
+
                     </Box>
                   ))}
                 </Box>
@@ -150,3 +152,4 @@ export const getStaticProps = async ({ store, params }) => {
 };
 
 export default TablePreset;
+

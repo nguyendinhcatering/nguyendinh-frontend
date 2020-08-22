@@ -11,7 +11,7 @@ const RightSection = ({ section }) => {
   return (
     <Box className={cn("flex flex-col md:flex-row")}>
       <Box className="w-full">
-        <Box className="p-4 xl:p-5">
+        <Box className="p-4 xl:p-6">  {/* orignal value: p-4 xl:p-5 */}
           <Wysiwyg
             data={section.text}
             overrides={getWysiwygOverrides(section)}
