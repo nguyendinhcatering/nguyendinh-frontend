@@ -3,8 +3,8 @@ import { Box, Embed } from "theme-ui";
 import Modal from "./Modal";
 import Carousel from "./Carousel";
 import { Slide } from "pure-react-carousel";
-import Hero from "../layout/HeroBanner/Hero";
 import Image from "./Image";
+import Multimedia from "./Multimedia";
 
 const Lightbox = ({ images, isOpen, setOpen }) => {
   return (
@@ -17,6 +17,7 @@ const Lightbox = ({ images, isOpen, setOpen }) => {
             isIntrinsicHeight={true}
             dragEnabled={true}
             touchEnabled={true}
+            isPlaying={false}
             buttonProps={{
               sx: {
                 color: "white",
@@ -26,26 +27,26 @@ const Lightbox = ({ images, isOpen, setOpen }) => {
           >
             {images.map((medium) => (
               <Slide key={medium.id}>
-                <Box className="h-full">
-                  {medium.embeddedMedia && (
-                    <Embed
-                      src={medium.embeddedMedia}
-                      sx={{ height: "100%", paddingBottom: "unset" }}
-                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    />
-                  )}
-                  {medium.image && (
-                    <Box className="w-full h-full">
-                      <Image
-                        image={medium.image}
-                        className="important:mx-auto"
-                        sx={{
-                          objectFit: "contain",
-                        }}
-                      />
-                    </Box>
-                  )}
-                </Box>
+                <Multimedia
+                  medium={medium}
+                  typeProps={{
+                    video: {
+                      sx: {
+                        height: ["90%", "90%", "full"],
+                        paddingBottom: "unset",
+                        marginTop: ["30px", "30px", "0px"],
+                        // margin: "0 auto",
+                      },
+                    },
+                    image: {
+                      sx: {
+                        margin: "0 auto",
+                        objectFit: "contain",
+                        width: "full",
+                      },
+                    },
+                  }}
+                />
               </Slide>
             ))}
           </Carousel>

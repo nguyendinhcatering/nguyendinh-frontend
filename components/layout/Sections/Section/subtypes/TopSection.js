@@ -1,16 +1,16 @@
 import React from "react";
 import { Box } from "theme-ui";
 import cn from "classnames";
-import Image from "../../../../ui/Image";
 import AspectRatioBox from "../../../../ui/AspectRatioBox";
 import Wysiwyg from "../../../../renderer/wysiwyg";
 import SectionAddon from "../../SectionAddons";
 import { getWysiwygOverrides } from "../../../HeroBanner/utils";
+import Multimedia from "../../../../ui/Multimedia";
 
 const TopSection = ({ section }) => {
   return (
     <Box className={cn("flex flex-col")}>
-      {section?.media[0]?.image && (
+      {section?.media[0] && (
         <AspectRatioBox
           ratio={[1, 1, 4 / 3]}
           sx={{ width: "100%" }}
@@ -19,12 +19,11 @@ const TopSection = ({ section }) => {
           )}
           keepAspectRatio={!section.offsetMedia}
         >
-          <Image image={section?.media[0]?.image} />
+          <Multimedia medium={section?.media[0]} />
         </AspectRatioBox>
       )}
-      <Box className="w-full p-3 text-center">
+      <Box className="w-full p-4">
         <Wysiwyg data={section.text} overrides={getWysiwygOverrides(section)} />
-
         {section.addons.map((addon, index) => (
           <SectionAddon addon={addon} key={index} />
         ))}
