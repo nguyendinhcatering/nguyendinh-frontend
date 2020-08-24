@@ -1,13 +1,13 @@
 import React from "react";
 import { Box } from "theme-ui";
 import cn from "classnames";
-import Image from "../../../../ui/Image";
 import AspectRatioBox from "../../../../ui/AspectRatioBox";
+import Multimedia from "../../../../ui/Multimedia";
 
 const MediaOnlySection = ({ section }) => {
   return (
     <Box className={cn("flex flex-col")}>
-      {section?.media[0]?.image && (
+      {section?.media[0] && (
         <AspectRatioBox
           ratio={[1, 1, 2]}
           sx={{ width: "100%" }}
@@ -16,7 +16,7 @@ const MediaOnlySection = ({ section }) => {
           )}
           keepAspectRatio={!section.offsetMedia}
         >
-          <Image image={section?.media[0]?.image} />
+          <Multimedia medium={section?.media[0]} />
         </AspectRatioBox>
       )}
     </Box>
