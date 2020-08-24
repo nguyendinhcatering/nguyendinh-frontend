@@ -44,7 +44,6 @@ const CustomizedOrder = ({wrapperClassName}) => {
 
     return (
         <Box className="justify-center items-center">
-            <Card>
                 <Box
                     className={cn(
                         "w-full px-3 py-3 md:px-4 md:py-4 bg-center bg-cover justify-center",
@@ -54,6 +53,12 @@ const CustomizedOrder = ({wrapperClassName}) => {
                         backgroundImage: `url(${IMAGE_URL})`,
                     }}
                 >
+                    <Styled.h4 className="important:font-bold">
+                        {order.meta.presetName}
+                    </Styled.h4>
+                    <Styled.p className="font-heading text-center">
+                        Thực đơn cho 6 người
+                    </Styled.p>
                 </Box>
                 <Box className="w-full p-3 md:p-4 justify-center">
                     {sortedItems.map((category) => {
@@ -90,14 +95,13 @@ const CustomizedOrder = ({wrapperClassName}) => {
                             </Box>
                         );
                     })}
-                    <Box className="important:mt-4 px-4 py-3 bg-red-6 text-white">
+                    <Box className="important:mt-4 px-4 py-3 bg-red-6 text-white content-center text-center">
                         <Styled.p sx={{ fontSize: 3 }}>Đơn hàng</Styled.p>
                         <Styled.p sx={{ fontSize: 3, fontWeight: "bold" }}>
                             {formatNumber(order.unitPrice, ",")}đ
                         </Styled.p>
                     </Box>
                 </Box>
-            </Card>
         </Box>
     );
 };

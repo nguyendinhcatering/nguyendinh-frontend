@@ -150,7 +150,7 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
             );
           })}
 
-          <Styled.h3 className="justify-center text-center pb-4">Các món đã chọn</Styled.h3>
+          <Styled.h3 className="justify-center text-center pb-4 pt-4">Các món đã chọn</Styled.h3>
           <Box className="w-full justify-center content-center pb-4" >
             <CustomizedOrder/>
           </Box>
