@@ -1,63 +1,72 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Sans|Merriweather&display=swap');
+@import url("https://fonts.googleapis.com/css?family=PT+Sans|Merriweather&display=swap");
 
 @font-face {
-    font-family: 'UTM Copperplate';
-    font-style: normal;
-    font-weight: normal;
-    font-display: swap;
-    src: url('/fonts/UTM Copperplate.ttf');
+  font-family: "UTM Copperplate";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/fonts/UTM Copperplate.ttf");
 }
 
 @font-face {
-    font-family: 'UTM Copperplate';
-    font-style: normal;
-    font-weight: bold;
-    font-display: swap;
-    src: url('/fonts/UTM CopperplateB.ttf');
+  font-family: "UTM Copperplate";
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/fonts/UTM CopperplateB.ttf");
 }
 
 @font-face {
-    font-family: 'UTM Sloop 1';
-    font-style: normal;
-    font-weight: normal;
-    font-display: swap;
-    src: url('/fonts/UTM Sloop 1.ttf');
+  font-family: "UTM Sloop 1";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/fonts/UTM Sloop 1.ttf");
 }
 
 @font-face {
-    font-family: 'UTM Aptima';
-    font-style: normal;
-    font-weight: normal;
-    font-display: swap;
-    src: url('/fonts/UTM Aptima.ttf');
+  font-family: "UTM Aptima";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/fonts/UTM Aptima.ttf");
 }
 
 @font-face {
-    font-family: 'UTM Aptima';
-    font-style: normal;
-    font-weight: bold;
-    font-display: swap;
-    src: url('/fonts/UTM AptimaBold.ttf');
+  font-family: "UTM Aptima";
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/fonts/UTM AptimaBold.ttf");
 }
 
 @font-face {
-    font-family: 'UTM Aptima';
-    font-style: italic;
-    font-weight: bold;
-    font-display: swap;
-    src: url('/fonts/UTM AptimaBoldItalic.ttf');
+  font-family: "UTM Aptima";
+  font-style: italic;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/fonts/UTM AptimaBoldItalic.ttf");
 }
 
 @font-face {
-    font-family: 'UTM Aptima';
-    font-style: italic;
-    font-weight: normal;
-    font-display: swap;
-    src: url('/fonts/UTM AptimaItalic.ttf');
+  font-family: "UTM Aptima";
+  font-style: italic;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/fonts/UTM AptimaItalic.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/montserrat-regular-webfont.woff2") format("woff2"),
+    url("/fonts/montserrat-regular-webfont.woff") format("woff");
 }
 
 .nd-default-background {
-    background-color: #eb3825;
-    background-image: url('/images/defaultBackground.jpg');
-    background-size: cover;
+  background-color: #eb3825;
+  background-image: url("/images/defaultBackground.jpg");
+  background-size: cover;
 }

@@ -104,7 +104,6 @@ const TablePreset = ({
                         .map((item) => (
                           <Styled.p key={item.id}>{item.name}</Styled.p>
                         ))}
-
                     </Box>
                   ))}
                 </Box>
@@ -152,4 +151,3 @@ export const getStaticProps = async ({ store, params }) => {
 };
 
 export default TablePreset;
-

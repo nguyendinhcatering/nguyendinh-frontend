@@ -23,7 +23,7 @@ const LeftSection = ({ section }) => {
         </AspectRatioBox>
       )}
       <Box className="w-full">
-        <Box className="p-4 xl:p-6">    {/* orignal value: p-4 xl:p-5 */}
+        <Box className="p-4 xl:p-6">
           <Wysiwyg
             data={section.text}
             overrides={getWysiwygOverrides(section)}

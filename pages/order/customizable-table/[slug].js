@@ -20,12 +20,9 @@ import {
 } from "../../../store/order/actions";
 import { useRouter } from "next/router";
 import CurrentOrder from "../../../components/order/CurrentOrder";
-import {getHref} from "../../../utils/getHref";
+import { getHref } from "../../../utils/getHref";
 import CustomizedOrder from "../../../components/order/CustomizedOrder";
 import ScrollArrow from "../../../components/order/ScrollToBottom";
-
-
-
 
 const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
   const dispatch = useDispatch();
@@ -81,9 +78,8 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
     <DefaultLayout layout={layout} pullUp={true}>
       <Page page={page}>
         <Card className={cn("important:mb-5")}>
-          <ScrollArrow className="justify-left"/>
+          <ScrollArrow className="justify-left" />
           <ManualSection>
-
             <Box
               className={cn(
                 "w-full px-4 py-2 md:px-5 md:py-4 bg-center bg-cover flex flex-col md:flex-row justify-between",
@@ -109,7 +105,6 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
                 className="px-4 md:px-5 py-2 md:py-2 first:py-4"
                 key={sorted.name}
               >
-
                 <Box className="flex justify-between">
                   <Box sx={{ minWidth: "1/8" }} />
                   <Box sx={{ minWidth: "1/8" }} />
@@ -150,9 +145,11 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
             );
           })}
 
-          <Styled.h3 className="justify-center text-center pb-4 pt-4">Các món đã chọn</Styled.h3>
-          <Box className="w-full justify-center content-center pb-4" >
-            <CustomizedOrder/>
+          <Styled.h3 className="justify-center text-center pb-4 pt-4">
+            Các món đã chọn
+          </Styled.h3>
+          <Box className="w-full justify-center content-center pb-4">
+            <CustomizedOrder />
           </Box>
 
           <Box className="flex justify-center content-center px-4 md:px-5 pt-2 pb-4">

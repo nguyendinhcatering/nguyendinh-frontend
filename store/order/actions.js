@@ -3,7 +3,6 @@ import { push } from "connected-next-router";
 import { pick, omit } from "lodash";
 import moment from "moment";
 
-
 export const selectPreset = (payload) => {
   return (dispatch) => {
     dispatch({
@@ -43,8 +42,6 @@ export const changeOrderDetails = (payload) => {
     payload,
   };
 };
-
-
 
 export const placeOrder = (payload) => {
   return async (dispatch, getState) => {
