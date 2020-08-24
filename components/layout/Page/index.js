@@ -29,7 +29,6 @@ const Page = ({ page, preSections, postSections, header, children }) => {
       setMainContentMargin(5);
     } else {
       if (currentHero?.layout === "card") {
-        console.log(currentHero);
         setHeroSections([
           {
             type: "SECTION",
