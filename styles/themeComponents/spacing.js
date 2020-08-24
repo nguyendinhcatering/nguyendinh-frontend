@@ -78,6 +78,7 @@ const space = {
   "6": "8rem",
   "7": "16rem",
   "8": "32rem",
+  defaultMargin: "6rem",
 };
 const radii = {
   none: "0",

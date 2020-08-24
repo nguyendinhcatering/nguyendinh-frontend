@@ -6,11 +6,12 @@ import AspectRatioBox from "../../../../ui/AspectRatioBox";
 import Wysiwyg from "../../../../renderer/wysiwyg";
 import SectionAddon from "../../SectionAddons";
 import { getWysiwygOverrides } from "../../../HeroBanner/utils";
+import Multimedia from "../../../../ui/Multimedia";
 
 const LeftSection = ({ section }) => {
   return (
     <Box className={cn("flex flex-col md:flex-row")} data-testid="left-section">
-      {section?.media[0]?.image && (
+      {section?.media[0] && (
         <AspectRatioBox
           ratio={1}
           sx={{ width: "100%" }}
@@ -19,7 +20,7 @@ const LeftSection = ({ section }) => {
           )}
           keepAspectRatio={!section.offsetMedia}
         >
-          <Image image={section?.media[0]?.image} />
+          <Multimedia medium={section?.media[0]} />
         </AspectRatioBox>
       )}
       <Box className="w-full">

@@ -1,11 +1,11 @@
 import React from "react";
 import { Box } from "theme-ui";
 import cn from "classnames";
-import Image from "../../../../ui/Image";
 import AspectRatioBox from "../../../../ui/AspectRatioBox";
 import Wysiwyg from "../../../../renderer/wysiwyg";
 import SectionAddon from "../../SectionAddons";
 import { getWysiwygOverrides } from "../../../HeroBanner/utils";
+import Multimedia from "../../../../ui/Multimedia";
 
 const RightSection = ({ section }) => {
   return (
@@ -21,7 +21,7 @@ const RightSection = ({ section }) => {
           ))}
         </Box>
       </Box>
-      {section?.media[0]?.image && (
+      {section?.media[0] && (
         <AspectRatioBox
           ratio={1}
           sx={{ width: "100%" }}
@@ -31,7 +31,7 @@ const RightSection = ({ section }) => {
           )}
           keepAspectRatio={!section.offsetMedia}
         >
-          <Image image={section?.media[0]?.image} />
+          <Multimedia medium={section?.media[0]} />
         </AspectRatioBox>
       )}
     </Box>

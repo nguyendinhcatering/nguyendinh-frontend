@@ -70,3 +70,11 @@
   background-image: url("/images/defaultBackground.jpg");
   background-size: cover;
 }
+
+.no-ring {
+    outline-width: 0px !important;
+}
+
+.no-ring div {
+    outline-width: 0px !important;
+}

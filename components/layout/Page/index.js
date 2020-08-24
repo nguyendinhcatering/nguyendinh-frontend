@@ -11,7 +11,7 @@ const splitBanners = (banners) => {
   };
 };
 
-const Page = ({ page, preSections, postSections, children }) => {
+const Page = ({ page, preSections, postSections, header, children }) => {
   const { metadata, banners, sections } = page || {
     metadata: {},
     banners: [],
@@ -61,8 +61,9 @@ const Page = ({ page, preSections, postSections, children }) => {
         {heroes && heroes.length > 0 ? (
           <HeroBanner banners={heroes} carouselName="hero" />
         ) : (
-          <Box sx={{ marginTop: 6, height: 0 }} />
+          <Box sx={{ height: 16, backgroundColor: "red.5" }} />
         )}
+        {header}
         <Box
           className="flex items-center flex-col justify-center w-full relative transition-all duration-200"
           sx={{ marginTop: mainContentMargin }}
