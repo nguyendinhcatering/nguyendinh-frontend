@@ -17,7 +17,7 @@ const preprocessSection = (section) => {
     section.offsetMedia = false;
   }
 
-  if (["gallery", "top"].includes(section.mediaPlacement)) {
+  if (["top"].includes(section.mediaPlacement)) {
     section.isFullWidth = false;
   }
 

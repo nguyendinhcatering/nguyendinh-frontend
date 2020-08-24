@@ -68,17 +68,18 @@ const sizes = {
   screenHeight: "100vh",
   screenWidth: "100vw",
 };
-const space = [
-  0,
-  "0.25rem",
-  "0.5rem",
-  "1rem",
-  "2rem",
-  "4rem",
-  "8rem",
-  "16rem",
-  "32rem",
-];
+const space = {
+  "0": 0,
+  "1": "0.25rem",
+  "2": "0.5rem",
+  "3": "1rem",
+  "4": "2rem",
+  "5": "4rem",
+  "6": "8rem",
+  "7": "16rem",
+  "8": "32rem",
+  defaultMargin: "6rem",
+};
 const radii = {
   none: "0",
   sm: "0.125rem",

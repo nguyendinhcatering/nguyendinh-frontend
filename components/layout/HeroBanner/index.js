@@ -8,7 +8,6 @@ import { BREAKPOINTS } from "utils/useBreakpoint";
 import { useBreakpointIndex } from "@theme-ui/match-media";
 
 const HeroBanner = ({ banners, carouselName }) => {
-  if (!banners) return <Box className="h-6" />;
   const breakpointIndex = useBreakpointIndex();
   const [aspectRatio, setAspectRatio] = useState([]);
 
@@ -20,6 +19,8 @@ const HeroBanner = ({ banners, carouselName }) => {
     }
   }, [breakpointIndex]);
 
+  if (!banners) return <Box className="h-6" />;
+
   return (
     <Carousel
       totalSlides={banners.length}
@@ -28,7 +29,7 @@ const HeroBanner = ({ banners, carouselName }) => {
       name={carouselName}
     >
       {banners.map((banner) => (
-        <Slide key={banner.id}>
+        <Slide key={banner.id} innerClassName="no-ring">
           <Hero layout={banner.layout} banner={banner} />
         </Slide>
       ))}
