@@ -22,7 +22,7 @@ const TopSection = ({ section }) => {
           <Multimedia medium={section?.media[0]} />
         </AspectRatioBox>
       )}
-      <Box className="w-full p-4">
+      <Box className="w-full p-4 text-center">
         <Wysiwyg data={section.text} overrides={getWysiwygOverrides(section)} />
         {section.addons.map((addon, index) => (
           <SectionAddon addon={addon} key={index} />
