@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { isEmpty } from "lodash";
-import { Box, Styled, Button, Checkbox } from "theme-ui";
+import { Box, Button, Checkbox, Styled } from "theme-ui";
 import Page from "../../../components/layout/Page";
 import Card from "../../../components/ui/Card";
 import cn from "classnames";
@@ -12,15 +12,11 @@ import { IMAGE_URL } from "../../../utils/getImageSrc";
 import { getSortedFoodItems } from "../../../utils/order";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  changeOrderDetails,
-  changeOrderQuantity,
   clearOrder,
   selectPreset,
   toggleFoodItem,
 } from "../../../store/order/actions";
 import { useRouter } from "next/router";
-import CurrentOrder from "../../../components/order/CurrentOrder";
-import { getHref } from "../../../utils/getHref";
 import CustomizedOrder from "../../../components/order/CustomizedOrder";
 import ScrollArrow from "../../../components/order/ScrollToBottom";
 

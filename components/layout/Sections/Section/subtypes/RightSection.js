@@ -11,14 +11,16 @@ const RightSection = ({ section }) => {
   return (
     <Box className={cn("flex flex-col md:flex-row")}>
       <Box className="w-full">
-        <Box className="p-4 xl:p-6">
-          <Wysiwyg
-            data={section.text}
-            overrides={getWysiwygOverrides(section)}
-          />
-          {section.addons.map((addon, index) => (
-            <SectionAddon addon={addon} key={index} />
-          ))}
+        <Box className="p-4 xl:px-6 xl:py-5 flex items-center justify-center flex-col h-full">
+          <Box className="w-full">
+            <Wysiwyg
+              data={section.text}
+              overrides={getWysiwygOverrides(section)}
+            />
+            {section.addons.map((addon, index) => (
+              <SectionAddon addon={addon} key={index} />
+            ))}
+          </Box>
         </Box>
       </Box>
       {section?.media[0] && (

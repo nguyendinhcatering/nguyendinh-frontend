@@ -66,27 +66,24 @@ const CustomizedOrder = ({ wrapperClassName }) => {
                 {category.name}
               </Styled.h5>
               {category.foodItems.map((foodItem) => (
-                <Box key={foodItem.id}>
-                  <span sx={{ minWidth: 8, display: "inline-block" }}>
-                    {sortedItemsOrder[foodItem.id]}.
-                  </span>
-                  <span>
-                    {foodItem.name}
-                    <div className="w-3 float-right">
-                      <label>
-                        <Checkbox
-                          checked={
-                            (order.presetItems || []).find(
-                              (item) => foodItem.id === item.id
-                            )
-                              ? true
-                              : false
-                          }
-                          onChange={handleToggleFoodItem(foodItem)}
-                        />
-                      </label>
-                    </div>
-                  </span>
+                <Box key={foodItem.id} className="w-full flex">
+                  <span>{sortedItemsOrder[foodItem.id]}.&nbsp;</span>
+                  <Box as="span">{foodItem.name}</Box>
+                  <Box className="flex-grow" />
+                  <Box>
+                    <Box as="label">
+                      <Checkbox
+                        checked={
+                          (order.presetItems || []).find(
+                            (item) => foodItem.id === item.id
+                          )
+                            ? true
+                            : false
+                        }
+                        onChange={handleToggleFoodItem(foodItem)}
+                      />
+                    </Box>
+                  </Box>
                 </Box>
               ))}
             </Box>
