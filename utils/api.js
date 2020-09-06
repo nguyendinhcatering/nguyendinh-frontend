@@ -18,7 +18,7 @@ export default class API {
 
   static async getSiteData() {
     try {
-      return (await axios.get("/site-generic-data")).data;
+      return (await axios.get("/site-options")).data;
     } catch {
       return {};
     }
