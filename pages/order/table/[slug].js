@@ -60,7 +60,8 @@ const TablePreset = ({
               <ManualSection>
                 <Box
                   className={cn(
-                    "w-full px-4 py-2 md:px-5 md:py-4 bg-center bg-cover flex flex-col md:flex-row",
+                    "w-full px-4 py-2 " +
+                      "md:px-5 md:py-4 bg-center bg-cover flex flex-col md:flex-row",
                     "text-white"
                   )}
                   sx={{
