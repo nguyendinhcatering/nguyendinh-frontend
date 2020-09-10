@@ -4,7 +4,7 @@ import cn from "classnames";
 import AspectRatioBox from "../../../../ui/AspectRatioBox";
 import Multimedia from "../../../../ui/Multimedia";
 
-const MediaOnlySection = ({ section }) => {
+const MediaOnlySection = ({layout, section}) => {
   return (
     <Box className={cn("flex flex-col")}>
       {section?.media[0] && (
@@ -16,7 +16,7 @@ const MediaOnlySection = ({ section }) => {
           )}
           keepAspectRatio={!section.offsetMedia}
         >
-          <Multimedia medium={section?.media[0]} />
+          <Multimedia layout={layout} medium={section?.media[0]} />
         </AspectRatioBox>
       )}
     </Box>

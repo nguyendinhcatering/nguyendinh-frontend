@@ -3,17 +3,18 @@ import { Box } from "theme-ui";
 import FullWidthWrapper from "./FullWidthWrapper";
 import PartialWrapper from "./PartialWrapper";
 
-const SectionsWrapper = ({ sectionGroup }) => {
+const SectionsWrapper = ({layout, sectionGroup }) => {
   return (
     <Box>
       {sectionGroup.isFullWidth ? (
         <FullWidthWrapper
+            layout={layout}
           sections={sectionGroup.sections}
           offsetMedia={sectionGroup.offsetMedia}
           offsetDirection={sectionGroup.offsetDirection}
         />
       ) : (
-        <PartialWrapper sections={sectionGroup.sections} />
+        <PartialWrapper layout={layout} sections={sectionGroup.sections} />
       )}
     </Box>
   );
