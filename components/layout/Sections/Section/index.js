@@ -18,9 +18,9 @@ const DICTIONARY = {
   mediaOnly: MediaOnlySection,
 };
 
-const Section = ({layout, section }) => {
+const Section = ({ section }) => {
   const Component = DICTIONARY[section.mediaPlacement] || NoneSection;
-  return <Component layout={layout} section={section}>HI</Component>;
+  return <Component section={section}>HI</Component>;
 };
 
 export default Section;

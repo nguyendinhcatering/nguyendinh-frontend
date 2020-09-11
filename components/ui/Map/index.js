@@ -1,11 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import GoogleMapReact from "google-map-react";
 import API from "../../../utils/api";
-import DefaultLayout from "../../layout/DefaultLayout";
 import {kebabCase} from "lodash";
-import {get} from "@theme-ui/css";
-
-
 
 const Marker = ({ text }) => {
   return <div>{text}</div>;
@@ -16,15 +12,21 @@ var shape = {
   type: "rect",
 };
 
+const getMapInformation = async function () {
+  const siteData = await API.getSiteGenericData();
+  const mapOptions = siteData.mapOptions;
+  return {
+    mapOptions
+  }
+}
 
 const Map = ({
-    layout,
-    defaultCenter = { lat: 21.0288012, lng: 105.7983287 },
-    defaultZoom = 15,
+  defaultCenter = { lat: 21.0288012, lng: 105.7983287 },
+  defaultZoom = 15,
+  markers = [
+    getMapInformation()
+  ],
 }) => {
-
-  const markers = layout.siteData["mapOptions"];
-
   const apiKey =
     process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY
@@ -44,9 +46,9 @@ const Map = ({
         labelOrigin: new maps.Point(0, 50),
       };
       let m = new maps.Marker({
-        position: { lat: marker.latitude, lng: marker.longtitude },
+        position: { lat: marker.lat, lng: marker.lng },
         map,
-        label: marker.name,
+        label: marker.text,
         animation: maps.Animation.DROP,
         shape: shape,
         icon: maps,
@@ -54,7 +56,7 @@ const Map = ({
 
       const inforWindow = new maps.InfoWindow({
         content: "Test",
-        position: { lat: marker.latitude, lng: marker.longtitude },
+        position: { lat: marker.lat, lng: marker.lng },
       });
 
       m.addListener("click", () => {

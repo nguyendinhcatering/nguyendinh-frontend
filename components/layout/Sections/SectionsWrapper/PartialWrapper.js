@@ -15,7 +15,7 @@ const getWidth = (sections) => {
   return (100 - 10) / sectionsPerLine;
 };
 
-const PartialWrapper = ({layout, sections }) => {
+const PartialWrapper = ({ sections }) => {
   const binnedSections = chunk(sections, 3);
 
   return (
@@ -35,7 +35,7 @@ const PartialWrapper = ({layout, sections }) => {
                 sx={{ width: ["100%", "100%", `${getWidth(sections)}%`] }}
                 key={section.id}
               >
-                <Section layout={layout} section={section} key={section.id} />
+                <Section section={section} key={section.id} />
               </Card>
             ))}
           </Box>

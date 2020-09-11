@@ -21,7 +21,7 @@ const PagePage = ({ page, layout }) => {
 
   return (
     <DefaultLayout layout={layout}>
-      <Page layout={layout} page={page} />
+      <Page page={page} />
     </DefaultLayout>
   );
 };

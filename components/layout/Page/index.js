@@ -11,7 +11,7 @@ const splitBanners = (banners) => {
   };
 };
 
-const Page = ({layout, page, preSections, postSections, header, children }) => {
+const Page = ({ page, preSections, postSections, header, children }) => {
   const { metadata, banners, sections } = page || {
     metadata: {},
     banners: [],
@@ -76,7 +76,7 @@ const Page = ({layout, page, preSections, postSections, header, children }) => {
               }}
             />
             {preSections && <Sections sections={preSections} />}
-            <Sections layout={layout} sections={sections} />
+            <Sections sections={sections} />
             {postSections && <Sections sections={postSections} />}
             {children}
           </Box>

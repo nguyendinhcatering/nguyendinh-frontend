@@ -3,16 +3,15 @@ import React, { useState, useEffect } from "react";
 import { jsx, Embed } from "theme-ui";
 import Image from "./Image";
 import Map from "./Map";
-import API from "../../utils/api";
 
-const ImageComponent = ({layout, medium, ...props }) => {
+const ImageComponent = ({ medium, ...props }) => {
   if (!medium.image) {
     return null;
   }
   return <Image image={medium.image} {...props} />;
 };
 
-const VideoComponent = ({layout, medium, ...props }) => {
+const VideoComponent = ({ medium, ...props }) => {
   if (!medium.embeddedMedia) {
     return null;
   }
@@ -27,9 +26,11 @@ const VideoComponent = ({layout, medium, ...props }) => {
   );
 };
 
-const MapComponent = ({layout, medium, ...props }) => {
+const MapComponent = ({ medium, ...props }) => {
   return (
-      <Map layout={layout}
+      <Map
+        src={medium.map}
+        {...props}
       />
   );
 };
@@ -40,7 +41,7 @@ const COMPONENTS = {
   map: MapComponent,
 };
 
-const Multimedia = ({layout, medium, typeProps, ...props }) => {
+const Multimedia = ({ medium, typeProps, ...props }) => {
   const [type, setType] = useState("image");
   const [typeSpecificProps, setTypeSpecificProps] = useState({
     image: {},
@@ -76,7 +77,7 @@ const Multimedia = ({layout, medium, typeProps, ...props }) => {
     return null;
   }
 
-  return <Component layout={layout} medium={medium} {...props} {...typeSpecificProps[type]} />;
+  return <Component medium={medium} {...props} {...typeSpecificProps[type]} />;
 };
 
 export default Multimedia;

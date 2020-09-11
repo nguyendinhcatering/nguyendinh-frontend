@@ -3,7 +3,7 @@ import cn from "classnames";
 import Section from "../Section";
 import Card from "../../../ui/Card";
 
-const FullWidthWrapper = ({layout, sections, offsetMedia, offsetDirection }) => {
+const FullWidthWrapper = ({ sections, offsetMedia, offsetDirection }) => {
   return (
     <Card
       className={cn(
@@ -14,7 +14,7 @@ const FullWidthWrapper = ({layout, sections, offsetMedia, offsetDirection }) => 
       )}
     >
       {sections.map((section) => (
-        <Section layout={layout} section={section} key={section.id} />
+        <Section section={section} key={section.id} />
       ))}
     </Card>
   );
