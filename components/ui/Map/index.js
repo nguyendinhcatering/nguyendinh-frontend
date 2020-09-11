@@ -13,14 +13,6 @@ var shape = {
   type: "rect",
 };
 
-const getMapInformation = async function () {
-  const siteData = await API.getSiteGenericData();
-  const mapOptions = siteData.mapOptions;
-  return {
-    mapOptions,
-  };
-};
-
 const Map = ({
   defaultCenter = { lat: 21.0288012, lng: 105.7983287 },
   defaultZoom = 15,
