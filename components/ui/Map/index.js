@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Box } from "theme-ui";
 import GoogleMapReact from "google-map-react";
 import { MapContext } from "./MapContext";
-import Markerwithlabel from "@google/markerwithlabel";
 
 const shape = {
   coords: [0, 0, 100, 100],
