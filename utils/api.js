@@ -203,4 +203,18 @@ export default class API {
       return [];
     }
   }
+
+  static async getSiteGenericData() {
+    try {
+      const response = await axios.get(`/site-generic-data`);
+
+      if (response.data) {
+        return response.data;
+      }
+
+      return {};
+    } catch (err) {
+      return {};
+    }
+  }
 }

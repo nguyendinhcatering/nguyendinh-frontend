@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { jsx, Embed } from "theme-ui";
 import Image from "./Image";
+import Map from "./Map";
 
 const ImageComponent = ({ medium, ...props }) => {
   if (!medium.image) {
@@ -26,7 +27,12 @@ const VideoComponent = ({ medium, ...props }) => {
 };
 
 const MapComponent = ({ medium, ...props }) => {
-  return null;
+  return (
+      <Map
+        src={medium.map}
+        {...props}
+      />
+  );
 };
 
 const COMPONENTS = {

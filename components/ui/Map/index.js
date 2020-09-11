@@ -1,5 +1,7 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
+import API from "../../../utils/api";
+import {kebabCase} from "lodash";
 
 const Marker = ({ text }) => {
   return <div>{text}</div>;
@@ -10,15 +12,19 @@ var shape = {
   type: "rect",
 };
 
+const getMapInformation = async function () {
+  const siteData = await API.getSiteGenericData();
+  const mapOptions = siteData.mapOptions;
+  return {
+    mapOptions
+  }
+}
+
 const Map = ({
   defaultCenter = { lat: 21.0288012, lng: 105.7983287 },
   defaultZoom = 15,
   markers = [
-    {
-      lat: 21.0288012,
-      lng: 105.7983287,
-      text: "Trụ sở Nguyên Đình",
-    },
+    getMapInformation()
   ],
 }) => {
   const apiKey =
@@ -62,7 +68,7 @@ const Map = ({
   };
 
   return (
-    <div style={{ height: "500px", width: "500px" }}>
+    <div style={{ height: '100vh', width: '100%'}}>
       <GoogleMapReact
         bootstrapURLKeys={apiKey ? { key: apiKey } : undefined}
         defaultCenter={defaultCenter}
