@@ -11,12 +11,12 @@ const DefaultLayout = ({ layout, pullUp, children }) => {
     footer: {},
     siteData: {
       backgroundImages: [],
-      siteData: [],
+      mapOptions: [],
     },
   };
 
   return (
-    <MapContext.Provider value={layout}>
+    <MapContext.Provider value={siteData.mapOptions}>
       <div className="min-h-screen flex flex-col">
         <Navbar menus={menus} />
         <Box className="flex-grow relative overflow-hidden">
