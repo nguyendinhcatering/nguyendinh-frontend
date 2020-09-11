@@ -77,9 +77,9 @@ const Map = ({
   };
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "50vw", width:"100%"}}>
       <GoogleMapReact
-        bootstrapURLKeys={apiKey ? { key: apiKey } : undefined}
+        bootstrapURLKeys={apiKey ? { key: apiKey, language:'vi' } : {undefined, language:'vi'}}
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals={true}
