@@ -28,9 +28,8 @@ const VideoComponent = ({layout, medium, ...props }) => {
 };
 
 const MapComponent = ({layout, medium, ...props }) => {
-  const markers = layout.siteData.mapOptions;
   return (
-      <Map markers={markers}
+      <Map layout={layout}
       />
   );
 };

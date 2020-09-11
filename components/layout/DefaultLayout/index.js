@@ -10,7 +10,6 @@ const DefaultLayout = ({ layout, pullUp, children }) => {
     footer: {},
     siteData: {
       backgroundImages: [],
-      mapOptions: [],
     },
   };
 

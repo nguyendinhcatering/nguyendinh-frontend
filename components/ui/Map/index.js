@@ -18,10 +18,12 @@ var shape = {
 
 
 const Map = ({
+    layout,
     defaultCenter = { lat: 21.0288012, lng: 105.7983287 },
     defaultZoom = 15,
-    markers,
 }) => {
+
+  const markers = layout.siteData["mapOptions"];
 
   const apiKey =
     process.env.NODE_ENV === "production"
@@ -42,7 +44,7 @@ const Map = ({
         labelOrigin: new maps.Point(0, 50),
       };
       let m = new maps.Marker({
-        position: { lat: marker.latitude, lng: marker.longitude},
+        position: { lat: marker.latitude, lng: marker.longtitude },
         map,
         label: marker.name,
         animation: maps.Animation.DROP,
@@ -51,8 +53,8 @@ const Map = ({
       });
 
       const inforWindow = new maps.InfoWindow({
-        content: marker.description,
-        position: { lat: marker.latitude, lng: marker.longitude },
+        content: "Test",
+        position: { lat: marker.latitude, lng: marker.longtitude },
       });
 
       m.addListener("click", () => {
