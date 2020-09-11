@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import GoogleMapReact from "google-map-react";
 import API from "../../../utils/api";
 import { kebabCase } from "lodash";
+import { MapContext } from "./MapContext";
 
 const Marker = ({ text }) => {
   return <div>{text}</div>;
@@ -23,9 +24,8 @@ const getMapInformation = async function () {
 const Map = ({
   defaultCenter = { lat: 21.0288012, lng: 105.7983287 },
   defaultZoom = 15,
-  layout,
 }) => {
-  const markers = layout.siteData["mapOptions"];
+  const markers = useContext(MapContext);
 
   const apiKey =
     process.env.NODE_ENV === "production"
