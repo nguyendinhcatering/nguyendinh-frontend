@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@google/markerwithlabel": "^1.2.12",
     "@theme-ui/color": "^0.4.0-alpha.2",
     "@theme-ui/css": "^0.4.0-alpha.2",
     "@theme-ui/match-media": "^0.4.0-alpha.3",
