@@ -6,7 +6,7 @@ import Multimedia from "../../../../ui/Multimedia";
 
 const MediaOnlySection = ({ section }) => {
   return (
-    <Box className={cn("flex flex-col")}>
+    <Box className={cn("flex flex-row")}>
       {section?.media[0] && (
         <AspectRatioBox
           ratio={[1, 1, 2]}
@@ -19,6 +19,7 @@ const MediaOnlySection = ({ section }) => {
           <Multimedia medium={section?.media[0]} />
         </AspectRatioBox>
       )}
+      <div />
     </Box>
   );
 };
