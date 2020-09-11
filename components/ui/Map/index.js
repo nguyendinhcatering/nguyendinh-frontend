@@ -23,10 +23,11 @@ const getMapInformation = async function () {
 const Map = ({
   defaultCenter = { lat: 21.0288012, lng: 105.7983287 },
   defaultZoom = 15,
-  markers = [
-    getMapInformation()
-  ],
+  layout,
 }) => {
+
+  const markers = layout.siteData["mapOptions"]
+
   const apiKey =
     process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY
@@ -46,17 +47,17 @@ const Map = ({
         labelOrigin: new maps.Point(0, 50),
       };
       let m = new maps.Marker({
-        position: { lat: marker.lat, lng: marker.lng },
+        position: { lat: marker.latitude, lng: marker.longitude },
         map,
-        label: marker.text,
+        label: marker.name,
         animation: maps.Animation.DROP,
         shape: shape,
         icon: maps,
       });
 
       const inforWindow = new maps.InfoWindow({
-        content: "Test",
-        position: { lat: marker.lat, lng: marker.lng },
+        content: marker.description,
+        position: { lat: marker.latitude, lng: marker.longitude},
       });
 
       m.addListener("click", () => {
