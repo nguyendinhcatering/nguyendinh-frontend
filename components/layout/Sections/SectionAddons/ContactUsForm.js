@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Box, Button, Input, Textarea } from "theme-ui";
-import API from "../../../../utils/api";
+import classnames from "classnames";
 
 const ContactUsForm = ({ onDone }) => {
+  const [isLoading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
@@ -17,18 +18,24 @@ const ContactUsForm = ({ onDone }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    try {
+      setLoading(true);
 
-    await API.sendContactEmail({
-      email,
-      name,
-      address,
-      message,
-    });
+      await API.sendContactEmail({
+        email,
+        name,
+        address,
+        message,
+      });
 
-    clear();
+      clear();
 
-    if (onDone) {
-      onDone();
+      if (onDone) {
+        onDone();
+      }
+    } catch (err) {
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -66,7 +73,15 @@ const ContactUsForm = ({ onDone }) => {
           onChange={(e) => setMessage(e.target.value)}
         />
       </Box>
-      <Button className="important:min-w-32">Gửi</Button>
+      <Button
+        className={classnames(
+          "important:min-w-32",
+          isLoading ? "opacity-75" : ""
+        )}
+        disabled={isLoading}
+      >
+        Gửi
+      </Button>
     </Box>
   );
 };

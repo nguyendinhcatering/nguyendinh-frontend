@@ -85,8 +85,19 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
                 backgroundImage: `url(${IMAGE_URL})`,
               }}
             >
-              <Box sx={{ minWidth: "1/8" }}>STT</Box>
-              <Box sx={{ minWidth: "1/8" }}>Chọn</Box>
+              <Box
+                sx={{ minWidth: "1/8", display: ["none", "none", "initial"] }}
+              >
+                STT
+              </Box>
+              <Box
+                sx={{
+                  minWidth: "1/8",
+                  visibility: ["hidden", "hidden", "visible"],
+                }}
+              >
+                Chọn
+              </Box>
               <Box sx={{ minWidth: "5/8" }}>Tên món ăn</Box>
               <Box sx={{ minWidth: "1/8", textAlign: "right" }}>Giá (VNĐ)</Box>
             </Box>
@@ -102,7 +113,12 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
                 key={sorted.name}
               >
                 <Box className="flex justify-between">
-                  <Box sx={{ minWidth: "1/8" }} />
+                  <Box
+                    sx={{
+                      minWidth: "1/8",
+                      display: ["none", "none", "initial"],
+                    }}
+                  />
                   <Box sx={{ minWidth: "1/8" }} />
                   <Box sx={{ minWidth: "5/8", color: "red.5" }}>
                     <Styled.h6>{sorted.name}</Styled.h6>
@@ -112,7 +128,12 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
                 {sorted.foodItems.map((foodItem) => {
                   return (
                     <Box className="flex justify-between" key={foodItem.id}>
-                      <Box sx={{ minWidth: "1/8" }}>
+                      <Box
+                        sx={{
+                          minWidth: "1/8",
+                          display: ["none", "none", "initial"],
+                        }}
+                      >
                         {sortedFoodCategories.sortedFoodItemsOrder[foodItem.id]}
                       </Box>
                       <Box sx={{ minWidth: "1/8" }}>

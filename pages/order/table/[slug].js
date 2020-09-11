@@ -54,7 +54,7 @@ const TablePreset = ({
   return (
     <DefaultLayout layout={layout} pullUp={true}>
       <Page page={page}>
-        <Card className={cn("important:mb-5")}>
+        <Card className={cn("important:mb-5 important:mt-5 md:important:mt-0")}>
           {foodPresets.map((foodPreset) => (
             <React.Fragment key={foodPreset.id}>
               <ManualSection>
@@ -75,13 +75,14 @@ const TablePreset = ({
                       {foodPresetType?.numberOfPeople} người
                     </Styled.h4>
                   </Box>
-                  <Box className="flex-grow" />
+                  <Box className="flex-grow min-h-4" />
                   <Box className="flex items-center justify-center">
                     <Button
                       variant="primary"
                       sx={{
                         backgroundColor: "transparent",
                         borderColor: "white",
+                        width: ["100%", "100%"],
                       }}
                       onClick={handleOrder(foodPreset)}
                     >
@@ -92,20 +93,26 @@ const TablePreset = ({
               </ManualSection>
               <ManualSection>
                 <Box className="px-5 py-3 flex flex-col md:flex-row">
-                  {allowedFoodCategories.map((foodCategory) => (
-                    <Box className="w-full" key={foodCategory.id}>
-                      <Styled.h3>{foodCategory.name}</Styled.h3>
-                      {foodPreset.foodMenuItems
-                        .filter((item) =>
-                          item.foodCategories.some(
-                            (category) => category.id === foodCategory.id
-                          )
-                        )
-                        .map((item) => (
+                  {allowedFoodCategories.map((foodCategory) => {
+                    const foodItems = foodPreset.foodMenuItems.filter((item) =>
+                      item.foodCategories.some(
+                        (category) => category.id === foodCategory.id
+                      )
+                    );
+
+                    if (foodItems.length === 0) {
+                      return null;
+                    }
+
+                    return (
+                      <Box className="w-full" key={foodCategory.id}>
+                        <Styled.h3>{foodCategory.name}</Styled.h3>
+                        {foodItems.map((item) => (
                           <Styled.p key={item.id}>{item.name}</Styled.p>
                         ))}
-                    </Box>
-                  ))}
+                      </Box>
+                    );
+                  })}
                 </Box>
               </ManualSection>
             </React.Fragment>

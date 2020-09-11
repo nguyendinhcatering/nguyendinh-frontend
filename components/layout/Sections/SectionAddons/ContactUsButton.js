@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { Box, Button, Embed } from "theme-ui";
+import { Box, Button } from "theme-ui";
 import Modal from "../../../ui/Modal";
-import Carousel from "../../../ui/Carousel";
-import { Slide } from "pure-react-carousel";
-import Image from "../../../ui/Image";
 import Card from "../../../ui/Card";
 import ContactUsForm from "./ContactUsForm";
 
