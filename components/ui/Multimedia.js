@@ -29,9 +29,7 @@ const VideoComponent = ({ medium, ...props }) => {
 
 const MapComponent = ({ medium, ...props }) => {
   return (
-    <MapContext.Consumer>
-      {(layout) => <Map layout={layout} />}
-    </MapContext.Consumer>
+    <Map {...props} />
   );
 };
 
