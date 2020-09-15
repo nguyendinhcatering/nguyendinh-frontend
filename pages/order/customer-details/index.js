@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from "react";
+import React, { useMemo } from "react";
 import { Box, Button, Input, jsx, Label, Styled, Textarea } from "theme-ui";
 import DefaultLayout from "../../../components/layout/DefaultLayout";
 import API from "../../../utils/api";
@@ -21,6 +21,7 @@ import * as moment from "moment";
 import FormError from "../../../components/ui/Form/FormError";
 import { useRouter } from "next/router";
 import { getHref } from "../../../utils/getHref";
+import Loading from "../../../components/Loading";
 
 const SelectExtra = ({ layout }) => {
   const router = useRouter();
@@ -55,30 +56,40 @@ const SelectExtra = ({ layout }) => {
     dispatch(changeOrderQuantity(e.target.value));
   };
 
-  const validationSchema = Yup.object().shape({
-    fullName: Yup.string().required("Hãy nhập họ và tên của bạn."),
-    email: Yup.string()
-      .email("Hãy nhập một địa chỉ email chính xác.")
-      .required("Hãy nhập email của bạn."),
-    phone: Yup.string()
-      .min(6, "Hãy nhập một số điện thoại hợp lệ.")
-      .required("Hãy nhập số điện thoại của bạn."),
-    alternativePhone: Yup.string(),
-    orderType: Yup.string().required(
-      "Hãy lựa chọn một trong những loại hình tiệc này"
-    ),
-    orderPlaceType: Yup.string().required(
-      "Hãy lựa chọn một trong những đặc điểm nơi tổ chức tiệc này"
-    ),
-    orderDate: Yup.date()
-      .min(
-        moment().startOf("day").toDate(),
-        "Hãy chọn một ngày giao hàng sau ngày hôm nay"
-      )
-      .nullable()
-      .required("Hãy nhập ngày giao hàng"),
-    orderTime: Yup.string().nullable().required("Hãy nhập thời gian giao hàng"),
-  });
+  const validationSchema = useMemo(
+    () =>
+      Yup.object().shape({
+        fullName: Yup.string().required("Hãy nhập họ và tên của bạn."),
+        email: Yup.string()
+          .email("Hãy nhập một địa chỉ email chính xác.")
+          .required("Hãy nhập email của bạn."),
+        phone: Yup.string()
+          .min(6, "Hãy nhập một số điện thoại hợp lệ.")
+          .required("Hãy nhập số điện thoại của bạn."),
+        alternativePhone: Yup.string(),
+        orderType: Yup.string().required(
+          "Hãy lựa chọn một trong những loại hình tiệc này"
+        ),
+        orderPlaceType: Yup.string().required(
+          "Hãy lựa chọn một trong những đặc điểm nơi tổ chức tiệc này"
+        ),
+        orderDate: Yup.date()
+          .min(
+            moment().startOf("day").toDate(),
+            "Hãy chọn một ngày giao hàng sau ngày hôm nay"
+          )
+          .nullable()
+          .required("Hãy nhập ngày giao hàng"),
+        orderTime: Yup.string()
+          .nullable()
+          .required("Hãy nhập thời gian giao hàng"),
+      }),
+    []
+  );
+
+  if (router.isFallback) {
+    return <Loading />;
+  }
 
   return (
     <DefaultLayout layout={layout} pullUp={true}>

@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import DefaultLayout from "components/layout/DefaultLayout";
 import Error from "next/error";
 import Page from "components/layout/Page";
+import Loading from "../../components/Loading";
 
 const PagePage = ({ page, layout }) => {
   const router = useRouter();
 
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!page) {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { isEmpty } from "lodash";
-import { Box, Button, Checkbox, Styled } from "theme-ui";
+import { Box, Button, Checkbox, jsx, Styled } from "theme-ui";
 import Page from "../../../components/layout/Page";
 import Card from "../../../components/ui/Card";
 import cn from "classnames";
@@ -19,10 +19,12 @@ import {
 import { useRouter } from "next/router";
 import CustomizedOrder from "../../../components/order/CustomizedOrder";
 import ScrollArrow from "../../../components/order/ScrollToBottom";
+import Loading from "../../../components/Loading";
 
 const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
   const currentOrder = useSelector((state) => state.order);
 
   useEffect(() => {
@@ -69,6 +71,10 @@ const CustomizableTable = ({ layout, page, foodCategories, foodItems }) => {
       })
     );
   };
+
+  if (router.isFallback) {
+    return <Loading />;
+  }
 
   return (
     <DefaultLayout layout={layout} pullUp={true}>

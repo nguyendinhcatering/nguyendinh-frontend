@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { selectPreset } from "../../../store/order/actions";
 import { formatNumber } from "../../../utils/number";
+import Loading from "../../../components/Loading";
 
 const IMAGE_URL = "/images/defaultBackground.jpg";
 
@@ -25,7 +26,7 @@ const TablePreset = ({
   const dispatch = useDispatch();
 
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   const allowedFoodCategories = sortBy(
