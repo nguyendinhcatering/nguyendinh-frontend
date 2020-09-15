@@ -4,9 +4,16 @@ COPY package.json package.json
 COPY package-lock.json package-lock.json
 RUN npm install --silent
 COPY . .
-RUN chmod a+x entrypoint.sh
 
 EXPOSE 3000
 
-CMD ["/bin/sh", "entrypoint.sh"]
+ARG NEXT_PUBLIC_BACKEND_URL
+ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
+
+ARG NEXT_PUBLIC_GOOGLE_MAP_API_KEY
+ENV NEXT_PUBLIC_GOOGLE_MAP_API_KEY=$NEXT_PUBLIC_GOOGLE_MAP_API_KEY
+
+RUN npm run build
+
+CMD npm run start
 
