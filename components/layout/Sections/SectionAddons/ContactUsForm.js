@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Input, Textarea } from "theme-ui";
 import classnames from "classnames";
 
-const ContactUsForm = ({ onDone }) => {
+const ContactUsForm = ({ onDone, data = { sx: {} } }) => {
   const [isLoading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -40,7 +40,7 @@ const ContactUsForm = ({ onDone }) => {
   };
 
   return (
-    <Box as="form" onSubmit={onSubmit} className="important:mt-3">
+    <Box as="form" onSubmit={onSubmit} className="important:mt-3" sx={data.sx}>
       <Box className="required important:mb-3">
         <Input
           placeholder="Họ và tên"

@@ -15,7 +15,7 @@ const HeroBanner = ({ banners, carouselName }) => {
     if (breakpointIndex > BREAKPOINTS.MD) {
       setAspectRatio([9, 16]);
     } else {
-      setAspectRatio([4, 3]);
+      setAspectRatio([6, 3]);
     }
   }, [breakpointIndex]);
 

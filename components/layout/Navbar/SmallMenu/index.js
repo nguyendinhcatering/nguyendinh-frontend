@@ -22,9 +22,9 @@ const SmallMenu = ({ menus }) => {
         size="unset"
         aria-label="Menu"
         onClick={() => setIsOpen(true)}
-        className="flex md:important:hidden"
+        className="flex md:important:hidden important:mr-3"
       >
-        <MdMenu className="w-4 h-4" />
+        <MdMenu className="w-6 h-6" />
       </IconButton>
       <SideDrawer isOpen={isOpen} setIsOpen={setIsOpen}>
         <Box sx={{ "&:focus": { outline: "none" } }}>
@@ -32,7 +32,7 @@ const SmallMenu = ({ menus }) => {
             {menus
               .filter((menu) => menu.isTopLevel && !menu.isHidden)
               .map((menu) => (
-                <MenuItem menu={menu} key={menu.id} />
+                <MenuItem menu={menu} key={menu.id} setIsOpen={setIsOpen} />
               ))}
           </Box>
         </Box>

@@ -20,9 +20,13 @@ const Page = ({ page, preSections, postSections, header, children }) => {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [mainContentMargin, setMainContentMargin] = useState(0);
   const [heroSection, setHeroSections] = useState([]);
-  const { heroes } = splitBanners(banners);
+  const [heroes, setHeroes] = useState([]);
 
   useEffect(() => {
+    const { heroes } = splitBanners(banners);
+
+    setHeroes(heroes);
+
     const currentHero = heroes[currentHeroIndex];
 
     if (!currentHero) {
@@ -31,6 +35,7 @@ const Page = ({ page, preSections, postSections, header, children }) => {
       if (currentHero?.layout === "card") {
         setHeroSections([
           {
+            id: `hero-${currentHero.id}`,
             type: "SECTION",
             mediaPlacement: "none",
             text: currentHero.text,
@@ -47,7 +52,7 @@ const Page = ({ page, preSections, postSections, header, children }) => {
         setHeroSections([]);
       }
     }
-  }, [currentHeroIndex]);
+  }, [banners, currentHeroIndex]);
 
   return (
     <Box className="relative">

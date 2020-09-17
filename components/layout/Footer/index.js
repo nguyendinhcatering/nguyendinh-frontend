@@ -34,7 +34,7 @@ const Footer = ({ footer }) => {
         backgroundImage: "url('/images/footer.png')",
         backgroundSize: "100% 100%",
       }}
-      className="mt-4 h-64 md:h-48 bg-top bg-no-repeat flex items-end justify-center"
+      className="mt-4 h-80 md:h-56 bg-top bg-no-repeat flex items-end justify-center"
     >
       <Flex className="container text-white pb-5 w-full">
         <Wysiwyg

@@ -10,7 +10,7 @@ import { sortBy } from "lodash";
 
 const ITEM_HEIGHT = 48;
 
-const MenuItem = ({ menu }) => {
+const MenuItem = ({ menu, setIsOpen }) => {
   const router = useRouter();
 
   const [showChildMenu, setShowChildMenu] = useState(false);
@@ -59,6 +59,9 @@ const MenuItem = ({ menu }) => {
                 : "border-transparent"
             )}
             sx={{ fontFamily: "heading" }}
+            onClick={() => {
+              setIsOpen(false);
+            }}
           >
             {menu.name}
           </Box>
@@ -110,6 +113,9 @@ const MenuItem = ({ menu }) => {
                   : "border-transparent"
               )}
               sx={{ fontFamily: "heading" }}
+              onClick={() => {
+                setIsOpen(false);
+              }}
             >
               {childMenu.name}
             </Box>

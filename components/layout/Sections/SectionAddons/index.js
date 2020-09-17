@@ -16,7 +16,7 @@ const DefaultSectionAddon = ({ addon }) => {
 const SectionAddon = ({ addon }) => {
   const Component = DICTIONARY[addon.type] || DefaultSectionAddon;
 
-  return <Component data={addon?.data} />;
+  return <Component data={addon?.data || {}} />;
 };
 
 export default SectionAddon;

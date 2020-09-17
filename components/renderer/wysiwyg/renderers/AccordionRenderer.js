@@ -2,13 +2,13 @@
 import React, { useState } from "react";
 import cn from "classnames";
 import { Box, jsx } from "theme-ui";
-import { MdKeyboardArrowUp } from "react-icons/md";
+import { MdKeyboardArrowDown } from "react-icons/md";
 import AnimateHeight from "react-animate-height";
 import ReactMarkdown from "../../ReactMarkdown";
 
 const AccordionRenderer = ({ block }) => {
-  const [isOpen, setOpen] = useState(false);
-  const [height, setHeight] = useState(0);
+  const [isOpen, setOpen] = useState(true);
+  const [height, setHeight] = useState("auto");
 
   const handleClick = () => {
     setOpen(!isOpen);
@@ -34,7 +34,7 @@ const AccordionRenderer = ({ block }) => {
           </ReactMarkdown>
         </Box>
         <Box className="flex-grow" />
-        <MdKeyboardArrowUp
+        <MdKeyboardArrowDown
           size="2em"
           className={cn(
             isOpen ? "rotate-180" : "rotate-0",
