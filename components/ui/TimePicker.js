@@ -5,11 +5,17 @@ import DateTime from "react-datetime";
 const TimePicker = ({ ...props }) => {
   return (
     <DateTime
-      viewMode="time"
+      initialViewMode="time"
       dateFormat=""
-      renderInput={(props, openCalendar) => (
-        <Input {...props} onClick={openCalendar} />
-      )}
+      locale="vi"
+      renderInput={(props, openCalendar) => {
+        return <Input {...props} onClick={openCalendar} />;
+      }}
+      timeConstraints={{
+        minutes: {
+          step: 15,
+        },
+      }}
       {...props}
     />
   );
