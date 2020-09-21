@@ -54,15 +54,17 @@ const OrderDetail = ({ order, layout, page }) => {
       <Page
         page={page}
         header={
-          <Box className="important:min-h-96 nd-default-background flex justify-center items-center">
-            <Box className="container flex justify-center items-center" />
+          <Box className="print:pt-6">
+            <Box className="important:min-h-96 nd-default-background flex justify-center items-center print:hidden">
+              <Box className="container flex justify-center items-center" />
+            </Box>
           </Box>
         }
       >
         <Box className="flex justify-center items-stretch important:-mt-6 important:mb-5 relative">
           <Box className="container">
             <Card>
-              <Box className="p-5">
+              <Box className="p-5 print:p-4">
                 <Box className="flex flex-col">
                   <Box className="important:mb-4">
                     Cảm ơn Quý khách đã gửi đơn hàng tới Nguyên Đình. Dưới đây
@@ -209,12 +211,24 @@ const OrderDetail = ({ order, layout, page }) => {
                 </Card>
               </Box>
             </Box>
-            <Box sx={{ marginTop: 4, marginBottom: 4 }}>
+            <Box
+              sx={{
+                marginTop: 4,
+                marginBottom: 4,
+              }}
+            >
               <Card>
-                <Box className="p-5">
+                <Box className="p-5 print:p-4">
                   <Wysiwyg data={masterData.responsibility} />
-                  <Box className="flex items-center w-full justify-center md:space-x-2 flex-col md:flex-row important:mt-4">
-                    <Button variant="secondary">In đơn hàng </Button>
+                  <Box className="flex items-center w-full justify-center md:space-x-2 flex-col md:flex-row important:mt-4 print:hidden">
+                    <Button
+                      variant="secondary"
+                      onClick={() => {
+                        window.print();
+                      }}
+                    >
+                      In đơn hàng{" "}
+                    </Button>
                     <Button
                       onClick={() => router.push("/")}
                       className="order-first md:order-last"

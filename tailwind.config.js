@@ -9,6 +9,13 @@ module.exports = {
   ...config,
   theme: {
     ...config.theme,
+    extend: {
+      screens: {
+        print: {
+          raw: "print",
+        },
+      },
+    },
     inset: (theme, { negative }) => ({
       auto: "auto",
       ...theme("spacing"),

@@ -32,7 +32,7 @@ export const toggleFoodItem = (payload) => {
 export const changeOrderQuantity = (newQuantity) => {
   return {
     type: "@ORDER/CHANGE_QUANTITY",
-    payload: newQuantity < 1 ? 1 : newQuantity,
+    payload: newQuantity < 0 ? 0 : newQuantity,
   };
 };
 

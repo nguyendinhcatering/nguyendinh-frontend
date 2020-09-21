@@ -116,7 +116,7 @@ const SelectExtra = ({ layout }) => {
                     orderType: orderTypes[0],
                     orderPlaceType: orderTypes[0],
                     orderDate: moment(),
-                    orderTime: moment(),
+                    orderTime: moment().set({ minute: 0 }),
                     note: "",
                   }}
                 >
@@ -241,13 +241,42 @@ const SelectExtra = ({ layout }) => {
                         <Label>Ngày giao hàng</Label>
                         <Field name="orderDate">
                           {({
-                            field: { onChange, onFocus, onBlur, name, ...rest },
+                            field: {
+                              onChange,
+                              onFocus,
+                              onBlur,
+                              name,
+                              value,
+                              ...rest
+                            },
                           }) => {
                             const handleChange = (val) => {
-                              onChange({ target: { name: name, value: val } });
+                              const currentDate = moment(
+                                val,
+                                [
+                                  "DDMMYYYY",
+                                  "DD/MM/YYYY",
+                                  "DDMMYY",
+                                  "DD/MM/YYYY",
+                                ],
+                                true
+                              );
+
+                              onChange({
+                                target: {
+                                  name: name,
+                                  value: currentDate.isValid()
+                                    ? currentDate
+                                    : val,
+                                },
+                              });
                             };
                             return (
-                              <DatePicker onChange={handleChange} {...rest} />
+                              <DatePicker
+                                onChange={handleChange}
+                                value={value}
+                                {...rest}
+                              />
                             );
                           }}
                         </Field>
@@ -262,13 +291,42 @@ const SelectExtra = ({ layout }) => {
                         <Label>Thời gian giao hàng</Label>
                         <Field name="orderTime">
                           {({
-                            field: { onChange, onFocus, onBlur, name, ...rest },
+                            field: {
+                              onChange,
+                              onFocus,
+                              onBlur,
+                              name,
+                              value,
+                              ...rest
+                            },
                           }) => {
                             const handleChange = (val) => {
-                              onChange({ target: { name: name, value: val } });
+                              const currentDate = moment(
+                                val,
+                                ["HHmm", "HH:mm"],
+                                true
+                              );
+
+                              const currentMinute = currentDate.get("minute");
+                              const supposedMinute =
+                                Math.floor(currentMinute / 15) * 15;
+                              currentDate.set({ minute: supposedMinute });
+
+                              onChange({
+                                target: {
+                                  name: name,
+                                  value: currentDate.isValid()
+                                    ? currentDate
+                                    : val,
+                                },
+                              });
                             };
                             return (
-                              <TimePicker onChange={handleChange} {...rest} />
+                              <TimePicker
+                                onChange={handleChange}
+                                value={value}
+                                {...rest}
+                              />
                             );
                           }}
                         </Field>

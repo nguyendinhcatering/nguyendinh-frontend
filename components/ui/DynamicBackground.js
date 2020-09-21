@@ -65,7 +65,10 @@ const DynamicBackground = ({ images, pullUp }) => {
   }, []);
 
   return (
-    <Box className="absolute w-full" sx={{ top: `${top}px`, zIndex: -9999 }}>
+    <Box
+      className="absolute w-full print:hidden"
+      sx={{ top: `${top}px`, zIndex: -9999 }}
+    >
       {flatten(times(3, () => images)).map((image, index) => (
         <Img image={image} index={index} key={index} />
       ))}

@@ -9,6 +9,7 @@ const DatePicker = ({ ...props }) => {
     <DateTime
       dateFormat="L"
       timeFormat=""
+      locale="vi"
       renderInput={(props, openCalendar) => (
         <Input {...props} onClick={openCalendar} />
       )}
