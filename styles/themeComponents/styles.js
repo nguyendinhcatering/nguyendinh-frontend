@@ -67,7 +67,7 @@ const styles = {
     fontSize: 1,
   },
   p: {
-    opacity: 0.8,
+    // opacity: 0.8,
   },
   code: {},
   pre: {},

@@ -39,6 +39,7 @@ const GallerySection = ({ section }) => {
             renderNavigation={false}
             aspectRatio={aspectRatio}
             renderDots={section?.media.length > 1}
+            isIntrinsicHeight={true}
           >
             {section?.media.map((medium) => (
               <Slide key={medium.id} innerClassName="no-ring">

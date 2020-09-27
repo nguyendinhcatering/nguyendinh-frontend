@@ -44,8 +44,8 @@ const AccordionRenderer = ({ block }) => {
       </Box>
       <Box className="px-2 pt-1 pb-2">
         <AnimateHeight duration={300} height={height}>
-          <ReactMarkdown>
-            {block.data.content.replace(/<br>/g, "\n")}
+          <ReactMarkdown options={{ forceBlock: true }}>
+            {block.data.content.replace(/<br>/g, "\n").replace(/<br >/g, "\n")}
           </ReactMarkdown>
         </AnimateHeight>
       </Box>
