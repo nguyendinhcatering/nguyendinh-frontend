@@ -1,7 +1,7 @@
 import DefaultLayout from "../../../components/layout/DefaultLayout";
 import Page from "../../../components/layout/Page";
 import API from "../../../utils/api";
-import { kebabCase, sortBy } from "lodash";
+import { kebabCase, sortBy, flatten } from "lodash";
 import ManualSection from "../../../components/layout/Sections/Section/subtypes/ManualSection";
 import Card from "../../../components/ui/Card";
 import cn from "classnames";
@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { selectPreset } from "../../../store/order/actions";
 import { formatNumber } from "../../../utils/number";
 import Loading from "../../../components/Loading";
+import { getSortedFoodItems } from "../../../utils/order";
 
 const IMAGE_URL = "/images/defaultBackground.jpg";
 
@@ -35,6 +36,11 @@ const TablePreset = ({
   );
 
   const handleOrder = (foodPreset) => (e) => {
+    const { sortedFoodItems } = getSortedFoodItems(
+      foodPreset.foodMenuItems,
+      allowedFoodCategories,
+      "preset"
+    );
     dispatch(
       selectPreset({
         meta: {
@@ -46,8 +52,11 @@ const TablePreset = ({
             type: foodPresetType.type,
           },
           url: router.asPath.replace(/\?.*/g, ""),
+          unit: foodPresetType.unit,
         },
-        presetItems: foodPreset.foodMenuItems,
+        presetItems: flatten(
+          sortedFoodItems.map((foodCategory) => foodCategory.foodItems)
+        ),
       })
     );
   };

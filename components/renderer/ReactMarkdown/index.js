@@ -3,6 +3,7 @@ import React from "react";
 import Markdown from "markdown-to-jsx";
 import { Styled, jsx } from "theme-ui";
 import Link from "../../ui/Link";
+import LinkButton from "../../ui/LinkButton";
 
 const Color = ({ color, children }) => {
   return <span sx={{ color }}>{children}</span>;
@@ -19,6 +20,9 @@ const ReactMarkdown = ({ options: overrideOptions, children }) => {
       font: {
         component: Color,
       },
+      LinkButton: {
+        component: LinkButton,
+      },
     },
     ...overrideOptions,
   };
@@ -26,8 +30,12 @@ const ReactMarkdown = ({ options: overrideOptions, children }) => {
   const fixWhitespaceBetweenTag = (textToFix) => {
     return textToFix
       .replace(/>\s+</g, ">&nbsp;<")
-      .replace(/>\s+([^<])/g, ">&nbsp;$1");
+      .replace(/>\s+([^<])/g, ">&nbsp;$1")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">");
   };
+
+  console.log(fixWhitespaceBetweenTag(children));
 
   return (
     <Markdown options={options}>{fixWhitespaceBetweenTag(children)}</Markdown>
