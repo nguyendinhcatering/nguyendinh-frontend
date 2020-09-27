@@ -50,9 +50,21 @@ export default class API {
         return response.data[0];
       }
 
-      return null;
+      return {
+        sections: [],
+        banners: [],
+        metadata: {
+          title: "Nguyên Đình",
+        },
+      };
     } catch {
-      return null;
+      return {
+        sections: [],
+        banners: [],
+        metadata: {
+          title: "Nguyên Đình",
+        },
+      };
     }
   }
 

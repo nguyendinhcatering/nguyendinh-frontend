@@ -29,7 +29,7 @@ const CurrentOrder = ({ wrapperClassName, onChange }) => {
 
   return (
     <Box className={wrapperClassName}>
-      <Card>
+      <Box>
         <Box
           className={cn(
             "w-full px-3 py-3 md:px-4 md:py-4 bg-center bg-cover",
@@ -82,7 +82,7 @@ const CurrentOrder = ({ wrapperClassName, onChange }) => {
             </Styled.p>
           </Box>
         </Box>
-      </Card>
+      </Box>
     </Box>
   );
 };

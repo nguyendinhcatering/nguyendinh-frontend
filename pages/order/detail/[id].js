@@ -12,7 +12,7 @@ import Card from "../../../components/ui/Card";
 import Wysiwyg from "../../../components/renderer/wysiwyg";
 import { padStart } from "../../../utils/string";
 import moment from "moment";
-import { startCase } from "lodash";
+import { startCase, get } from "lodash";
 import { formatNumber } from "../../../utils/number";
 import { useSelector } from "react-redux";
 import { getSortedFoodItems } from "../../../utils/order";
@@ -47,7 +47,7 @@ const OrderDetail = ({ order, layout, page }) => {
     setSortedItemsOrder(sortedFoodItemsOrder);
   }, [order.orderData.presetItems, foodCategories]);
 
-  const orderDate = moment(order.orderDate + "T" + order.orderTime);
+  const orderDate = moment(order.orderDate);
 
   return (
     <DefaultLayout layout={layout}>
@@ -130,8 +130,18 @@ const OrderDetail = ({ order, layout, page }) => {
                       </Styled.h4>
                       <Box sx={{ marginTop: 3 }}>
                         <Field
-                          header="Số lượng mâm"
-                          data={order.orderData.quantity}
+                          header="Địa chỉ đặt hàng"
+                          data={get(order, "address")}
+                        />
+                        <Field
+                          header={
+                            "Số lượng " + get(order, "orderData.meta.unit")
+                          }
+                          data={`${order.orderData.quantity} ${get(
+                            order,
+                            "orderData.meta.unit",
+                            ""
+                          )}`}
                         />
                         <Field header="Loại hình tiệc" data={order.orderType} />
                         <Field
@@ -159,9 +169,15 @@ const OrderDetail = ({ order, layout, page }) => {
                         {order.orderData.meta.presetName}
                       </Styled.h4>
                       <Styled.p className="font-heading">
-                        {formatNumber(order.orderData.unitPrice)} VND / mâm
+                        {formatNumber(order.orderData.unitPrice)} VND /{" "}
+                        {get(order, "orderData.meta.unit", "mâm")}
                         /&nbsp;
-                        {order.orderData.meta.presetType.numberOfPeople} người
+                        {get(
+                          order,
+                          "orderData.meta.presetType.numberOfPeople",
+                          6
+                        )}{" "}
+                        người
                       </Styled.p>
                     </Box>
                     <Styled.hr />
@@ -192,7 +208,9 @@ const OrderDetail = ({ order, layout, page }) => {
                     <Styled.hr />
                     <Box>
                       <Box className="flex important:w-full justify-between items-center">
-                        <Styled.h5 sx={{ color: "red.5" }}>Số mâm</Styled.h5>
+                        <Styled.h5 sx={{ color: "red.5" }}>
+                          Số {get(order, "orderData.meta.unit", "mâm")}
+                        </Styled.h5>
                         <Box>{order.orderData.quantity}</Box>
                       </Box>
                       <Box className="flex important:w-full justify-between items-center">

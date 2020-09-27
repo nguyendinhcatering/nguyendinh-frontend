@@ -1,6 +1,6 @@
 import API from "../../utils/api";
 import { push } from "connected-next-router";
-import { pick, omit } from "lodash";
+import { omit } from "lodash";
 import moment from "moment";
 
 export const selectPreset = (payload) => {
@@ -50,16 +50,17 @@ export const placeOrder = (payload) => {
     const state = getState();
     const orderDetails = state.order.orderDetails;
 
-    const orderTime = moment(
-      moment(orderDetails.orderDate, "L").format("YYYY-MM-DD") +
-        " " +
-        orderDetails.orderTime
-    );
+    const orderTime = moment(orderDetails.orderTime);
+    const orderDate = moment(orderDetails.orderDate).set({
+      hour: orderTime.get("hour"),
+      minute: orderTime.get("minute"),
+      second: 0,
+    });
 
     const pl = {
       ...orderDetails,
-      orderDate: orderTime.toISOString(),
-      orderTime: orderTime.format("HH:mm:ss.SSS"),
+      orderDate: orderDate.toISOString(),
+      orderTime: orderDate.format("HH:mm:ss.SSS"),
       orderData: omit(state.order, ["orderDetails"]),
     };
 

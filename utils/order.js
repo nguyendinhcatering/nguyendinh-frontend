@@ -11,6 +11,14 @@ export const getSortedFoodItems = (
   foodCategories = [],
   primaryCategory = "preset"
 ) => {
+  console.log(foodItems);
+  const filteredFoodItem = (foodItems || []).filter((item) => {
+    if (primaryCategory === "customizable") {
+      return item.allowInCustomizable;
+    }
+
+    return true;
+  });
   let primaryCategories = [];
   let secondaryCategories = [];
 
@@ -57,7 +65,7 @@ export const getSortedFoodItems = (
 
   const sortedFoodItems = primaryCategories.map((category) => {
     const foodItemsInCategory = (foodItems || []).filter((item) =>
-      item.foodCategories.some(
+      (item.foodCategories || []).some(
         (foodCategory) => category.id === foodCategory.id
       )
     );
