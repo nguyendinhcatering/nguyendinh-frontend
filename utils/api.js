@@ -215,4 +215,66 @@ export default class API {
       return [];
     }
   }
+
+  static async getNewsItem(id) {
+    try {
+      const response = await axios.get(`/news-items/${id}`);
+
+      const newsItem = response.data;
+
+      if (!newsItem) {
+        return null;
+      }
+
+      if (newsItem && !newsItem.published) {
+        return null;
+      }
+
+      return {
+        ...newsItem,
+        head: {
+          ...newsItem.head,
+          mediaPlacement: "newsItem",
+          newsId: newsItem.id,
+          newsUpdatedAt: newsItem.updated_at,
+          newsTitle: newsItem.name,
+        },
+      };
+    } catch (err) {
+      return null;
+    }
+  }
+
+  static async getNewsItems(limit = 5, page = 0) {
+    try {
+      const response = await axios.get(
+        `/news-items?_limit=${limit}&_sort=updated_at:DESC&_start=${
+          page * limit
+        }&published=true`
+      );
+
+      return (response.data || []).map((newsItem) => ({
+        ...newsItem,
+        head: {
+          ...newsItem.head,
+          mediaPlacement: "newsItem",
+          newsId: newsItem.id,
+          newsUpdatedAt: newsItem.updated_at,
+          newsTitle: newsItem.name,
+        },
+      }));
+    } catch (err) {
+      return [];
+    }
+  }
+
+  static async getNewsItemsCount() {
+    try {
+      const response = await axios.get(`/news-items/count`);
+
+      return response.data;
+    } catch (err) {
+      return 0;
+    }
+  }
 }

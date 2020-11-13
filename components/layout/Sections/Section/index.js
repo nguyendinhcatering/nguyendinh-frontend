@@ -7,6 +7,7 @@ import GallerySection from "./subtypes/GallerySection";
 import BackgroundSection from "./subtypes/BackgroundSection";
 import NoneSection from "./subtypes/NoneSection";
 import MediaOnlySection from "./subtypes/MediaOnlySection";
+import NewsSection from "./subtypes/NewsSection";
 
 const DICTIONARY = {
   left: LeftSection,
@@ -16,6 +17,7 @@ const DICTIONARY = {
   background: BackgroundSection,
   none: NoneSection,
   mediaOnly: MediaOnlySection,
+  newsItem: NewsSection,
 };
 
 const Section = ({ section }) => {

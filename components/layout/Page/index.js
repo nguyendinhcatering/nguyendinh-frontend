@@ -11,7 +11,7 @@ const splitBanners = (banners) => {
   };
 };
 
-const Page = ({ page, preSections, postSections, header, children }) => {
+const Page = ({ page, preSection, postSection, header, children }) => {
   const { metadata, banners, sections } = page || {
     metadata: {},
     banners: [],
@@ -80,9 +80,9 @@ const Page = ({ page, preSections, postSections, header, children }) => {
                 marginTop: [-5, -5, 0, 0],
               }}
             />
-            {preSections && <Sections sections={preSections} />}
+            {preSection}
             <Sections sections={sections} />
-            {postSections && <Sections sections={postSections} />}
+            {postSection}
             {children}
           </Box>
         </Box>

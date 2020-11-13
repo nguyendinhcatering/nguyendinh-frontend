@@ -20,7 +20,6 @@ const RendererMap = {
 };
 
 const Wysiwyg = ({ data, sx = {}, overrides }) => {
-  console.log(overrides);
   const blockRows = preprocessBlocks(parseData(data));
 
   const renderBlock = (block, index) => {

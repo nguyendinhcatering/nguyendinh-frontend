@@ -9,6 +9,8 @@ const Image = ({ image, ...props }) => {
   const breakpoints = theme.breakpoints;
 
   if (!image || !image.formats) {
+    // if (image.url) {
+    // }
     return null;
   }
 

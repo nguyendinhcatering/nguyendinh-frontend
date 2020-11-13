@@ -145,6 +145,11 @@ const buttons = {
     "&:hover": {
       backgroundColor: "gray.1",
     },
+    "&[disabled]": {
+      cursor: "not-allowed",
+      backgroundColor: "gray.2",
+      boxShadow: "none",
+    },
   },
   icon: {
     p: 2,

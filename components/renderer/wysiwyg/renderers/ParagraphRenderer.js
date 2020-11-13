@@ -8,8 +8,6 @@ import { omitBy, isEmpty } from "lodash";
 const getSx = (overrides) => {
   const paragraphOverrides = omitBy(overrides?.paragraph || {}, isEmpty);
 
-  console.log(paragraphOverrides);
-
   return {
     ...paragraphOverrides,
   };

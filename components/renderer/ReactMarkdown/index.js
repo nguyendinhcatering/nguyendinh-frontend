@@ -35,8 +35,6 @@ const ReactMarkdown = ({ options: overrideOptions, children }) => {
       .replace(/&gt;/g, ">");
   };
 
-  console.log(fixWhitespaceBetweenTag(children));
-
   return (
     <Markdown options={options}>{fixWhitespaceBetweenTag(children)}</Markdown>
   );
