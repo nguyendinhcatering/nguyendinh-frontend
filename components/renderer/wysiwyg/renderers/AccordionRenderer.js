@@ -20,8 +20,8 @@ const AccordionRenderer = ({ block }) => {
       <Box
         className="flex flex-row py-2 px-2 font-heading items-center transition-all duration-200 select-none"
         sx={{
-          borderBottomWidth: "1px",
-          borderBottomColor: "gray.7",
+          borderTopWidth: "1px",
+          borderTopColor: "gray.7",
           "&:hover": {
             backgroundColor: "gray.1",
           },
