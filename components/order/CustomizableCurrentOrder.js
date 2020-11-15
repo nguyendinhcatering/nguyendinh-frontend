@@ -6,8 +6,9 @@ import { getSortedFoodItems, getSortedFoodItemsOrder } from "../../utils/order";
 import cn from "classnames";
 import { formatNumber } from "../../utils/number";
 import { IMAGE_URL } from "../../utils/getImageSrc";
+import ScrollArrow from "./ScrollToBottom";
 
-const CurrentOrder = ({ onChange }) => {
+const CustomizableCurrentOrder = ({ onPlaceOrder, presetType = {} }) => {
   const [sortedItems, setSortedItems] = useState([]);
   const [sortedItemsOrder, setSortedItemsOrder] = useState({});
   const order = useSelector((state) => state.order);
@@ -22,6 +23,7 @@ const CurrentOrder = ({ onChange }) => {
 
   return (
     <Box>
+      <ScrollArrow />
       <Box>
         <Box
           className={cn(
@@ -32,29 +34,41 @@ const CurrentOrder = ({ onChange }) => {
             backgroundImage: `url(${IMAGE_URL})`,
           }}
         >
-          <Styled.h4 className="important:font-bold">
-            {order.meta.presetName}
-          </Styled.h4>
-          <Styled.p className="font-heading">
-            {formatNumber(order.unitPrice)} VND / mâm /&nbsp;
-            {order.meta.presetType.numberOfPeople} người
-          </Styled.p>
-          <Button
+          <Styled.h4 sx={{ fontWeight: "bold" }}>{presetType.name}</Styled.h4>
+          <Styled.p
             sx={{
-              backgroundColor: "transparent",
-              marginTop: 2,
-              borderColor: "white",
+              fontFamily: "heading",
             }}
-            onClick={onChange}
           >
-            Thay đổi lựa chọn
-          </Button>
+            {formatNumber(order.unitPrice)}
+            <span> VNĐ/</span>
+            <span>
+              {" "}
+              {presetType.unit}/ {presetType.numberOfPeople} người
+            </span>
+          </Styled.p>
         </Box>
-        <Box className="w-full p-3 md:p-4">
+        <Box
+          sx={{
+            width: "full",
+            p: [3, 3, 4],
+          }}
+        >
+          {order.presetItems.length === 0 && (
+            <Box>
+              Hiện tại thực đơn không có món ăn. Mời quý khách chọn món cho thực
+              đơn
+            </Box>
+          )}
           {sortedItems.map((category) => {
             return (
-              <Box className="important:mb-2" key={category.name}>
-                <Styled.h5 className="text-red-5 important:mb-2">
+              <Box sx={{ mb: 2 }} key={category.name}>
+                <Styled.h5
+                  sx={{
+                    color: "red.5",
+                    mb: 2,
+                  }}
+                >
                   {category.name}
                 </Styled.h5>
                 {category.foodItems.map((foodItem) => (
@@ -68,11 +82,21 @@ const CurrentOrder = ({ onChange }) => {
               </Box>
             );
           })}
-          <Box className="important:mt-4 px-4 py-3 bg-red-6 text-white">
-            <Styled.p sx={{ fontSize: 3 }}>Tổng thanh toán</Styled.p>
-            <Styled.p sx={{ fontSize: 3, fontWeight: "bold" }}>
-              {formatNumber(order.quantity * order.unitPrice, ",")} VNĐ
-            </Styled.p>
+          <Box sx={{ mt: 4 }}>
+            <Button
+              sx={{
+                width: "full",
+                "&[disabled]": {
+                  cursor: "not-allowed",
+                  backgroundColor: "red.3",
+                  borderColor: "red.3",
+                },
+              }}
+              disabled={order.presetItems.length === 0}
+              onClick={onPlaceOrder}
+            >
+              Đặt thực đơn này
+            </Button>
           </Box>
         </Box>
       </Box>
@@ -80,4 +104,4 @@ const CurrentOrder = ({ onChange }) => {
   );
 };
 
-export default CurrentOrder;
+export default CustomizableCurrentOrder;

@@ -277,4 +277,18 @@ export default class API {
       return 0;
     }
   }
+
+  static async getFoodPresetTypeBySlug(slug) {
+    try {
+      const response = await axios.get(`/food-preset-types?slug=${slug}`);
+
+      if (response.data && response.data.length === 0) {
+        return null;
+      }
+
+      return response.data[0];
+    } catch (err) {
+      return null;
+    }
+  }
 }

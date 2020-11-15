@@ -5,10 +5,7 @@ import DefaultLayout from "../../../components/layout/DefaultLayout";
 import API from "../../../utils/api";
 import Card from "../../../components/ui/Card";
 import { wrapper } from "../../../store";
-import {
-  fetchFoodCategories,
-  fetchOrderMasterData,
-} from "../../../store/global/actions";
+import { fetchOrderMasterData } from "../../../store/global/actions";
 import CurrentOrder from "../../../components/order/CurrentOrder";
 import { Select } from "../../../components/ui/Select";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +19,7 @@ import FormError from "../../../components/ui/Form/FormError";
 import { useRouter } from "next/router";
 import { getHref } from "../../../utils/getHref";
 import Loading from "../../../components/Loading";
+import Page from "../../../components/layout/Page";
 
 const paymentMethodTypes = [
   {
@@ -34,7 +32,7 @@ const paymentMethodTypes = [
   },
 ];
 
-const SelectExtra = ({ layout }) => {
+const SelectExtra = ({ layout, page }) => {
   const router = useRouter();
   const orderQuantity = useSelector((state) => state.order?.quantity);
   const orderPlaceTypes = useSelector(
@@ -106,334 +104,338 @@ const SelectExtra = ({ layout }) => {
 
   return (
     <DefaultLayout layout={layout} pullUp={true}>
-      <Box className="important:mt-6 container important:mx-auto flex important:mb-4 flex-col md:flex-row">
-        <Box className="w-full md:w-1/3">
-          <Card>
-            <Box className="pt-2">
-              <Styled.h3 className="important:mb-4 px-3 md:px-4">
-                Lựa chọn của bạn
-              </Styled.h3>
-              <CurrentOrder onChange={handleChange} />
-            </Box>
-          </Card>
-        </Box>
-        <Box className="w-8 py-4" />
-        <Box className="w-full md:w-2/3">
-          <Card>
-            <Box className="pt-2">
-              <Styled.h3 className="important:mb-4 px-3 md:px-4">
-                Chi tiết giao hàng
-              </Styled.h3>
-              <Box>
-                <Box className="w-full px-4 py-4">
-                  <Box>
-                    <Formik
-                      onSubmit={handleSubmit}
-                      validationSchema={validationSchema}
-                      initialValues={{
-                        title: "Ông",
-                        fullName: "",
-                        email: "",
-                        phone: "",
-                        alternativePhone: "",
-                        address: "",
-                        orderType: orderTypes[0],
-                        orderPlaceType: orderTypes[0],
-                        orderDate: moment(),
-                        orderTime: moment().set({ minute: 0 }),
-                        note: "",
-                        paymentMethod: {
-                          type: "Chuyển khoản toàn bộ",
-                          account: "",
-                        },
-                      }}
-                    >
-                      {(props) => (
-                        <Form>
-                          <Styled.h4 className="text-red-5 important:mb-3">
-                            Thông tin khách hàng
-                          </Styled.h4>
-                          <Box className="flex flex-wrap">
-                            <Box
-                              className="important:mr-3 important:mb-3"
-                              sx={{ minWidth: "1/6" }}
-                            >
-                              <Label>&nbsp;</Label>
-                              <Field as={Select} fullName="title">
-                                <option value="Ông">Ông</option>
-                                <option value="Bà">Bà</option>
-                              </Field>
+      <Page page={page}>
+        <Box className="important:mx-auto flex important:mb-4 flex-col md:flex-row">
+          <Box className="w-full md:w-1/3">
+            <Card>
+              <Box className="pt-2">
+                <Styled.h3 className="important:mb-4 px-3 md:px-4">
+                  Lựa chọn của bạn
+                </Styled.h3>
+                <CurrentOrder onChange={handleChange} />
+              </Box>
+            </Card>
+          </Box>
+          <Box className="w-8 py-4" />
+          <Box className="w-full md:w-2/3">
+            <Card>
+              <Box className="pt-2">
+                <Styled.h3 className="important:mb-4 px-3 md:px-4">
+                  Chi tiết giao hàng
+                </Styled.h3>
+                <Box>
+                  <Box className="w-full px-4 py-4">
+                    <Box>
+                      <Formik
+                        onSubmit={handleSubmit}
+                        validationSchema={validationSchema}
+                        initialValues={{
+                          title: "Ông",
+                          fullName: "",
+                          email: "",
+                          phone: "",
+                          alternativePhone: "",
+                          address: "",
+                          orderType: orderTypes[0],
+                          orderPlaceType: orderTypes[0],
+                          orderDate: moment(),
+                          orderTime: moment().set({ minute: 0 }),
+                          note: "",
+                          paymentMethod: {
+                            type: "Chuyển khoản toàn bộ",
+                            account: "",
+                          },
+                        }}
+                      >
+                        {(props) => (
+                          <Form>
+                            <Styled.h4 className="text-red-5 important:mb-3">
+                              Thông tin khách hàng
+                            </Styled.h4>
+                            <Box className="flex flex-wrap">
+                              <Box
+                                className="important:mr-3 important:mb-3"
+                                sx={{ minWidth: "1/6" }}
+                              >
+                                <Label>&nbsp;</Label>
+                                <Field as={Select} fullName="title">
+                                  <option value="Ông">Ông</option>
+                                  <option value="Bà">Bà</option>
+                                </Field>
+                              </Box>
+                              <Box className="flex-grow important:mb-3">
+                                <Label>Họ và tên</Label>
+                                <Field as={Input} name="fullName" />
+                                <FormError name="fullName" />
+                              </Box>
                             </Box>
-                            <Box className="flex-grow important:mb-3">
-                              <Label>Họ và tên</Label>
-                              <Field as={Input} name="fullName" />
-                              <FormError name="fullName" />
+                            <Box className="flex flex-wrap">
+                              <Box
+                                className="flex-1 important:mb-3"
+                                sx={{ minWidth: "full" }}
+                              >
+                                <Label>Email</Label>
+                                <Field as={Input} type="email" name="email" />
+                                <FormError name="email" />
+                              </Box>
                             </Box>
-                          </Box>
-                          <Box className="flex flex-wrap">
-                            <Box
-                              className="flex-1 important:mb-3"
-                              sx={{ minWidth: "full" }}
-                            >
-                              <Label>Email</Label>
-                              <Field as={Input} type="email" name="email" />
-                              <FormError name="email" />
-                            </Box>
-                          </Box>
-                          <Box className="flex flex-wrap">
-                            <Box
-                              className="flex-auto important:mb-3"
-                              sx={{
-                                width: ["full", "full", "1/3"],
-                                marginRight: [0, 0, 3],
-                              }}
-                            >
-                              <Label>Số điện thoại</Label>
-                              <Field as={Input} name="phone" />
-                              <FormError name="phone" />
-                            </Box>
-                            <Box
-                              className="flex-auto important:mb-3"
-                              sx={{ width: ["full", "full", "1/3"] }}
-                            >
-                              <Label>Số điện thoại nhà riêng</Label>
-                              <Field as={Input} name="alternativePhone" />
-                              <FormError name="alternativePhone" />
-                            </Box>
-                          </Box>
-                          <Styled.h4 className="text-red-5 important:mb-3">
-                            Thông tin đặt hàng
-                          </Styled.h4>
-                          <Box className="flex flex-wrap important:w-full">
-                            <Box
-                              className="flex-auto important:mb-3"
-                              sx={{
-                                width: ["full", "full", "1/3"],
-                                marginRight: [0, 0, 3],
-                              }}
-                            >
-                              <Label>Số lượng mâm</Label>
-                              <Input
-                                type="number"
-                                value={orderQuantity}
-                                onChange={handleChangeQuantity}
-                              />
-                            </Box>
-                            <Box
-                              className="flex-auto important:mb-3"
-                              sx={{
-                                width: ["full", "full", "1/3"],
-                              }}
-                            >
-                              <Label>Loại hình tiệc</Label>
-                              <Field as={Select} name="orderType">
-                                <option
-                                  value=""
-                                  selected
-                                  disabled
-                                  hidden
-                                  style={{ display: "none" }}
-                                />
-                                {orderTypes.map((orderType, index) => (
-                                  <option key={index}>{orderType}</option>
-                                ))}
-                              </Field>
-                              <FormError name="orderType" />
-                            </Box>
-                          </Box>
-                          <Box className="flex flex-wrap important:w-full">
-                            <Box className="flex-grow important:w-full important:mb-3">
-                              <Label>Đặc điểm nơi tổ chức tiệc</Label>
-                              <Field as={Select} name="orderPlaceType">
-                                <option
-                                  value=""
-                                  selected
-                                  disabled
-                                  hidden
-                                  style={{ display: "none" }}
-                                />
-                                {orderPlaceTypes.map(
-                                  (orderPlaceType, index) => (
-                                    <option key={index}>
-                                      {orderPlaceType}
-                                    </option>
-                                  )
-                                )}
-                              </Field>
-                              <FormError name="orderPlaceType" />
-                            </Box>
-                          </Box>
-                          <Box className="flex flex-wrap important:w-full">
-                            <Box className="flex-grow important:w-full important:mb-3">
-                              <Label>Địa chỉ</Label>
-                              <Field as={Input} name="address" />
-                              <FormError name="address" />
-                            </Box>
-                          </Box>
-                          <Box className="flex flex-wrap important:w-full">
-                            <Box
-                              className="flex-auto important:mb-3"
-                              sx={{
-                                width: ["full", "full", "1/3"],
-                                marginRight: [0, 0, 3],
-                              }}
-                            >
-                              <Label>Ngày giao hàng</Label>
-                              <Field name="orderDate">
-                                {({
-                                  field: {
-                                    onChange,
-                                    onFocus,
-                                    onBlur,
-                                    name,
-                                    value,
-                                    ...rest
-                                  },
-                                }) => {
-                                  const handleChange = (val) => {
-                                    const currentDate = moment(
-                                      val,
-                                      [
-                                        "DDMMYYYY",
-                                        "DD/MM/YYYY",
-                                        "DDMMYY",
-                                        "DD/MM/YYYY",
-                                      ],
-                                      true
-                                    );
-
-                                    onChange({
-                                      target: {
-                                        name: name,
-                                        value: currentDate.isValid()
-                                          ? currentDate
-                                          : val,
-                                      },
-                                    });
-                                  };
-                                  return (
-                                    <DatePicker
-                                      onChange={handleChange}
-                                      value={value}
-                                      {...rest}
-                                    />
-                                  );
+                            <Box className="flex flex-wrap">
+                              <Box
+                                className="flex-auto important:mb-3"
+                                sx={{
+                                  width: ["full", "full", "1/3"],
+                                  marginRight: [0, 0, 3],
                                 }}
-                              </Field>
-                              <FormError name="orderDate" />
+                              >
+                                <Label>Số điện thoại</Label>
+                                <Field as={Input} name="phone" />
+                                <FormError name="phone" />
+                              </Box>
+                              <Box
+                                className="flex-auto important:mb-3"
+                                sx={{ width: ["full", "full", "1/3"] }}
+                              >
+                                <Label>Số điện thoại nhà riêng</Label>
+                                <Field as={Input} name="alternativePhone" />
+                                <FormError name="alternativePhone" />
+                              </Box>
                             </Box>
-                            <Box
-                              className="flex-auto important:mb-3"
-                              sx={{
-                                width: ["full", "full", "1/3"],
-                              }}
-                            >
-                              <Label>Thời gian giao hàng</Label>
-                              <Field name="orderTime">
-                                {({
-                                  field: {
-                                    onChange,
-                                    onFocus,
-                                    onBlur,
-                                    name,
-                                    value,
-                                    ...rest
-                                  },
-                                }) => {
-                                  const handleChange = (val) => {
-                                    const currentDate = moment(
-                                      val,
-                                      ["HHmm", "HH:mm"],
-                                      true
-                                    );
-
-                                    const currentMinute = currentDate.get(
-                                      "minute"
-                                    );
-                                    const supposedMinute =
-                                      Math.floor(currentMinute / 15) * 15;
-                                    currentDate.set({ minute: supposedMinute });
-
-                                    onChange({
-                                      target: {
-                                        name: name,
-                                        value: currentDate.isValid()
-                                          ? currentDate
-                                          : val,
-                                      },
-                                    });
-                                  };
-                                  return (
-                                    <TimePicker
-                                      onChange={handleChange}
-                                      value={value}
-                                      {...rest}
-                                    />
-                                  );
-                                }}
-                              </Field>
-                              <FormError name="orderTime" />
-                            </Box>
-                          </Box>
-                          <Box className="flex flex-wrap important:w-full">
-                            <Box
-                              className="flex-auto important:mb-3"
-                              sx={{
-                                width: ["full", "full", "1/3"],
-                                marginRight: [0, 0, 3],
-                              }}
-                            >
-                              <Label>Phương thức thanh toán</Label>
-                              <Field name="paymentMethod.type" as={Select}>
-                                {paymentMethodTypes.map((paymentMethod) => (
-                                  <option value={paymentMethod.value}>
-                                    {paymentMethod.title}
-                                  </option>
-                                ))}
-                              </Field>
-                              <FormError name="paymentMethod.type" />
-                            </Box>
-                          </Box>
-                          {props.values["paymentMethod"].type ===
-                            "Chuyển khoản toàn bộ" && (
+                            <Styled.h4 className="text-red-5 important:mb-3">
+                              Thông tin đặt hàng
+                            </Styled.h4>
                             <Box className="flex flex-wrap important:w-full">
+                              <Box
+                                className="flex-auto important:mb-3"
+                                sx={{
+                                  width: ["full", "full", "1/3"],
+                                  marginRight: [0, 0, 3],
+                                }}
+                              >
+                                <Label>Số lượng mâm</Label>
+                                <Input
+                                  type="number"
+                                  value={orderQuantity}
+                                  onChange={handleChangeQuantity}
+                                />
+                              </Box>
                               <Box
                                 className="flex-auto important:mb-3"
                                 sx={{
                                   width: ["full", "full", "1/3"],
                                 }}
                               >
-                                <Label>Số tài khoản</Label>
-                                <Field
-                                  name="paymentMethod.account"
-                                  as={Input}
-                                />
-                                <FormError name="paymentMethod.account" />
+                                <Label>Loại hình tiệc</Label>
+                                <Field as={Select} name="orderType">
+                                  <option
+                                    value=""
+                                    selected
+                                    disabled
+                                    hidden
+                                    style={{ display: "none" }}
+                                  />
+                                  {orderTypes.map((orderType, index) => (
+                                    <option key={index}>{orderType}</option>
+                                  ))}
+                                </Field>
+                                <FormError name="orderType" />
                               </Box>
                             </Box>
-                          )}
-
-                          <Box className="flex flex-wrap">
-                            <Box className="flex-grow">
-                              <Label>Ghi chú</Label>
-                              <Field as={Textarea} name="note" />
+                            <Box className="flex flex-wrap important:w-full">
+                              <Box className="flex-grow important:w-full important:mb-3">
+                                <Label>Đặc điểm nơi tổ chức tiệc</Label>
+                                <Field as={Select} name="orderPlaceType">
+                                  <option
+                                    value=""
+                                    selected
+                                    disabled
+                                    hidden
+                                    style={{ display: "none" }}
+                                  />
+                                  {orderPlaceTypes.map(
+                                    (orderPlaceType, index) => (
+                                      <option key={index}>
+                                        {orderPlaceType}
+                                      </option>
+                                    )
+                                  )}
+                                </Field>
+                                <FormError name="orderPlaceType" />
+                              </Box>
                             </Box>
-                          </Box>
-                          <Box sx={{ marginTop: 3 }}>
-                            <Button type="submit" sx={{ borderWidth: 0 }}>
-                              Đặt tiệc
-                            </Button>
-                          </Box>
-                        </Form>
-                      )}
-                    </Formik>
+                            <Box className="flex flex-wrap important:w-full">
+                              <Box className="flex-grow important:w-full important:mb-3">
+                                <Label>Địa chỉ</Label>
+                                <Field as={Input} name="address" />
+                                <FormError name="address" />
+                              </Box>
+                            </Box>
+                            <Box className="flex flex-wrap important:w-full">
+                              <Box
+                                className="flex-auto important:mb-3"
+                                sx={{
+                                  width: ["full", "full", "1/3"],
+                                  marginRight: [0, 0, 3],
+                                }}
+                              >
+                                <Label>Ngày giao hàng</Label>
+                                <Field name="orderDate">
+                                  {({
+                                    field: {
+                                      onChange,
+                                      onFocus,
+                                      onBlur,
+                                      name,
+                                      value,
+                                      ...rest
+                                    },
+                                  }) => {
+                                    const handleChange = (val) => {
+                                      const currentDate = moment(
+                                        val,
+                                        [
+                                          "DDMMYYYY",
+                                          "DD/MM/YYYY",
+                                          "DDMMYY",
+                                          "DD/MM/YYYY",
+                                        ],
+                                        true
+                                      );
+
+                                      onChange({
+                                        target: {
+                                          name: name,
+                                          value: currentDate.isValid()
+                                            ? currentDate
+                                            : val,
+                                        },
+                                      });
+                                    };
+                                    return (
+                                      <DatePicker
+                                        onChange={handleChange}
+                                        value={value}
+                                        {...rest}
+                                      />
+                                    );
+                                  }}
+                                </Field>
+                                <FormError name="orderDate" />
+                              </Box>
+                              <Box
+                                className="flex-auto important:mb-3"
+                                sx={{
+                                  width: ["full", "full", "1/3"],
+                                }}
+                              >
+                                <Label>Thời gian giao hàng</Label>
+                                <Field name="orderTime">
+                                  {({
+                                    field: {
+                                      onChange,
+                                      onFocus,
+                                      onBlur,
+                                      name,
+                                      value,
+                                      ...rest
+                                    },
+                                  }) => {
+                                    const handleChange = (val) => {
+                                      const currentDate = moment(
+                                        val,
+                                        ["HHmm", "HH:mm"],
+                                        true
+                                      );
+
+                                      const currentMinute = currentDate.get(
+                                        "minute"
+                                      );
+                                      const supposedMinute =
+                                        Math.floor(currentMinute / 15) * 15;
+                                      currentDate.set({
+                                        minute: supposedMinute,
+                                      });
+
+                                      onChange({
+                                        target: {
+                                          name: name,
+                                          value: currentDate.isValid()
+                                            ? currentDate
+                                            : val,
+                                        },
+                                      });
+                                    };
+                                    return (
+                                      <TimePicker
+                                        onChange={handleChange}
+                                        value={value}
+                                        {...rest}
+                                      />
+                                    );
+                                  }}
+                                </Field>
+                                <FormError name="orderTime" />
+                              </Box>
+                            </Box>
+                            <Box className="flex flex-wrap important:w-full">
+                              <Box
+                                className="flex-auto important:mb-3"
+                                sx={{
+                                  width: ["full", "full", "1/3"],
+                                  marginRight: [0, 0, 3],
+                                }}
+                              >
+                                <Label>Phương thức thanh toán</Label>
+                                <Field name="paymentMethod.type" as={Select}>
+                                  {paymentMethodTypes.map((paymentMethod) => (
+                                    <option value={paymentMethod.value}>
+                                      {paymentMethod.title}
+                                    </option>
+                                  ))}
+                                </Field>
+                                <FormError name="paymentMethod.type" />
+                              </Box>
+                            </Box>
+                            {props.values["paymentMethod"].type ===
+                              "Chuyển khoản toàn bộ" && (
+                              <Box className="flex flex-wrap important:w-full">
+                                <Box
+                                  className="flex-auto important:mb-3"
+                                  sx={{
+                                    width: ["full", "full", "1/3"],
+                                  }}
+                                >
+                                  <Label>Số tài khoản</Label>
+                                  <Field
+                                    name="paymentMethod.account"
+                                    as={Input}
+                                  />
+                                  <FormError name="paymentMethod.account" />
+                                </Box>
+                              </Box>
+                            )}
+
+                            <Box className="flex flex-wrap">
+                              <Box className="flex-grow">
+                                <Label>Ghi chú</Label>
+                                <Field as={Textarea} name="note" />
+                              </Box>
+                            </Box>
+                            <Box sx={{ marginTop: 3 }}>
+                              <Button type="submit" sx={{ borderWidth: 0 }}>
+                                Đặt tiệc
+                              </Button>
+                            </Box>
+                          </Form>
+                        )}
+                      </Formik>
+                    </Box>
                   </Box>
                 </Box>
               </Box>
-            </Box>
-          </Card>
+            </Card>
+          </Box>
         </Box>
-      </Box>
+      </Page>
     </DefaultLayout>
   );
 };
@@ -441,15 +443,16 @@ const SelectExtra = ({ layout }) => {
 export const getStaticProps = wrapper.getStaticProps(
   async ({ store, params }) => {
     const layout = await API.getLayoutData();
+    const page = await API.getPage("/order/customer-details");
 
-    if (store.getState().global.foodCategories.length === 0) {
-      await store.dispatch(fetchFoodCategories());
+    if (!store.getState().global.orderMasterData) {
       await store.dispatch(fetchOrderMasterData());
     }
 
     return {
       props: {
         layout,
+        page,
       },
       revalidate: 1,
     };

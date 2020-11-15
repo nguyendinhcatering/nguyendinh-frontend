@@ -3,10 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Styled, Button, jsx } from "theme-ui";
 import { wrapper } from "../../../store";
 import API from "../../../utils/api";
-import {
-  fetchFoodCategories,
-  fetchOrderMasterData,
-} from "../../../store/global/actions";
+import { fetchOrderMasterData } from "../../../store/global/actions";
 import DefaultLayout from "../../../components/layout/DefaultLayout";
 import Card from "../../../components/ui/Card";
 import Wysiwyg from "../../../components/renderer/wysiwyg";
@@ -15,7 +12,10 @@ import moment from "moment";
 import { startCase, get } from "lodash";
 import { formatNumber } from "../../../utils/number";
 import { useSelector } from "react-redux";
-import { getSortedFoodItems } from "../../../utils/order";
+import {
+  getSortedFoodItems,
+  getSortedFoodItemsOrder,
+} from "../../../utils/order";
 import { useRouter } from "next/router";
 import Page from "../../../components/layout/Page";
 
@@ -35,17 +35,15 @@ const Field = ({ header, data }) => {
 const OrderDetail = ({ order, layout, page }) => {
   const router = useRouter();
   const [sortedItems, setSortedItems] = useState([]);
-  const [sortedItemsOrder, setSortedItemsOrder] = useState([]);
-  const foodCategories = useSelector((state) => state.global.foodCategories);
+  const [sortedItemsOrder, setSortedItemsOrder] = useState({});
   const masterData = useSelector((state) => state.global.orderMasterData);
+
   useEffect(() => {
-    const { sortedFoodItems, sortedFoodItemsOrder } = getSortedFoodItems(
-      order.orderData.presetItems,
-      foodCategories
-    );
-    setSortedItems(sortedFoodItems);
-    setSortedItemsOrder(sortedFoodItemsOrder);
-  }, [order.orderData.presetItems, foodCategories]);
+    const currentSortedItems = getSortedFoodItems(order.orderData.presetItems);
+
+    setSortedItems(currentSortedItems);
+    setSortedItemsOrder(getSortedFoodItemsOrder(currentSortedItems));
+  }, [order.orderData.presetItems]);
 
   const orderDate = moment(order.orderDate);
 
@@ -273,8 +271,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const layout = await API.getLayoutData();
     const page = await API.getPage("/order/detail/[id]");
 
-    if (store.getState().global.foodCategories.length === 0) {
-      await store.dispatch(fetchFoodCategories());
+    if (!store.getState().global.orderMasterData) {
       await store.dispatch(fetchOrderMasterData());
     }
 

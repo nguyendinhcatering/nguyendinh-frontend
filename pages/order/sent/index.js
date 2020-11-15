@@ -2,13 +2,9 @@ import API from "utils/api";
 import { Box, Styled, Button } from "theme-ui";
 import { useRouter } from "next/router";
 import DefaultLayout from "components/layout/DefaultLayout";
-import Error from "next/error";
 import Page from "components/layout/Page";
 import { useSelector } from "react-redux";
-import {
-  fetchFoodCategories,
-  fetchOrderMasterData,
-} from "../../../store/global/actions";
+import { fetchOrderMasterData } from "../../../store/global/actions";
 import { wrapper } from "../../../store";
 import Card from "../../../components/ui/Card";
 import Wysiwyg from "../../../components/renderer/wysiwyg";
@@ -73,8 +69,7 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   const layout = await API.getLayoutData();
   const page = await API.getPage("/order/sent");
 
-  if (store.getState().global.foodCategories.length === 0) {
-    await store.dispatch(fetchFoodCategories());
+  if (!store.getState().global.orderMasterData) {
     await store.dispatch(fetchOrderMasterData());
   }
 

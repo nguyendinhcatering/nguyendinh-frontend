@@ -7,7 +7,6 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import "styles/react-datetime.css";
 import "styles/nprogress.css";
 import "animate.css";
-import "styles/app.css";
 import { wrapper } from "../store";
 import { ConnectedRouter } from "connected-next-router";
 import "moment/locale/vi";

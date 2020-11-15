@@ -15,7 +15,7 @@ const defaultOrder = {
   presetItems: [],
   extraItems: [],
   extraServices: [],
-  quantity: 0,
+  quantity: 1,
   unitPrice: 0,
   orderDetails: {
     title: "Ông",
@@ -43,6 +43,7 @@ const reducer = (state = initialState, action) => {
       return merge(cloneDeep(state), {
         meta: action.payload.meta,
         presetItems: action.payload.presetItems,
+        sortedFoodItems: action.payload.sortedFoodItems,
         unitPrice: action.payload.meta.presetPrice,
         quantity: 1,
       });

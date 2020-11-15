@@ -1,17 +1,6 @@
 const initialState = {
   foodCategories: [],
-  orderMasterData: {
-    orderTypes: [
-      "Tiệc cưới / ăn hỏi",
-      "Tiệc liên hoan",
-      "Công việc gia đình",
-      "Tiệc hội nghị",
-      "Tiệc khác",
-    ],
-    orderPlaceTypes: ["Nhà riêng", "Nhà chung cư", "Hội trường", "Cơ quan"],
-    orderSuccessHeader: "",
-    orderSuccessText: "",
-  },
+  orderMasterData: null,
 };
 
 const reducer = (state = initialState, action) => {
