@@ -4,7 +4,7 @@ import { Box, Button, jsx } from "theme-ui";
 import API from "../../utils/api";
 import { IoMdDownload } from "react-icons/io";
 
-const DownloadButton = ({ src, title, sx }) => {
+const DownloadButton = ({ src, title, sx, variant }) => {
   const handleClick = async () => {
     if (src) {
       try {
@@ -22,6 +22,14 @@ const DownloadButton = ({ src, title, sx }) => {
         alignItems: "center",
         marginTop: 2,
         ...sx,
+        ...(variant === "transparent" && {
+          color: "white",
+          backgroundColor: "transparent",
+          borderColor: "white",
+          "&:hover": {
+            color: "red.5",
+          },
+        }),
       }}
       variant="secondary"
     >
