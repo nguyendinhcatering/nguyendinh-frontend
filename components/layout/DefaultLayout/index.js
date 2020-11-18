@@ -3,7 +3,7 @@ import { Box } from "theme-ui";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import DynamicBackground from "../../ui/DynamicBackground";
-import { MapContext } from "../../ui/Map/MapContext";
+import { SiteDataContext } from "../../ui/Map/SiteDataContext";
 
 const DefaultLayout = ({ layout, pullUp, children }) => {
   const { menus, footer, siteData } = layout || {
@@ -12,11 +12,13 @@ const DefaultLayout = ({ layout, pullUp, children }) => {
     siteData: {
       backgroundImages: [],
       mapOptions: [],
+      mainPageUrl: "",
+      apiPageUrl: "",
     },
   };
 
   return (
-    <MapContext.Provider value={siteData.mapOptions}>
+    <SiteDataContext.Provider value={siteData}>
       <div className="min-h-screen flex flex-col">
         <Navbar menus={menus} />
         <Box className="flex-grow relative overflow-hidden">
@@ -29,7 +31,7 @@ const DefaultLayout = ({ layout, pullUp, children }) => {
         </Box>
         <Footer footer={footer} />
       </div>
-    </MapContext.Provider>
+    </SiteDataContext.Provider>
   );
 };
 

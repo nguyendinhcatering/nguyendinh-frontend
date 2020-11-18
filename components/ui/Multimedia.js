@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { jsx, Embed } from "theme-ui";
 import Image from "./Image";
 import Map from "./Map";
-import { MapContext } from "./Map/MapContext";
+import { SiteDataContext } from "./Map/SiteDataContext";
 
 const ImageComponent = ({ medium, ...props }) => {
   if (!medium.image) {
@@ -28,9 +28,7 @@ const VideoComponent = ({ medium, ...props }) => {
 };
 
 const MapComponent = ({ medium, ...props }) => {
-  return (
-    <Map {...props} />
-  );
+  return <Map {...props} />;
 };
 
 const COMPONENTS = {

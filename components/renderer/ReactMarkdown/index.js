@@ -4,6 +4,8 @@ import Markdown from "markdown-to-jsx";
 import { Styled, jsx } from "theme-ui";
 import Link from "../../ui/Link";
 import LinkButton from "../../ui/LinkButton";
+import DownloadButton from "../../ui/DownloadButton";
+import IconButton from "../../ui/IconButton";
 
 const Color = ({ color, children }) => {
   return <span sx={{ color }}>{children}</span>;
@@ -22,6 +24,12 @@ const ReactMarkdown = ({ options: overrideOptions, children }) => {
       },
       LinkButton: {
         component: LinkButton,
+      },
+      DownloadButton: {
+        component: DownloadButton,
+      },
+      IconButton: {
+        component: IconButton,
       },
     },
     ...overrideOptions,

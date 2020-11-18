@@ -13,6 +13,7 @@ import { BREAKPOINTS } from "../../../../../utils/useBreakpoint";
 import Multimedia from "../../../../ui/Multimedia";
 
 const GallerySection = ({ section }) => {
+  console.log(section);
   const [isOpen, setOpen] = useState(false);
   const breakpointIndex = useBreakpointIndex();
   const [aspectRatio, setAspectRatio] = useState([]);
@@ -36,7 +37,7 @@ const GallerySection = ({ section }) => {
           <Carousel
             isPlaying={!isOpen}
             totalSlides={section?.media.length}
-            renderNavigation={false}
+            renderNavigation={true}
             aspectRatio={aspectRatio}
             renderDots={section?.media.length > 1}
             isIntrinsicHeight={true}
@@ -45,7 +46,14 @@ const GallerySection = ({ section }) => {
               <Slide key={medium.id} innerClassName="no-ring">
                 <Multimedia
                   medium={medium}
-                  sx={{ width: "full" }}
+                  sx={{
+                    width: "full",
+                    ...(section.mediaFit
+                      ? {
+                          objectFit: section.mediaFit,
+                        }
+                      : {}),
+                  }}
                   onClick={() => setOpen(true)}
                 />
               </Slide>

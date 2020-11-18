@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box } from "theme-ui";
 import GoogleMapReact from "google-map-react";
-import { MapContext } from "./MapContext";
+import { SiteDataContext } from "./SiteDataContext";
 
 const shape = {
   coords: [0, 0, 100, 100],
@@ -12,7 +12,7 @@ const Map = ({
   defaultCenter = { lat: 21.0288012, lng: 105.7983287 },
   defaultZoom = 12,
 }) => {
-  const markers = useContext(MapContext);
+  const siteData = useContext(SiteDataContext);
 
   const apiKey =
     process.env.NODE_ENV === "production"
@@ -20,7 +20,7 @@ const Map = ({
       : undefined;
 
   const renderMarkers = (map, maps) => {
-    markers.map((marker) => {
+    siteData.mapOptions.map((marker) => {
       let googleMarker = new maps.Marker({
         position: { lat: marker.latitude, lng: marker.longitude },
         map,
