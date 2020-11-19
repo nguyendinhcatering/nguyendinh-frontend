@@ -74,7 +74,7 @@ const GallerySection = ({ section }) => {
             ))}
           </Carousel>
         )}
-        {section.text && !isEmpty(safeParse(section.text.blocks)) && (
+        {section.text && !isEmpty(safeParse(section.text).blocks) && (
           <Box className="w-full p-3 text-center">
             <Wysiwyg
               data={section.text}
