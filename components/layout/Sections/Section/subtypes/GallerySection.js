@@ -12,6 +12,20 @@ import { useBreakpointIndex } from "@theme-ui/match-media";
 import { BREAKPOINTS } from "../../../../../utils/useBreakpoint";
 import Multimedia from "../../../../ui/Multimedia";
 
+const safeParse = (text) => {
+  if (typeof text === 'string') {
+    try {
+      return JSON.parse(text)
+    } catch (err) {
+      return {
+        blocks: []
+      }
+    }
+  }
+  
+  return text;
+}
+
 const GallerySection = ({ section }) => {
   console.log(section);
   const [isOpen, setOpen] = useState(false);
@@ -60,7 +74,7 @@ const GallerySection = ({ section }) => {
             ))}
           </Carousel>
         )}
-        {section.text && !isEmpty(section.text.blocks) && (
+        {section.text && !isEmpty(safeParse(section.text.blocks)) && (
           <Box className="w-full p-3 text-center">
             <Wysiwyg
               data={section.text}
