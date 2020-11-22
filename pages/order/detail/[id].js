@@ -271,9 +271,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const layout = await API.getLayoutData();
     const page = await API.getPage("/order/detail/[id]");
 
-    if (!store.getState().global.orderMasterData) {
-      await store.dispatch(fetchOrderMasterData());
-    }
+    await store.dispatch(fetchOrderMasterData());
 
     return {
       props: {

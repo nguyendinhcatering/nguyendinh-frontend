@@ -445,9 +445,7 @@ export const getStaticProps = wrapper.getStaticProps(
     const layout = await API.getLayoutData();
     const page = await API.getPage("/order/customer-details");
 
-    if (!store.getState().global.orderMasterData) {
-      await store.dispatch(fetchOrderMasterData());
-    }
+    await store.dispatch(fetchOrderMasterData());
 
     return {
       props: {

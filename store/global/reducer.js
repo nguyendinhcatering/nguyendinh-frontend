@@ -1,6 +1,6 @@
 const initialState = {
   foodCategories: [],
-  orderMasterData: null,
+  orderMasterData: {},
 };
 
 const reducer = (state = initialState, action) => {
