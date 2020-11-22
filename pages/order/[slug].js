@@ -12,6 +12,8 @@ import {
 } from "../../utils/order";
 import PresetOrderMenu from "../../components/order/PresetOrderMenu";
 import CustomizableOrderMenu from "../../components/order/CustomizableOrderMenu";
+import { fetchOrderMasterData } from "../../store/global/actions";
+import { wrapper } from "../../store";
 
 const OrderMenu = ({
   layout,
@@ -58,65 +60,68 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (ctx) => {
-  const slug = ctx?.params?.slug;
-  const presetType = await API.getFoodPresetTypeBySlug(slug);
+export const getStaticProps = wrapper.getStaticProps(
+  async ({ store, ...ctx }) => {
+    const slug = ctx?.params?.slug;
+    const presetType = await API.getFoodPresetTypeBySlug(slug);
 
-  if (!presetType) {
-    return {
-      props: {},
-      redirect: {
-        destination: "/order",
-      },
-    };
-  }
+    if (!presetType) {
+      return {
+        props: {},
+        redirect: {
+          destination: "/order",
+        },
+      };
+    }
 
-  const path = `/order/${slug}`;
-  const page = await API.getPage(encodeURI(path));
-  const layout = await API.getLayoutData();
-  const foodPresets = await API.getFoodPresetsByPresetTypeSlug(slug);
-  const foodCategories = await API.getFoodCategories();
-  const foodMenuItems = await API.getFoodItems();
+    const path = `/order/${slug}`;
+    const page = await API.getPage(encodeURI(path));
+    const layout = await API.getLayoutData();
+    const foodPresets = await API.getFoodPresetsByPresetTypeSlug(slug);
+    const foodCategories = await API.getFoodCategories();
+    const foodMenuItems = await API.getFoodItems();
 
-  const allowedFoodCategories = getAllowedFoodCategoriesFromPresetType(
-    presetType,
-    foodCategories
-  );
-
-  const allowedFoodMenuItems = getAllowedFoodMenuItemsFromPresetType(
-    presetType,
-    foodMenuItems
-  );
-
-  if (presetType.type === "customizable") {
-    const sortedFoodItems = getSortedFoodItemsNew(
-      allowedFoodMenuItems,
-      allowedFoodCategories
+    const allowedFoodCategories = getAllowedFoodCategoriesFromPresetType(
+      presetType,
+      foodCategories
     );
+
+    const allowedFoodMenuItems = getAllowedFoodMenuItemsFromPresetType(
+      presetType,
+      foodMenuItems
+    );
+    await store.dispatch(fetchOrderMasterData());
+
+    if (presetType.type === "customizable") {
+      const sortedFoodItems = getSortedFoodItemsNew(
+        allowedFoodMenuItems,
+        allowedFoodCategories
+      );
+      return {
+        props: {
+          layout,
+          page,
+          presetType,
+          sortedFoodItems,
+        },
+      };
+    }
+
+    const processedPresets = getProcessedPresets(
+      foodPresets,
+      allowedFoodCategories,
+      allowedFoodMenuItems
+    );
+
     return {
       props: {
         layout,
         page,
         presetType,
-        sortedFoodItems,
+        foodPresets: processedPresets,
       },
     };
   }
-
-  const processedPresets = getProcessedPresets(
-    foodPresets,
-    allowedFoodCategories,
-    allowedFoodMenuItems
-  );
-
-  return {
-    props: {
-      layout,
-      page,
-      presetType,
-      foodPresets: processedPresets,
-    },
-  };
-};
+);
 
 export default OrderMenu;

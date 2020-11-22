@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Box, Button, Input, jsx, Label, Styled, Textarea } from "theme-ui";
 import DefaultLayout from "../../../components/layout/DefaultLayout";
 import API from "../../../utils/api";
@@ -34,6 +34,7 @@ const paymentMethodTypes = [
 
 const SelectExtra = ({ layout, page }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const orderQuantity = useSelector((state) => state.order?.quantity);
   const orderPlaceTypes = useSelector(
     (state) => state.global.orderMasterData.orderPlaceTypes
@@ -52,6 +53,7 @@ const SelectExtra = ({ layout, page }) => {
   };
 
   const handleSubmit = async (value) => {
+    setLoading(true);
     dispatch(placeOrder(value));
   };
 
@@ -421,7 +423,11 @@ const SelectExtra = ({ layout, page }) => {
                               </Box>
                             </Box>
                             <Box sx={{ marginTop: 3 }}>
-                              <Button type="submit" sx={{ borderWidth: 0 }}>
+                              <Button
+                                type="submit"
+                                sx={{ borderWidth: 0 }}
+                                disabled={loading}
+                              >
                                 Đặt tiệc
                               </Button>
                             </Box>

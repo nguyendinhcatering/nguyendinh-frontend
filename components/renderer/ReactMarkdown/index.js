@@ -6,6 +6,8 @@ import Link from "../../ui/Link";
 import LinkButton from "../../ui/LinkButton";
 import DownloadButton from "../../ui/DownloadButton";
 import IconButton from "../../ui/IconButton";
+import ContactUsForm from "../../ui/ContactUsForm";
+import ContactUsButton from "../../ui/ContactUsButton";
 
 const Color = ({ color, children }) => {
   return <span sx={{ color }}>{children}</span>;
@@ -30,6 +32,12 @@ const ReactMarkdown = ({ options: overrideOptions, children }) => {
       },
       IconButton: {
         component: IconButton,
+      },
+      ContactUsForm: {
+        component: ContactUsForm,
+      },
+      ContactUsButton: {
+        component: ContactUsButton,
       },
     },
     ...overrideOptions,

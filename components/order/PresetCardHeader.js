@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Styled, Button } from "theme-ui";
 import ManualSection from "../layout/Sections/Section/subtypes/ManualSection";
 import { formatNumber } from "../../utils/number";
@@ -6,6 +6,22 @@ import { formatNumber } from "../../utils/number";
 const IMAGE_URL = "/images/defaultBackground.jpg";
 
 const PresetCardHeader = ({ preset, presetType, onOrder }) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleOrder = async (e) => {
+    setLoading(true);
+
+    try {
+      if (onOrder) {
+        await onOrder(e);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <ManualSection>
       <Box
@@ -53,8 +69,10 @@ const PresetCardHeader = ({ preset, presetType, onOrder }) => {
               backgroundColor: "transparent",
               borderColor: "white",
               width: "100%",
+              opacity: loading ? "75%" : "100%",
             }}
-            onClick={onOrder}
+            onClick={handleOrder}
+            disabled={loading}
           >
             Đặt thực đơn này
           </Button>
