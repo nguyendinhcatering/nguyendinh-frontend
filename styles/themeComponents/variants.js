@@ -184,6 +184,20 @@ const buttons = {
       backgroundColor: "gray.1",
     },
   },
+  transparent: {
+    py: 2,
+    px: 3,
+    color: "white",
+    backgroundColor: "transparent",
+    borderColor: "white",
+    borderWidth: "2px",
+    borderStyle: "solid",
+    fontFamily: "heading",
+    fontSize: "2",
+    "&:hover": {
+      backgroundColor: "red.5",
+    },
+  },
 };
 
 const inputs = {

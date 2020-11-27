@@ -3,7 +3,7 @@ import { Button, jsx } from "theme-ui";
 import { useRouter } from "next/router";
 import { getHref } from "../../utils/getHref";
 
-const LinkButton = ({ src, sx, children }) => {
+const LinkButton = ({ src, sx, variant = "primary", children }) => {
   const router = useRouter();
 
   const href = getHref(src);
@@ -13,7 +13,7 @@ const LinkButton = ({ src, sx, children }) => {
   };
 
   return (
-    <Button onClick={handleClick} sx={sx}>
+    <Button onClick={handleClick} sx={sx} variant={variant}>
       {children}
     </Button>
   );

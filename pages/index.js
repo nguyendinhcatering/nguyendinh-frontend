@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { jsx, Styled, Image as ThemeImage, Text, Heading } from "theme-ui";
+import {jsx, Styled, Image as ThemeImage, Text, Heading, ThemeProvider} from "theme-ui";
 import API from "../utils/api";
 import { wrapper } from "../store";
 import DefaultLayout from "../components/layout/DefaultLayout";
