@@ -64,6 +64,8 @@ export const placeOrder = (payload) => {
       orderData: omit(state.order, ["orderDetails"]),
     };
 
+    console.log(pl);
+
     const response = await API.placeOrder(pl);
 
     dispatch({

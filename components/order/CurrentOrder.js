@@ -7,10 +7,11 @@ import cn from "classnames";
 import { formatNumber } from "../../utils/number";
 import { IMAGE_URL } from "../../utils/getImageSrc";
 
-const CurrentOrder = ({ onChange }) => {
+const CurrentOrder = ({ onChange, style }) => {
   const [sortedItems, setSortedItems] = useState([]);
   const [sortedItemsOrder, setSortedItemsOrder] = useState({});
   const order = useSelector((state) => state.order);
+  console.log(order);
   const foodItems = useSelector((state) => state.order.presetItems);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const CurrentOrder = ({ onChange }) => {
   }, [foodItems]);
 
   return (
-    <Box>
+    <Box style={style}>
       <Box>
         <Box
           className={cn(
@@ -36,8 +37,7 @@ const CurrentOrder = ({ onChange }) => {
             {order.meta.presetName}
           </Styled.h4>
           <Styled.p className="font-heading">
-            {formatNumber(order.unitPrice)} VND / mâm /&nbsp;
-            {order.meta.presetType.numberOfPeople} người
+            {formatNumber(order.unitPrice)} VND / {order.meta.unit}
           </Styled.p>
           <Button
             sx={{

@@ -20,6 +20,9 @@ import { useRouter } from "next/router";
 import { getHref } from "../../../utils/getHref";
 import Loading from "../../../components/Loading";
 import Page from "../../../components/layout/Page";
+import Multimedia from "../../../components/ui/Multimedia";
+import ReactMarkdown from "../../../components/renderer/ReactMarkdown";
+import Wysiwyg from "../../../components/renderer/wysiwyg";
 
 const paymentMethodTypes = [
   {
@@ -31,6 +34,23 @@ const paymentMethodTypes = [
     value: "Chuyển khoản toàn bộ",
   },
 ];
+
+const BankInfo = () => {
+  const bankInfo = useSelector(
+    (state) => state.global.orderMasterData.bankInfo
+  );
+
+  return (
+    <Box>
+      {bankInfo.map((info) => (
+        <Box key={info.id}>
+          <Multimedia medium={info.image} sx={{ width: "200px", py: 3 }} />
+          <Wysiwyg data={info.description} />
+        </Box>
+      ))}
+    </Box>
+  );
+};
 
 const SelectExtra = ({ layout, page }) => {
   const router = useRouter();
@@ -91,10 +111,6 @@ const SelectExtra = ({ layout, page }) => {
         address: Yup.string().required("Hãy nhập địa chỉ giao hàng"),
         paymentMethod: Yup.object({
           type: Yup.string().required(),
-          account: Yup.string().when("type", {
-            is: "Chuyển khoản toàn bộ",
-            then: Yup.string().required("Hãy nhập thông tin tài khoản của bạn"),
-          }),
         }),
       }),
     []
@@ -160,7 +176,7 @@ const SelectExtra = ({ layout, page }) => {
                                 sx={{ minWidth: "1/6" }}
                               >
                                 <Label>&nbsp;</Label>
-                                <Field as={Select} fullName="title">
+                                <Field as={Select} name="title">
                                   <option value="Ông">Ông</option>
                                   <option value="Bà">Bà</option>
                                 </Field>
@@ -210,7 +226,6 @@ const SelectExtra = ({ layout, page }) => {
                                 className="flex-auto important:mb-3"
                                 sx={{
                                   width: ["full", "full", "1/3"],
-                                  marginRight: [0, 0, 3],
                                 }}
                               >
                                 <Label>Số lượng mâm</Label>
@@ -220,10 +235,13 @@ const SelectExtra = ({ layout, page }) => {
                                   onChange={handleChangeQuantity}
                                 />
                               </Box>
+                            </Box>
+                            <Box className="flex flex-wrap">
                               <Box
                                 className="flex-auto important:mb-3"
                                 sx={{
                                   width: ["full", "full", "1/3"],
+                                  marginRight: [0, 0, 3],
                                 }}
                               >
                                 <Label>Loại hình tiệc</Label>
@@ -241,9 +259,12 @@ const SelectExtra = ({ layout, page }) => {
                                 </Field>
                                 <FormError name="orderType" />
                               </Box>
-                            </Box>
-                            <Box className="flex flex-wrap important:w-full">
-                              <Box className="flex-grow important:w-full important:mb-3">
+                              <Box
+                                className="flex-grow important:mb-3"
+                                sx={{
+                                  width: ["full", "full", "1/3"],
+                                }}
+                              >
                                 <Label>Đặc điểm nơi tổ chức tiệc</Label>
                                 <Field as={Select} name="orderPlaceType">
                                   <option
@@ -398,24 +419,7 @@ const SelectExtra = ({ layout, page }) => {
                               </Box>
                             </Box>
                             {props.values["paymentMethod"].type ===
-                              "Chuyển khoản toàn bộ" && (
-                              <Box className="flex flex-wrap important:w-full">
-                                <Box
-                                  className="flex-auto important:mb-3"
-                                  sx={{
-                                    width: ["full", "full", "1/3"],
-                                  }}
-                                >
-                                  <Label>Số tài khoản</Label>
-                                  <Field
-                                    name="paymentMethod.account"
-                                    as={Input}
-                                  />
-                                  <FormError name="paymentMethod.account" />
-                                </Box>
-                              </Box>
-                            )}
-
+                              "Chuyển khoản toàn bộ" && <BankInfo />}
                             <Box className="flex flex-wrap">
                               <Box className="flex-grow">
                                 <Label>Ghi chú</Label>

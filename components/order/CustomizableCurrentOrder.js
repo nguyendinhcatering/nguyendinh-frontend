@@ -40,11 +40,8 @@ const CustomizableCurrentOrder = ({ onPlaceOrder, presetType = {} }) => {
               fontFamily: "heading",
             }}
           >
-            {formatNumber(order.unitPrice)}
-            <span> VNĐ/</span>
             <span>
-              {" "}
-              {presetType.unit}/ {presetType.numberOfPeople} người
+              {formatNumber(order.unitPrice)} VNĐ/ {presetType.unit}
             </span>
           </Styled.p>
         </Box>

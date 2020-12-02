@@ -9,6 +9,7 @@ const defaultOrder = {
       name: null,
       numberOfPeople: 0,
       type: null,
+      unit: null,
     },
     url: "",
   },

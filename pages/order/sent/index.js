@@ -69,9 +69,7 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   const layout = await API.getLayoutData();
   const page = await API.getPage("/order/sent");
 
-  if (!store.getState().global.orderMasterData) {
-    await store.dispatch(fetchOrderMasterData());
-  }
+  await store.dispatch(fetchOrderMasterData());
 
   return {
     props: {

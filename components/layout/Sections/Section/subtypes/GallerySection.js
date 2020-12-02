@@ -13,21 +13,20 @@ import { BREAKPOINTS } from "../../../../../utils/useBreakpoint";
 import Multimedia from "../../../../ui/Multimedia";
 
 const safeParse = (text) => {
-  if (typeof text === 'string') {
+  if (typeof text === "string") {
     try {
-      return JSON.parse(text)
+      return JSON.parse(text);
     } catch (err) {
       return {
-        blocks: []
-      }
+        blocks: [],
+      };
     }
   }
-  
+
   return text;
-}
+};
 
 const GallerySection = ({ section }) => {
-  console.log(section);
   const [isOpen, setOpen] = useState(false);
   const breakpointIndex = useBreakpointIndex();
   const [aspectRatio, setAspectRatio] = useState([]);

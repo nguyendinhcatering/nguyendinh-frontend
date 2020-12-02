@@ -45,6 +45,7 @@ const OrderDetail = ({ order, layout, page }) => {
     setSortedItemsOrder(getSortedFoodItemsOrder(currentSortedItems));
   }, [order.orderData.presetItems]);
 
+  console.log(order);
   const orderDate = moment(order.orderDate);
 
   return (
@@ -133,7 +134,7 @@ const OrderDetail = ({ order, layout, page }) => {
                         />
                         <Field
                           header={
-                            "Số lượng " + get(order, "orderData.meta.unit")
+                            "Số lượng " + get(order, "orderData.meta.unit", "")
                           }
                           data={`${order.orderData.quantity} ${get(
                             order,

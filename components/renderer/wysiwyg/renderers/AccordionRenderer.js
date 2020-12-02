@@ -7,8 +7,8 @@ import AnimateHeight from "react-animate-height";
 import ReactMarkdown from "../../ReactMarkdown";
 
 const AccordionRenderer = ({ block }) => {
-  const [isOpen, setOpen] = useState(true);
-  const [height, setHeight] = useState("auto");
+  const [isOpen, setOpen] = useState(false);
+  const [height, setHeight] = useState(0);
 
   const handleClick = () => {
     setOpen(!isOpen);
