@@ -22,6 +22,7 @@ const CustomizableOrderMenu = ({ foodItems, presetType }) => {
             type: presetType.type,
           },
           url: router.asPath.replace(/\?.*/g, ""),
+          unit: presetType.unit,
         },
       })
     );

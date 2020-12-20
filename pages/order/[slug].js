@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DefaultLayout from "../../components/layout/DefaultLayout";
 import Page from "../../components/layout/Page";
 import API from "../../utils/api";
@@ -14,6 +14,8 @@ import PresetOrderMenu from "../../components/order/PresetOrderMenu";
 import CustomizableOrderMenu from "../../components/order/CustomizableOrderMenu";
 import { fetchOrderMasterData } from "../../store/global/actions";
 import { wrapper } from "../../store";
+import { useDispatch } from "react-redux";
+import { clearOrder } from "../../store/order/actions";
 
 const OrderMenu = ({
   layout,
@@ -23,10 +25,17 @@ const OrderMenu = ({
   sortedFoodItems,
 }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   if (router.isFallback) {
     return <Loading />;
   }
+
+  useEffect(() => {
+    if (!router.query["keep-order"]) {
+      dispatch(clearOrder());
+    }
+  }, []);
 
   return (
     <DefaultLayout layout={layout}>
