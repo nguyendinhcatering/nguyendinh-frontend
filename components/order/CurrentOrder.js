@@ -11,7 +11,6 @@ const CurrentOrder = ({ onChange, style }) => {
   const [sortedItems, setSortedItems] = useState([]);
   const [sortedItemsOrder, setSortedItemsOrder] = useState({});
   const order = useSelector((state) => state.order);
-  console.log(order);
   const foodItems = useSelector((state) => state.order.presetItems);
 
   useEffect(() => {

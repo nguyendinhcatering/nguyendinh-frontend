@@ -46,7 +46,8 @@ const OrderDetail = ({ order, layout, page }) => {
   }, [order.orderData.presetItems]);
 
   console.log(order);
-  const orderDate = moment(order.orderDate);
+
+  const orderDate = moment(order.orderDateText, "DD/MM/YYYY");
 
   return (
     <DefaultLayout layout={layout}>
@@ -97,7 +98,7 @@ const OrderDetail = ({ order, layout, page }) => {
                             {startCase(orderDate.format("dddd"))})
                           </span>
                           <span>{" | "}</span>
-                          <span>{orderDate.format("hh:mm A")}</span>
+                          <span>{order.orderTimeText}</span>
                         </Styled.h4>
                       </Box>
                     </Box>
@@ -153,7 +154,7 @@ const OrderDetail = ({ order, layout, page }) => {
                         />
                         <Field
                           header="Thời gian giao hàng"
-                          data={orderDate.format("hh:mm a")}
+                          data={order.orderTimeText}
                         />
                       </Box>
                     </Box>

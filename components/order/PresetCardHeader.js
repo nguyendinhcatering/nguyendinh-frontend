@@ -16,7 +16,6 @@ const PresetCardHeader = ({ preset, presetType, onOrder }) => {
         await onOrder(e);
       }
     } catch (err) {
-      console.log(err);
     } finally {
       setLoading(false);
     }

@@ -44,23 +44,19 @@ export const changeOrderDetails = (payload) => {
 };
 
 export const placeOrder = (payload) => {
+  console.log("test");
   return async (dispatch, getState) => {
     dispatch(changeOrderDetails(payload));
 
     const state = getState();
     const orderDetails = state.order.orderDetails;
 
-    const orderTime = moment(orderDetails.orderTime);
-    const orderDate = moment(orderDetails.orderDate).set({
-      hour: orderTime.get("hour"),
-      minute: orderTime.get("minute"),
-      second: 0,
-    });
+    const orderDate = moment(orderDetails.orderDate);
 
     const pl = {
-      ...orderDetails,
-      orderDate: orderDate.toISOString(),
-      orderTime: orderDate.format("HH:mm:ss.SSS"),
+      ...omit(orderDetails, ["orderDate", "orderTime"]),
+      orderDateText: orderDate.format("DD/MM/YYYY"),
+      orderTimeText: payload.orderTime,
       orderData: omit(state.order, ["orderDetails"]),
     };
 
