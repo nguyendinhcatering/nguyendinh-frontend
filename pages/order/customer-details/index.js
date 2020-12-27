@@ -41,11 +41,28 @@ const BankInfo = () => {
   );
 
   return (
-    <Box>
+    <Box className="flex flex-wrap space-x-2 flex-col md:flex-row">
       {bankInfo.map((info) => (
-        <Box key={info.id}>
-          <Multimedia medium={info.image} sx={{ width: "200px", py: 3 }} />
-          <Wysiwyg data={info.description} />
+        <Box
+          key={info.id}
+          sx={{
+            width: ["full", "full", "1/2"],
+            p: 4,
+            my: 3,
+            borderColor: "gray.5",
+            borderWidth: "1px",
+            borderStyle: "solid",
+          }}
+        >
+          <Box className="flex flex-row justify-center">
+            <Multimedia
+              medium={info.image}
+              sx={{ height: "auto", width: "200px", py: 3 }}
+            />
+          </Box>
+          <Box className="flex flex-row">
+            <Wysiwyg data={info.description} />
+          </Box>
         </Box>
       ))}
     </Box>
