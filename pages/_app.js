@@ -53,10 +53,10 @@ function MyApp({ Component, pageProps }) {
             }
           `}
         </style>
-        <ZaloChat />
-        <FacebookProvider appId={process.env.FACEBOOK_APP_ID || "fake-app-id"}>
-          <CustomChat pageId={process.env.FACEBOOK_PAGE_ID || "fake-page-id"} />
-        </FacebookProvider>
+        {/*<ZaloChat />*/}
+        {/*<FacebookProvider appId={process.env.FACEBOOK_APP_ID || "fake-app-id"}>*/}
+        {/*  <CustomChat pageId={process.env.FACEBOOK_PAGE_ID || "fake-page-id"} />*/}
+        {/*</FacebookProvider>*/}
       </ThemeProvider>
     </ConnectedRouter>
   );

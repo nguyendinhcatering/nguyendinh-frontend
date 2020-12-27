@@ -23,28 +23,28 @@ const DefaultLayout = ({ layout, pullUp, children }) => {
   };
 
   return (
-    <FacebookProvider appId={siteData.fbAppId} chatSupport>
-      <SiteDataContext.Provider value={siteData}>
-        <div className="min-h-screen flex flex-col">
-          <Navbar menus={menus} />
-          <Box className="flex-grow relative overflow-hidden">
-            <DynamicBackground
-              images={siteData.backgroundImages}
-              pullUp={pullUp}
-            />
-            {children}
-            <Box className="flex-grow" />
-          </Box>
-          <CustomChat
-            pageId={siteData.fbPageId}
-            themeColor={siteData.fbChatThemeColor}
-            loggedInGreeting={siteData.fbChatGreetingMessage}
-            loggedOutGreeting={siteData.fbChatGreetingMessage}
+    // <FacebookProvider appId={siteData.fbAppId} chatSupport>
+    <SiteDataContext.Provider value={siteData}>
+      <div className="min-h-screen flex flex-col">
+        <Navbar menus={menus} />
+        <Box className="flex-grow relative overflow-hidden">
+          <DynamicBackground
+            images={siteData.backgroundImages}
+            pullUp={pullUp}
           />
-          <Footer footer={footer} />
-        </div>
-      </SiteDataContext.Provider>
-    </FacebookProvider>
+          {children}
+          <Box className="flex-grow" />
+        </Box>
+        {/*<CustomChat*/}
+        {/*  pageId={siteData.fbPageId}*/}
+        {/*  themeColor={siteData.fbChatThemeColor}*/}
+        {/*  loggedInGreeting={siteData.fbChatGreetingMessage}*/}
+        {/*  loggedOutGreeting={siteData.fbChatGreetingMessage}*/}
+        {/*/>*/}
+        <Footer footer={footer} />
+      </div>
+    </SiteDataContext.Provider>
+    // </FacebookProvider>
   );
 };
 
