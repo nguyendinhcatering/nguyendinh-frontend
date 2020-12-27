@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider } from "theme-ui";
 import theme from "styles/theme";
 import "styles/index.css";
@@ -14,8 +14,11 @@ import NProgress from "nprogress";
 import { Router } from "next/router";
 import ZaloChat from "../components/ui/ZaloChat";
 import { FacebookProvider, CustomChat } from "react-facebook";
+import App from "next/app";
+import API from "../utils/api";
+import DefaultLayout from "../components/layout/DefaultLayout";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, layout }) {
   const routeChangeStart = () => {
     NProgress.start();
   };
@@ -44,22 +47,40 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ConnectedRouter>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-        <style jsx global>
-          {`
-            :root {
-              --animate-duration: 0.2s;
-            }
-          `}
-        </style>
-        {/*<ZaloChat />*/}
-        {/*<FacebookProvider appId={process.env.FACEBOOK_APP_ID || "fake-app-id"}>*/}
-        {/*  <CustomChat pageId={process.env.FACEBOOK_PAGE_ID || "fake-page-id"} />*/}
-        {/*</FacebookProvider>*/}
-      </ThemeProvider>
+      <FacebookProvider appId={layout.siteData.fbAppId} chatSupport>
+        <ThemeProvider theme={theme}>
+          <DefaultLayout layout={layout}>
+            <Component {...pageProps} />
+            <style jsx global>
+              {`
+                :root {
+                  --animate-duration: 0.2s;
+                }
+              `}
+            </style>
+            <CustomChat
+              pageId={layout.siteData.fbPageId}
+              themeColor={layout.siteData.fbChatThemeColor}
+              loggedInGreeting={layout.siteData.fbChatGreetingMessage}
+              loggedOutGreeting={layout.siteData.fbChatGreetingMessage}
+            />
+            {/*<ZaloChat />*/}
+          </DefaultLayout>
+        </ThemeProvider>
+      </FacebookProvider>
     </ConnectedRouter>
   );
 }
+
+MyApp.getInitialProps = async (ctx) => {
+  const appProps = await App.getInitialProps(ctx);
+
+  const layout = await API.getLayoutData();
+
+  return {
+    ...appProps,
+    layout,
+  };
+};
 
 export default wrapper.withRedux(MyApp);

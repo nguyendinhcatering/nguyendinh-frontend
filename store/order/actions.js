@@ -44,7 +44,6 @@ export const changeOrderDetails = (payload) => {
 };
 
 export const placeOrder = (payload) => {
-  console.log("test");
   return async (dispatch, getState) => {
     dispatch(changeOrderDetails(payload));
 
@@ -59,8 +58,6 @@ export const placeOrder = (payload) => {
       orderTimeText: payload.orderTime,
       orderData: omit(state.order, ["orderDetails"]),
     };
-
-    console.log(pl);
 
     const response = await API.placeOrder(pl);
 

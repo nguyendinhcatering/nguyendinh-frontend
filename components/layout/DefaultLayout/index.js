@@ -4,7 +4,6 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import DynamicBackground from "../../ui/DynamicBackground";
 import { SiteDataContext } from "../../ui/Map/SiteDataContext";
-import { CustomChat, FacebookProvider } from "react-facebook";
 
 const DefaultLayout = ({ layout, pullUp, children }) => {
   const { menus, footer, siteData } = layout || {

@@ -1,7 +1,6 @@
 import API from "utils/api";
 import { Box, IconButton } from "theme-ui";
 import { useRouter } from "next/router";
-import DefaultLayout from "components/layout/DefaultLayout";
 import Page from "components/layout/Page";
 import Loading from "../../components/Loading";
 import Section from "../../components/layout/Sections/Section";
@@ -113,7 +112,7 @@ const Pagination = ({ pagination }) => {
   );
 };
 
-const NewsPage = ({ page, layout, newsItems, pagination }) => {
+const NewsPage = ({ page, newsItems, pagination }) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -121,22 +120,20 @@ const NewsPage = ({ page, layout, newsItems, pagination }) => {
   }
 
   return (
-    <DefaultLayout layout={layout}>
-      <Page
-        page={page}
-        preSection={
-          <Box>
-            {newsItems.map((newsItem) => (
-              <Card id={newsItem.id} sx={{ mb: 5 }}>
-                <Section section={newsItem.head} />
-              </Card>
-            ))}
-            <Box sx={{ mb: 5 }} />
-          </Box>
-        }
-        postSection={<Pagination pagination={pagination} />}
-      />
-    </DefaultLayout>
+    <Page
+      page={page}
+      preSection={
+        <Box>
+          {newsItems.map((newsItem) => (
+            <Card id={newsItem.id} sx={{ mb: 5 }}>
+              <Section section={newsItem.head} />
+            </Card>
+          ))}
+          <Box sx={{ mb: 5 }} />
+        </Box>
+      }
+      postSection={<Pagination pagination={pagination} />}
+    />
   );
 };
 
@@ -157,13 +154,11 @@ export async function getServerSideProps(ctx) {
 
   const page = await API.getPage(encodeURI(path));
 
-  const layout = await API.getLayoutData();
   const newsItems = await API.getNewsItems(5, (ctx?.query?.page || 1) - 1);
 
   return {
     props: {
       page,
-      layout,
       newsItems,
       pagination,
     },

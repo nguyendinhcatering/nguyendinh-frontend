@@ -1,11 +1,10 @@
 import API from "utils/api";
 import { useRouter } from "next/router";
-import DefaultLayout from "components/layout/DefaultLayout";
 import Error from "next/error";
 import Page from "components/layout/Page";
 import Loading from "../../components/Loading";
 
-const PagePage = ({ page, layout }) => {
+const PagePage = ({ page }) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -13,18 +12,10 @@ const PagePage = ({ page, layout }) => {
   }
 
   if (!page) {
-    return (
-      <DefaultLayout layout={layout}>
-        <Error statusCode={404} />
-      </DefaultLayout>
-    );
+    return <Error statusCode={404} />;
   }
 
-  return (
-    <DefaultLayout layout={layout}>
-      <Page page={page} />
-    </DefaultLayout>
-  );
+  return <Page page={page} />;
 };
 
 export async function getStaticPaths() {
@@ -52,12 +43,9 @@ export async function getStaticProps(ctx) {
   const path = `/page/${ctx.params.slugs.join("/")}`;
   const page = await API.getPage(encodeURI(path));
 
-  const layout = await API.getLayoutData();
-
   return {
     props: {
       page,
-      layout,
     },
     revalidate: 1,
   };

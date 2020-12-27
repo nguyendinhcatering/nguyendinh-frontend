@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import DefaultLayout from "../../components/layout/DefaultLayout";
 import Page from "../../components/layout/Page";
 import API from "../../utils/api";
 import { useRouter } from "next/router";
@@ -17,13 +16,7 @@ import { wrapper } from "../../store";
 import { useDispatch } from "react-redux";
 import { clearOrder } from "../../store/order/actions";
 
-const OrderMenu = ({
-  layout,
-  page,
-  presetType,
-  foodPresets,
-  sortedFoodItems,
-}) => {
+const OrderMenu = ({ page, presetType, foodPresets, sortedFoodItems }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -38,19 +31,17 @@ const OrderMenu = ({
   }, []);
 
   return (
-    <DefaultLayout layout={layout}>
-      <Page page={page}>
-        {presetType.type === "preset" && (
-          <PresetOrderMenu presetType={presetType} foodPresets={foodPresets} />
-        )}
-        {presetType.type === "customizable" && (
-          <CustomizableOrderMenu
-            presetType={presetType}
-            foodItems={sortedFoodItems}
-          />
-        )}
-      </Page>
-    </DefaultLayout>
+    <Page page={page}>
+      {presetType.type === "preset" && (
+        <PresetOrderMenu presetType={presetType} foodPresets={foodPresets} />
+      )}
+      {presetType.type === "customizable" && (
+        <CustomizableOrderMenu
+          presetType={presetType}
+          foodItems={sortedFoodItems}
+        />
+      )}
+    </Page>
   );
 };
 
@@ -85,7 +76,6 @@ export const getStaticProps = wrapper.getStaticProps(
 
     const path = `/order/${slug}`;
     const page = await API.getPage(encodeURI(path));
-    const layout = await API.getLayoutData();
     const foodPresets = await API.getFoodPresetsByPresetTypeSlug(slug);
     const foodCategories = await API.getFoodCategories();
     const foodMenuItems = await API.getFoodItems();
@@ -108,7 +98,6 @@ export const getStaticProps = wrapper.getStaticProps(
       );
       return {
         props: {
-          layout,
           page,
           presetType,
           sortedFoodItems,
@@ -124,7 +113,6 @@ export const getStaticProps = wrapper.getStaticProps(
 
     return {
       props: {
-        layout,
         page,
         presetType,
         foodPresets: processedPresets,
