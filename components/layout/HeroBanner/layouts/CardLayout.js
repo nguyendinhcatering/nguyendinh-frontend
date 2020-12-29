@@ -34,7 +34,7 @@ const CardLayout = ({ banner }) => {
       isBgImage
       tag="div"
       alt={imageAlt}
-      className="bg-center"
+      className="bg-bottom"
     >
       <Box className="flex h-full max-h-screen items-center flex-col">
         <Box className="flex-grow" />

@@ -77,7 +77,7 @@ const Page = ({ page, preSection, postSection, header, children }) => {
               sections={heroSection}
               sx={{
                 display: ["block", "block", "none", "none"],
-                marginTop: [-5, -5, 0, 0],
+                marginTop: [0, 0],
               }}
             />
             {preSection}

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React, { useEffect, useState } from "react";
 import { Box, jsx } from "theme-ui";
+import { isEmpty } from "lodash";
 import Carousel from "../../ui/Carousel";
 import { Slide } from "pure-react-carousel";
 import Hero from "./Hero";
@@ -13,13 +14,13 @@ const HeroBanner = ({ banners, carouselName }) => {
 
   useEffect(() => {
     if (breakpointIndex > BREAKPOINTS.MD) {
-      setAspectRatio([9, 16]);
+      setAspectRatio([8, 16]);
     } else {
-      setAspectRatio([6, 3]);
+      setAspectRatio([4, 3]);
     }
   }, [breakpointIndex]);
 
-  if (!banners) return <Box className="h-6" />;
+  if (!banners || isEmpty(banners)) return <Box className="h-6" />;
 
   return (
     <Carousel

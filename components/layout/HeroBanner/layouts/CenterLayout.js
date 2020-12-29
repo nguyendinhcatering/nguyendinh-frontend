@@ -38,7 +38,7 @@ const CenterLayout = ({ banner }) => {
       isBgImage
       tag="div"
       alt={imageAlt}
-      className="bg-center"
+      className="bg-bottom"
     >
       <Box
         className={cx(
