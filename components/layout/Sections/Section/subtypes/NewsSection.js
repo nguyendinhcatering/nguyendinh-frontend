@@ -13,7 +13,7 @@ import slugify from "slugify";
 
 const NewsSection = ({ section }) => {
   const router = useRouter();
-  const hasMultipleImage = section?.media?.length > 1;
+  const hasMobileMedia = !!section?.mobileMedia;
 
   const slug = `${section.newsId}-${slugify(section.newsTitle, {
     lower: true,
@@ -23,19 +23,17 @@ const NewsSection = ({ section }) => {
     <Box className={cn("flex flex-col")}>
       <Box>
         {section?.media[0] && (
-          <Box
-            sx={{ display: hasMultipleImage && ["none", "none", "initial"] }}
-          >
+          <Box sx={{ display: hasMobileMedia && ["none", "none", "initial"] }}>
             <Multimedia
               medium={section?.media[0]}
               sx={{ objectFit: "contain", height: "auto" }}
             />
           </Box>
         )}
-        {hasMultipleImage && section?.media[1] && (
+        {hasMobileMedia && section?.mobileMedia && (
           <Box sx={{ display: ["initial", "initial", "none"] }}>
             <Multimedia
-              medium={section?.media[1]}
+              medium={section?.mobileMedia}
               sx={{ objectFit: "contain", height: "auto" }}
             />
           </Box>
