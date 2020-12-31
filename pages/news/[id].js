@@ -8,6 +8,7 @@ import Loading from "../../components/Loading";
 import Card from "../../components/ui/Card";
 import Section from "../../components/layout/Sections/Section";
 import Error from "next/error";
+import { toString } from "lodash";
 
 const NewsItem = ({ newsItem, newsItems }) => {
   const router = useRouter();
@@ -47,7 +48,7 @@ const NewsItem = ({ newsItem, newsItems }) => {
                   }}
                   onClick={() =>
                     router.push(
-                      `/news/${nI.id}-${slugify(nI.name, { lower: true })}`
+                      `/news/${nI.id}-${slugify(toString(nI.name), { lower: true })}`
                     )
                   }
                 >
@@ -70,7 +71,7 @@ export async function getStaticPaths() {
 
   const paths = newsItems.map((newsItem) => ({
     params: {
-      id: `${newsItem.id}-${slugify(newsItem.name, { lower: true })}`,
+      id: `${newsItem.id}-${slugify(toString(newsItem.name), { lower: true })}`,
     },
   }));
 
