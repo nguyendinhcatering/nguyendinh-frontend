@@ -10,12 +10,13 @@ import SectionAddon from "../../SectionAddons";
 import LinkButton from "../../../../ui/LinkButton";
 import { useRouter } from "next/router";
 import slugify from "slugify";
+import { toString } from "lodash";
 
 const NewsSection = ({ section }) => {
   const router = useRouter();
   const hasMobileMedia = !!section?.mobileMedia;
 
-  const slug = `${section.newsId}-${slugify(section.newsTitle, {
+  const slug = `${section.newsId}-${slugify(toString(section.newsTitle), {
     lower: true,
   })}`;
 
