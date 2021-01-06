@@ -83,7 +83,6 @@ const MenuItem = ({ menu }) => {
         {sortedChildMenus.map((childMenu) => (
           <Link
             href={getHref(childMenu.url)}
-            as={childMenu.url}
             passHref
             key={childMenu.id}
           >
