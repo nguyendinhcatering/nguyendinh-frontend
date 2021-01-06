@@ -71,6 +71,7 @@ export const getStaticProps = wrapper.getStaticProps(
         redirect: {
           destination: "/order",
         },
+        revalidate: 1
       };
     }
 
@@ -102,6 +103,7 @@ export const getStaticProps = wrapper.getStaticProps(
           presetType,
           sortedFoodItems,
         },
+        revalidate: 1
       };
     }
 
@@ -117,6 +119,7 @@ export const getStaticProps = wrapper.getStaticProps(
         presetType,
         foodPresets: processedPresets,
       },
+      revalidate: 1
     };
   }
 );
