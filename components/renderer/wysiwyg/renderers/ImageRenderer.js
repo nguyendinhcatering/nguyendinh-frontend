@@ -5,16 +5,16 @@ import { getImageUrl } from "../../../../utils/getImageSrc";
 
 const ImageRenderer = ({ block }) => {
   return (
-    <Styled.div className="relative">
+    <Styled.div className="relative flex justify-center">
       <StyledImage
         src={getImageUrl(block.data.file)}
         alt={block.data.alt}
         sx={{
-          width: "full",
+          my: 2,
           pb: 1,
+          maxWidth: "80%",
         }}
       />
-      {/*<Image image={block.data.file} className="w-full" />*/}
     </Styled.div>
   );
 };

@@ -21,7 +21,7 @@ const IconButton = ({ icon, src }) => {
         height: 10,
         px: 0,
         py: 0,
-        display: "flex",
+        display: "inline-flex",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: "9999px",
