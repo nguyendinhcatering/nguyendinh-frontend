@@ -21,6 +21,7 @@ const Metadata = ({ metadata }) => {
     <Head>
       <title>{title}</title>
       <link rel="icon" href="/favicon.ico" />
+      {url && <link rel="canonical" href={url} />}
       <meta name="description" content={description} />
       <meta name="content-type" content={contentType} />
       {/*Open Graph*/}
