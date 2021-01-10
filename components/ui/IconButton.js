@@ -1,11 +1,19 @@
 import React from "react";
 import { Button, Box } from "theme-ui";
-import { FaFacebookF, FaGoogle, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaGoogle,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 
 const ICONS = {
   facebook: FaFacebookF,
   twitter: FaTwitter,
   google: FaGoogle,
+  youtube: FaYoutube,
+  instagram: FaInstagram,
 };
 
 const IconButton = ({ icon, src }) => {
