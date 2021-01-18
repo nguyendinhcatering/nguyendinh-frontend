@@ -51,7 +51,10 @@ const Wysiwyg = ({ data, sx = {}, overrides }) => {
 
   const renderRow = (row, rowIndex) => {
     return (
-      <Styled.div key={rowIndex} className="flex flex-col md:flex-row w-full">
+      <Styled.div
+        key={rowIndex}
+        className="flex flex-col md:flex-row w-full print:flex-row"
+      >
         {row.blocks.map((rowBlocks, index) => (
           <Styled.div
             key={index}

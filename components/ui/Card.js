@@ -6,7 +6,7 @@ const Card = ({ className, children, ...props }) => {
   return (
     <Box
       className={cn(
-        "shadow-elevation-12 bg-white print:shadow-elevation-1",
+        "shadow-elevation-12 bg-white print:shadow-none",
         className
       )}
       {...props}

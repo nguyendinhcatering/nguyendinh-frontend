@@ -40,7 +40,7 @@ const CustomizableCurrentOrder = ({ onPlaceOrder, presetType = {} }) => {
               fontFamily: "heading",
             }}
           >
-            <span>
+            <span sx={{ fontWeight: "bold" }}>
               {formatNumber(order.unitPrice)} VNĐ/ {presetType.unit}
             </span>
           </Styled.p>
@@ -69,11 +69,21 @@ const CustomizableCurrentOrder = ({ onPlaceOrder, presetType = {} }) => {
                   {category.name}
                 </Styled.h5>
                 {category.foodItems.map((foodItem) => (
-                  <Box key={foodItem.id}>
-                    <span sx={{ minWidth: 8, display: "inline-block" }}>
-                      {sortedItemsOrder[foodItem.id]}.
+                  <Box
+                    key={foodItem.id}
+                    sx={{
+                      display: "flex",
+                      width: "full",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <span>
+                      <span sx={{ minWidth: 8, display: "inline-block" }}>
+                        {sortedItemsOrder[foodItem.id]}.
+                      </span>
+                      <span>{foodItem.name}</span>
                     </span>
-                    <span>{foodItem.name}</span>
+                    <span>{formatNumber(foodItem.price)}</span>
                   </Box>
                 ))}
               </Box>
