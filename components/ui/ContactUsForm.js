@@ -27,28 +27,14 @@ const validationSchema = Yup.object().shape(
 
 const ContactUsForm = ({ onDone, sx }) => {
   const [isLoading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const clear = () => {
-    setName("");
-    setAddress("");
-    setEmail("");
-    setMessage("");
-  };
 
   const handleSubmit = async (data, formik) => {
     try {
       setLoading(true);
 
-      console.log(data);
-      console.log(data);
-
       await API.sendContactEmail(data);
-      //
-      // clear();
+
+      formik.resetForm();
 
       if (onDone) {
         onDone();
