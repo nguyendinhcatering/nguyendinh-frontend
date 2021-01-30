@@ -70,7 +70,9 @@ export default class API {
 
   static async sendContactEmail(payload) {
     try {
-      const response = await axios.post(`/mails/contact`, payload);
+      const response = await axios.post("/inquiries", payload);
+
+      console.log(response);
 
       return null;
     } catch {
