@@ -38,7 +38,7 @@ const NextButton = ({ className, ...props }) => {
       )}
       {...props}
     >
-      <MdNavigateNext className="w-4 h-4" />
+      <MdNavigateNext className="w-10 h-10" />
     </IconButton>
   );
 };

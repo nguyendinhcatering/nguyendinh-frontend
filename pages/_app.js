@@ -47,7 +47,12 @@ function MyApp({ Component, pageProps, layout }) {
 
   return (
     <ConnectedRouter>
-      <FacebookProvider appId={layout.siteData.fbAppId} chatSupport>
+      <FacebookProvider
+        appId={layout.siteData.fbAppId}
+        chatSupport
+        xfbml
+        version="v9.0"
+      >
         <ThemeProvider theme={theme}>
           <DefaultLayout layout={layout}>
             <Component {...pageProps} />

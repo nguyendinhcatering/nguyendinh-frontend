@@ -1,6 +1,7 @@
+/** @jsx jsx */
 import React, { useContext } from "react";
 import { CarouselContext } from "pure-react-carousel";
-import { IconButton } from "theme-ui";
+import { IconButton, jsx } from "theme-ui";
 import { MdNavigateBefore } from "react-icons/md";
 import cn from "classnames";
 
@@ -37,7 +38,7 @@ const BackButton = ({ className, ...props }) => {
       )}
       {...props}
     >
-      <MdNavigateBefore className="w-4 h-4" />
+      <MdNavigateBefore className="w-10 h-10" />
     </IconButton>
   );
 };
