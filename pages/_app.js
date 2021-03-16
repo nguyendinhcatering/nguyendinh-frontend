@@ -12,13 +12,14 @@ import { ConnectedRouter } from "connected-next-router";
 import "moment/locale/vi";
 import NProgress from "nprogress";
 import { Router } from "next/router";
-import ZaloChat from "../components/ui/ZaloChat";
 import { FacebookProvider, CustomChat } from "react-facebook";
 import App from "next/app";
 import API from "../utils/api";
 import DefaultLayout from "../components/layout/DefaultLayout";
+import { useScript } from "../utils/useScript";
 
 function MyApp({ Component, pageProps, layout }) {
+  const { appendScript, ScriptLoader } = useScript();
   const routeChangeStart = () => {
     NProgress.start();
   };
@@ -45,6 +46,14 @@ function MyApp({ Component, pageProps, layout }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (layout?.siteData?.googleTagId) {
+      appendScript({
+        scriptText: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-48612945-1');`,
+      });
+    }
+  }, []);
+
   return (
     <ConnectedRouter>
       <FacebookProvider
@@ -69,7 +78,10 @@ function MyApp({ Component, pageProps, layout }) {
               loggedInGreeting={layout.siteData.fbChatGreetingMessage}
               loggedOutGreeting={layout.siteData.fbChatGreetingMessage}
             />
-            {/*<ZaloChat />*/}
+            <ScriptLoader
+              src={`https://www.googletagmanager.com/gtag/js?id=${layout?.siteData?.googleTagId}`}
+              async
+            />
           </DefaultLayout>
         </ThemeProvider>
       </FacebookProvider>
