@@ -48,6 +48,7 @@ const ScriptLoader = ({
 const appendScript = ({
   id,
   scriptText,
+  src,
   optionalCallback = () => null,
   htmlPart = "head",
   otherProps = {},
@@ -57,7 +58,13 @@ const appendScript = ({
     const script = existentScript || global.document.createElement("script");
 
     script.id = id;
-    script.innerText = scriptText.toString();
+    if (src) {
+      script.src = src;
+    }
+
+    if (scriptText) {
+      script.innerText = scriptText.toString();
+    }
 
     handleScriptAttributes(script, otherProps);
 

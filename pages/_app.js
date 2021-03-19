@@ -19,13 +19,23 @@ import DefaultLayout from "../components/layout/DefaultLayout";
 import { useScript } from "../utils/useScript";
 
 function MyApp({ Component, pageProps, layout }) {
-  const { appendScript, ScriptLoader } = useScript();
+  const { appendScript } = useScript();
   const routeChangeStart = () => {
     NProgress.start();
   };
 
   const routeChangeEnd = () => {
     NProgress.done();
+    if (window !== "undefined") {
+      try {
+        window.gtag("config", layout?.siteData?.googleTagId, {
+          page_title: document.title,
+          page_path: window.location.pathname + window.location.search,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   useEffect(() => {
@@ -49,7 +59,17 @@ function MyApp({ Component, pageProps, layout }) {
   useEffect(() => {
     if (layout?.siteData?.googleTagId) {
       appendScript({
-        scriptText: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-48612945-1');`,
+        id: "gtag-append",
+        src: `https://www.googletagmanager.com/gtag/js?id=${layout?.siteData?.googleTagId}`,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (layout?.siteData?.googleTagId) {
+      appendScript({
+        id: "gtag",
+        scriptText: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${layout?.siteData?.googleTagId}');`,
       });
     }
   }, []);
@@ -77,10 +97,6 @@ function MyApp({ Component, pageProps, layout }) {
               themeColor={layout.siteData.fbChatThemeColor}
               loggedInGreeting={layout.siteData.fbChatGreetingMessage}
               loggedOutGreeting={layout.siteData.fbChatGreetingMessage}
-            />
-            <ScriptLoader
-              src={`https://www.googletagmanager.com/gtag/js?id=${layout?.siteData?.googleTagId}`}
-              async
             />
           </DefaultLayout>
         </ThemeProvider>
