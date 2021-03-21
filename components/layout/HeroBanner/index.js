@@ -7,9 +7,11 @@ import { Slide } from "pure-react-carousel";
 import Hero from "./Hero";
 import { BREAKPOINTS } from "utils/useBreakpoint";
 import { useBreakpointIndex } from "@theme-ui/match-media";
+import { useRouter } from "next/router";
 
 const HeroBanner = ({ banners, carouselName }) => {
   const breakpointIndex = useBreakpointIndex();
+  const router = useRouter();
   const [aspectRatio, setAspectRatio] = useState([]);
 
   useEffect(() => {
@@ -22,6 +24,12 @@ const HeroBanner = ({ banners, carouselName }) => {
 
   if (!banners || isEmpty(banners)) return <Box className="h-6" />;
 
+  const handleClick = (banner) => (e) => {
+    if (banner.onClickUrl) {
+      router.push(banner.onClickUrl);
+    }
+  };
+
   return (
     <Carousel
       totalSlides={banners.length}
@@ -30,7 +38,11 @@ const HeroBanner = ({ banners, carouselName }) => {
       name={carouselName}
     >
       {banners.map((banner) => (
-        <Slide key={banner.id} innerClassName="no-ring">
+        <Slide
+          key={banner.id}
+          innerClassName="no-ring"
+          onClick={handleClick(banner)}
+        >
           <Hero layout={banner.layout} banner={banner} />
         </Slide>
       ))}

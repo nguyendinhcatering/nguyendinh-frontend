@@ -12,19 +12,30 @@ import { ConnectedRouter } from "connected-next-router";
 import "moment/locale/vi";
 import NProgress from "nprogress";
 import { Router } from "next/router";
-import ZaloChat from "../components/ui/ZaloChat";
 import { FacebookProvider, CustomChat } from "react-facebook";
 import App from "next/app";
 import API from "../utils/api";
 import DefaultLayout from "../components/layout/DefaultLayout";
+import { useScript } from "../utils/useScript";
 
 function MyApp({ Component, pageProps, layout }) {
+  const { appendScript } = useScript();
   const routeChangeStart = () => {
     NProgress.start();
   };
 
   const routeChangeEnd = () => {
     NProgress.done();
+    if (window !== "undefined") {
+      try {
+        window.gtag("config", layout?.siteData?.googleTagId, {
+          page_title: document.title,
+          page_path: window.location.pathname + window.location.search,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   useEffect(() => {
@@ -43,6 +54,24 @@ function MyApp({ Component, pageProps, layout }) {
         window.scrollTo(0, 0);
       });
     };
+  }, []);
+
+  useEffect(() => {
+    if (layout?.siteData?.googleTagId) {
+      appendScript({
+        id: "gtag-append",
+        src: `https://www.googletagmanager.com/gtag/js?id=${layout?.siteData?.googleTagId}`,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (layout?.siteData?.googleTagId) {
+      appendScript({
+        id: "gtag",
+        scriptText: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${layout?.siteData?.googleTagId}');`,
+      });
+    }
   }, []);
 
   return (
@@ -69,7 +98,6 @@ function MyApp({ Component, pageProps, layout }) {
               loggedInGreeting={layout.siteData.fbChatGreetingMessage}
               loggedOutGreeting={layout.siteData.fbChatGreetingMessage}
             />
-            {/*<ZaloChat />*/}
           </DefaultLayout>
         </ThemeProvider>
       </FacebookProvider>

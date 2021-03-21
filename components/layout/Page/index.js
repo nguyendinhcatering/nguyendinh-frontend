@@ -7,7 +7,9 @@ import NDCarouselContextProvider from "../../ui/Carousel/NDCarouselContext";
 
 const splitBanners = (banners) => {
   return {
-    heroes: banners.filter((banner) => banner.location === "hero"),
+    heroes: banners.filter(
+      (banner) => banner.location === "hero" && !banner.isHidden
+    ),
   };
 };
 

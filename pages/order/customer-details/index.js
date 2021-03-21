@@ -94,6 +94,7 @@ const CustomerDetailsPage = ({ page }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const orderQuantity = useSelector((state) => state.order?.quantity);
+  const order = useSelector((state) => state.order);
   const orderPlaceTypes = useSelector(
     (state) => state.global.orderMasterData.orderPlaceTypes
   );
@@ -279,7 +280,9 @@ const CustomerDetailsPage = ({ page }) => {
                                 width: ["full", "full", "1/3"],
                               }}
                             >
-                              <Label>Số lượng mâm</Label>
+                              <Label>
+                                Số lượng {order?.meta?.unit || "mâm"}
+                              </Label>
                               <Input
                                 type="number"
                                 value={orderQuantity}
