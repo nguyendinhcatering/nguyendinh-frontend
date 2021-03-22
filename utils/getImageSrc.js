@@ -16,6 +16,14 @@ const getBestAvailableQuality = (image) => {
   return imageQualities[0];
 };
 
+const appendUrl = (url) => {
+  if (url.startsWith("http")) {
+    return url;
+  }
+
+  return process.env.NEXT_PUBLIC_BACKEND_URL + url;
+};
+
 export const getImageUrl = (image, quality, useOriginal = false) => {
   if (!image) return null;
 
@@ -26,18 +34,15 @@ export const getImageUrl = (image, quality, useOriginal = false) => {
       const bestAvailableQuality = getBestAvailableQuality(image);
 
       if (bestAvailableQuality) {
-        return (
-          process.env.NEXT_PUBLIC_BACKEND_URL +
-          image.formats[bestAvailableQuality].url
-        );
+        return appendUrl(image.formats[bestAvailableQuality].url);
       }
 
-      return process.env.NEXT_PUBLIC_BACKEND_URL + src;
+      return appendUrl(src);
     }
   }
 
   if (useOriginal) {
-    return process.env.NEXT_PUBLIC_BACKEND_URL + src;
+    return appendUrl(src);
   }
 
   if (image.formats) {
@@ -46,7 +51,7 @@ export const getImageUrl = (image, quality, useOriginal = false) => {
     else if (image.formats.small) src = image.formats.small.url;
   }
 
-  return process.env.NEXT_PUBLIC_BACKEND_URL + src;
+  return appendUrl(src);
 };
 
 export const getImageAlt = (image) => {
