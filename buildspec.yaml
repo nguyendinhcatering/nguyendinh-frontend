@@ -1,0 +1,29 @@
+version: 0.2
+env:
+  parameter-store:
+    NEXT_PUBLIC_BACKEND_URL: "/app/frontend/backend/url"
+phases:
+  pre_build:
+    commands:
+      - export ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
+      - export ECR_URL=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+      # Authenticate helm with ECR
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin ${ECR_URL}
+      - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
+      - IMAGE_URI="${ECR_URL}/app/frontend:${TAG}"
+      - LATEST_IMAGE_URI="${ECR_URL}/app/frontend:latest"
+  build:
+    commands:
+      - docker pull "$LATEST_IMAGE_URI" || true
+      - docker build \
+        --build-arg NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL} \
+        --tag "$IMAGE_URI" \
+        --cache-from "$LATEST_IMAGE_URI" .
+      - docker tag "$IMAGE_URI" "$LATEST_IMAGE_URI"
+  post_build:
+    commands:
+      - docker push "$IMAGE_URI"
+      - docker push "$LATEST_IMAGE_URI"
+      - printf '[{"name":"user_container","imageUri":"%s"}]' "$IMAGE_URI" > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
