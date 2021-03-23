@@ -14,10 +14,7 @@ const Map = ({
 }) => {
   const siteData = useContext(SiteDataContext);
 
-  const apiKey =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY
-      : undefined;
+  const apiKey = siteData?.googleMapApiKey;
 
   const renderMarkers = (map, maps) => {
     siteData.mapOptions.map((marker) => {
