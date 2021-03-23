@@ -15,6 +15,7 @@ phases:
   build:
     commands:
       - docker pull "$LATEST_IMAGE_URI" || true
+      - echo $NEXT_PUBLIC_BACKEND_URL
       - docker build --build-arg NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL} --tag "$IMAGE_URI" --cache-from "$LATEST_IMAGE_URI" .
       - docker tag "$IMAGE_URI" "$LATEST_IMAGE_URI"
   post_build:
