@@ -1,44 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box } from "theme-ui";
 import { isEmpty } from "lodash";
 import cx from "classnames";
 import Wysiwyg from "../../../renderer/wysiwyg";
 import { getWysiwygOverrides } from "../utils";
-import { Image } from "pure-react-carousel";
-import { getImageAlt, getImageUrl } from "../../../../utils/getImageSrc";
+import { getImageUrl } from "../../../../utils/getImageSrc";
 import { parseData } from "../../../renderer/wysiwyg/utils";
 import { useBreakpointIndex } from "@theme-ui/match-media";
 import { BREAKPOINTS } from "../../../../utils/useBreakpoint";
+import useDeepCompareEffect from "../../../../hooks/useDeepEffect";
 
 const CenterLayout = ({ banner }) => {
   const blocks = parseData(banner.text);
   const [imageUrl, setImageUrl] = useState("");
-  const [imageAlt, setImageAlt] = useState("");
   const breakpointIndex = useBreakpointIndex();
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (breakpointIndex <= BREAKPOINTS.MD) {
       if (banner.mobileMedia) {
         setImageUrl(getImageUrl(banner?.mobileMedia?.image, undefined, true));
-        setImageAlt(getImageAlt(banner?.mobileMedia?.image));
       } else {
         setImageUrl(getImageUrl(banner?.media?.image, undefined, true));
-        setImageAlt(getImageAlt(banner?.media?.image));
       }
     } else {
       setImageUrl(getImageUrl(banner?.media?.image, undefined, true));
-      setImageAlt(getImageAlt(banner?.media?.image));
     }
-  }, [breakpointIndex]);
+  }, [breakpointIndex, banner]);
 
   return (
-    <Image
-      hasMasterSpinner={false}
-      src={imageUrl}
-      isBgImage
-      tag="div"
-      alt={imageAlt}
-      className="bg-bottom"
+    <div
+      style={{
+        backgroundImage: `url("${imageUrl}")`,
+      }}
+      className="bg-bottom w-full h-full bg-cover block"
     >
       <Box
         className={cx(
@@ -48,7 +42,7 @@ const CenterLayout = ({ banner }) => {
       >
         <Wysiwyg data={banner.text} overrides={getWysiwygOverrides(banner)} />
       </Box>
-    </Image>
+    </div>
   );
 };
 

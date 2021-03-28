@@ -57,7 +57,7 @@ export const getImageUrl = (image, quality, useOriginal = false) => {
 export const getImageAlt = (image) => {
   if (!image) return undefined;
 
-  return image.caption || image.alternativeText;
+  return image.caption || image.alternativeText || "";
 };
 
 export const IMAGE_URL = "/images/defaultBackground.jpg";
