@@ -39,6 +39,7 @@ const IconButton = ({ icon, src }) => {
       }}
       variant="none"
       href={src}
+      target="__blank"
     >
       <Component />
     </Button>
