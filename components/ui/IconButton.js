@@ -7,6 +7,7 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 
 const ICONS = {
   facebook: FaFacebookF,
@@ -14,6 +15,7 @@ const ICONS = {
   google: FaGoogle,
   youtube: FaYoutube,
   instagram: FaInstagram,
+  tiktok: SiTiktok,
 };
 
 const IconButton = ({ icon, src }) => {
