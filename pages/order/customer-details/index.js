@@ -25,6 +25,10 @@ import { padStart } from "../../../utils/string";
 
 const paymentMethodTypes = [
   {
+    label: "Chuyển khoản đặt cọc",
+    value: "Chuyển khoản đặt cọc",
+  },
+  {
     label: "Thanh toán tiền mặt khi giao hàng",
     value: "Thanh toán tiền mặt khi giao hàng",
   },
@@ -198,7 +202,7 @@ const CustomerDetailsPage = ({ page }) => {
                         orderTime: "00:00",
                         note: "",
                         paymentMethod: {
-                          type: "Chuyển khoản toàn bộ",
+                          type: "Chuyển khoản đặt cọc",
                         },
                       }}
                     >
@@ -424,8 +428,8 @@ const CustomerDetailsPage = ({ page }) => {
                               <FormError name="paymentMethod.type" />
                             </Box>
                           </Box>
-                          {props.values["paymentMethod"].type ===
-                            "Chuyển khoản toàn bộ" && <BankInfo />}
+                          {props.values["paymentMethod"].type !==
+                            "Thanh toán tiền mặt khi giao hàng" && <BankInfo />}
                           <Box className="flex flex-wrap">
                             <Box className="flex-grow">
                               <Label>Ghi chú</Label>

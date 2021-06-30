@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape(
       })
       .min(6, "Mời quý khách để lại số điện thoại hợp lệ")
       .required("Mời quý khách để lại số điện thoại"),
-    address: Yup.string(),
+    // address: Yup.string(),
     message: Yup.string().required("Mời quý khách để lại lời nhắn"),
   },
   [["email", "phone"]]
@@ -53,7 +53,7 @@ const ContactUsForm = ({ onDone, sx }) => {
         name: "",
         email: "",
         phone: "",
-        address: "",
+        // address: "",
         message: "",
       }}
     >
@@ -70,12 +70,12 @@ const ContactUsForm = ({ onDone, sx }) => {
           <Field as={Input} name="phone" placeholder="Số điện thoại" />
           <FormError name="phone" />
         </Box>
-        <Box className="important:mb-3">
-          <Field as={Input} name="address" placeholder="Địa chỉ" />
-          <FormError name="address" />
-        </Box>
+        {/*<Box className="important:mb-3">*/}
+        {/*  <Field as={Input} name="address" placeholder="Địa chỉ" />*/}
+        {/*  <FormError name="address" />*/}
+        {/*</Box>*/}
         <Box className="required important:mb-3">
-          <Field as={Textarea} name="message" placeholder="Lời nhắn" />
+          <Field as={Textarea} name="message" placeholder="Lời nhắn" rows={4} />
           <FormError name="message" />
         </Box>
         <Button

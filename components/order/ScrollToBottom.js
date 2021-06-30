@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "theme-ui";
-import { FaArrowCircleDown } from "react-icons/fa";
+import { FaArrowCircleDown, FaCartArrowDown } from "react-icons/fa";
 
-const ScrollArrow = () => {
+const ScrollArrow = ({ href }) => {
   const [showScroll, setShowScroll] = useState(false);
 
   const checkScrollDown = () => {
@@ -14,8 +14,15 @@ const ScrollArrow = () => {
   };
 
   const scrollDown = () => {
+    let top = window.document.body.offsetHeight;
+    if (href) {
+      const container = document.getElementById(href);
+      if (container) {
+        top = container.getBoundingClientRect().top + window.pageYOffset;
+      }
+    }
     window.scrollTo({
-      top: window.document.body.offsetHeight,
+      top: top,
       behavior: "smooth",
     });
   };
@@ -39,14 +46,14 @@ const ScrollArrow = () => {
         sx={{
           position: "fixed",
           bottom: "20px",
-          right: "20px",
+          left: "20px",
           height: "40px",
           opacity: 1,
           zIndex: 9999,
           color: "red.5",
         }}
       >
-        <FaArrowCircleDown
+        <FaCartArrowDown
           // className="scrollBottom"
           onClick={scrollDown}
           size={40}

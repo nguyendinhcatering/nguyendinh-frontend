@@ -22,8 +22,8 @@ const CustomizableCurrentOrder = ({ onPlaceOrder, presetType = {} }) => {
   }, [foodItems]);
 
   return (
-    <Box>
-      <ScrollArrow />
+    <Box id="currentOrder">
+      <ScrollArrow href="currentOrder" />
       <Box>
         <Box
           className={cn(
@@ -59,15 +59,7 @@ const CustomizableCurrentOrder = ({ onPlaceOrder, presetType = {} }) => {
           )}
           {sortedItems.map((category) => {
             return (
-              <Box sx={{ mb: 2 }} key={category.name}>
-                <Styled.h5
-                  sx={{
-                    color: "red.5",
-                    mb: 2,
-                  }}
-                >
-                  {category.name}
-                </Styled.h5>
+              <Box key={category.name}>
                 {category.foodItems.map((foodItem) => (
                   <Box
                     key={foodItem.id}
