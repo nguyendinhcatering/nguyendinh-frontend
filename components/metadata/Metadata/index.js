@@ -37,6 +37,7 @@ const Metadata = ({ metadata }) => {
       <meta property="twitter:description" content={description} />
       {imageUrl && <meta property="twitter:image" content={imageUrl} />}}
       {imageAlt && <meta property="twitter:image:alt" content={imageAlt} />}
+      <meta name="p:domain_verify" content="df7769307234452be203309553f6b1ad"/>
     </Head>
   );
 };
