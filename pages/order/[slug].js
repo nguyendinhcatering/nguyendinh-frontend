@@ -45,22 +45,7 @@ const OrderMenu = ({ page, presetType, foodPresets, sortedFoodItems }) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  const foodPresetTypes = await API.getFoodPresetTypes();
-
-  const paths = (foodPresetTypes || []).map((presetType) => ({
-    params: {
-      slug: presetType.slug,
-    },
-  }));
-
-  return {
-    paths,
-    fallback: true,
-  };
-};
-
-export const getStaticProps = wrapper.getStaticProps(
+export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, ...ctx }) => {
     const slug = ctx?.params?.slug;
     const presetType = await API.getFoodPresetTypeBySlug(slug);
@@ -71,7 +56,7 @@ export const getStaticProps = wrapper.getStaticProps(
         redirect: {
           destination: "/order",
         },
-        revalidate: 1
+        revalidate: 1,
       };
     }
 
@@ -103,7 +88,6 @@ export const getStaticProps = wrapper.getStaticProps(
           presetType,
           sortedFoodItems,
         },
-        revalidate: 1
       };
     }
 
@@ -113,13 +97,14 @@ export const getStaticProps = wrapper.getStaticProps(
       allowedFoodMenuItems
     );
 
+    console.log(processedPresets.map((preset) => preset.foodMenuItems));
+
     return {
       props: {
         page,
         presetType,
         foodPresets: processedPresets,
       },
-      revalidate: 1
     };
   }
 );

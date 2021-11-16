@@ -459,7 +459,7 @@ const CustomerDetailsPage = ({ page }) => {
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(
+export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, params }) => {
     const page = await API.getPage("/order/customer-details");
 
@@ -469,7 +469,6 @@ export const getStaticProps = wrapper.getStaticProps(
       props: {
         page,
       },
-      revalidate: 1,
     };
   }
 );

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Error from "next/error";
 import Page from "components/layout/Page";
 import Loading from "../../components/Loading";
+import { wrapper } from "../../store";
 
 const PagePage = ({ page }) => {
   const router = useRouter();
@@ -18,28 +19,7 @@ const PagePage = ({ page }) => {
   return <Page page={page} />;
 };
 
-export async function getStaticPaths() {
-  const menus = await API.getMenus();
-
-  const paths = menus
-    .map((menu) => menu.url)
-    .filter((menu) => menu.startsWith("/page") || menu.startsWith("page"))
-    .map((path) => ({
-      params: {
-        slugs: path
-          .split("/")
-          .filter(Boolean)
-          .filter((subPath) => subPath !== "page"),
-      },
-    }));
-
-  return {
-    paths,
-    fallback: true,
-  };
-}
-
-export async function getStaticProps(ctx) {
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   const path = `/page/${ctx.params.slugs.join("/")}`;
   const page = await API.getPage(encodeURI(path));
 
@@ -47,8 +27,7 @@ export async function getStaticProps(ctx) {
     props: {
       page,
     },
-    revalidate: 1,
   };
-}
+});
 
 export default PagePage;

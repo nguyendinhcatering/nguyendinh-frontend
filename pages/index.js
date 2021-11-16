@@ -9,13 +9,12 @@ export default function Home({ page }) {
   return <Page page={page} />;
 }
 
-export const getStaticProps = wrapper.getStaticProps(async (ctx) => {
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   const page = await API.getPage("/");
 
   return {
     props: {
       page,
     },
-    revalidate: 1,
   };
 });

@@ -6,6 +6,7 @@ import Loading from "../../components/Loading";
 import Section from "../../components/layout/Sections/Section";
 import Card from "../../components/ui/Card";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { wrapper } from "../../store";
 
 const Pagination = ({ pagination }) => {
   const router = useRouter();
@@ -137,7 +138,7 @@ const NewsPage = ({ page, newsItems, pagination }) => {
   );
 };
 
-export async function getServerSideProps(ctx) {
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   const path = `/news`;
   const totalItems = await API.getNewsItemsCount();
   const pagination = {
@@ -163,6 +164,6 @@ export async function getServerSideProps(ctx) {
       pagination,
     },
   };
-}
+});
 
 export default NewsPage;

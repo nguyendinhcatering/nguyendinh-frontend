@@ -9,6 +9,7 @@ import Card from "../../components/ui/Card";
 import Section from "../../components/layout/Sections/Section";
 import Error from "next/error";
 import { toString } from "lodash";
+import { wrapper } from "../../store";
 
 const NewsItem = ({ newsItem, newsItems }) => {
   const router = useRouter();
@@ -48,7 +49,9 @@ const NewsItem = ({ newsItem, newsItems }) => {
                   }}
                   onClick={() =>
                     router.push(
-                      `/news/${nI.id}-${slugify(toString(nI.name), { lower: true })}`
+                      `/news/${nI.id}-${slugify(toString(nI.name), {
+                        lower: true,
+                      })}`
                     )
                   }
                 >
@@ -66,22 +69,7 @@ const NewsItem = ({ newsItem, newsItems }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const newsItems = await API.getNewsItems();
-
-  const paths = newsItems.map((newsItem) => ({
-    params: {
-      id: `${newsItem.id}-${slugify(toString(newsItem.name), { lower: true })}`,
-    },
-  }));
-
-  return {
-    paths,
-    fallback: true,
-  };
-}
-
-export async function getStaticProps(ctx) {
+export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
   const id = ctx.params.id.split("-")[0];
 
   const newsItem = await API.getNewsItem(id);
@@ -94,6 +82,6 @@ export async function getStaticProps(ctx) {
     },
     revalidate: 1,
   };
-}
+});
 
 export default NewsItem;

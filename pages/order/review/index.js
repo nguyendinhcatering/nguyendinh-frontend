@@ -8,7 +8,7 @@ const ReviewPage = ({ page }) => {
   return <Page page={page}>Hi</Page>;
 };
 
-export const getStaticProps = wrapper.getStaticProps(
+export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, params }) => {
     const page = await API.getPage("/order/review");
 
@@ -18,7 +18,6 @@ export const getStaticProps = wrapper.getStaticProps(
       props: {
         page,
       },
-      revalidate: 1,
     };
   }
 );

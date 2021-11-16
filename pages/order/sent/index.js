@@ -62,17 +62,19 @@ const OrderSent = ({ page }) => {
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  const page = await API.getPage("/order/sent");
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store }) => {
+    const page = await API.getPage("/order/sent");
 
-  await store.dispatch(fetchOrderMasterData());
+    await store.dispatch(fetchOrderMasterData());
 
-  return {
-    props: {
-      page,
-    },
-    revalidate: 1,
-  };
-});
+    return {
+      props: {
+        page,
+      },
+      revalidate: 1,
+    };
+  }
+);
 
 export default OrderSent;
