@@ -1,8 +1,8 @@
 FROM node:12-alpine
 WORKDIR /usr/app
 COPY package.json package.json
-COPY package-lock.json package-lock.json
-RUN npm install --silent
+COPY yarn.lock yarn.lock
+RUN yarn install
 COPY . .
 
 EXPOSE 3000
@@ -11,7 +11,7 @@ EXPOSE 3000
 ARG NEXT_PUBLIC_BACKEND_URL
 ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
 
-RUN npm run build
+RUN yarn build
 
-CMD npm run start
+CMD yarn start
 
