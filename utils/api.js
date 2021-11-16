@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { isEmpty, isString } from "lodash";
+import { isEmpty, isString, orderBy } from "lodash";
 
 const axios = Axios.create({ baseURL: process.env.NEXT_PUBLIC_BACKEND_URL });
 
@@ -47,7 +47,10 @@ export default class API {
       const response = await axios.get(`/pages/by-url?url=${encodedUrl}`);
 
       if (response.data && response.data.length > 0) {
-        return response.data[0];
+        return {
+          ...response.data[0],
+          banners: orderBy(response.data[0].banners, ["order"], ["asc"]),
+        };
       }
 
       return {
