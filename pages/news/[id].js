@@ -80,7 +80,6 @@ export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
       newsItem,
       newsItems,
     },
-    revalidate: 1,
   };
 });
 
