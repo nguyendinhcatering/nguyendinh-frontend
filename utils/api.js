@@ -253,7 +253,7 @@ export default class API {
   static async getNewsItems(limit = 5, page = 0) {
     try {
       const response = await axios.get(
-        `/news-items?_limit=${limit}&_sort=updated_at:DESC&_start=${
+        `/news-items?_limit=${limit}&_sort=created_at:DESC&_start=${
           page * limit
         }&published=true`
       );
