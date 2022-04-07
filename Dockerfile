@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM public.ecr.aws/docker/library/node:12-alpine
 WORKDIR /usr/app
 COPY package.json package.json
 COPY yarn.lock yarn.lock
