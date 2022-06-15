@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui";
 import Image, { StyledImage } from "../../../ui/Image";
@@ -13,7 +14,7 @@ const ImageRenderer = ({ block }) => {
           my: 2,
           pb: 1,
           maxWidth: "80%",
-          height: "auto"
+          height: "auto",
         }}
       />
     </Styled.div>

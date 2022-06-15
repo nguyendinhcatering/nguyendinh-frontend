@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Script from "next/script";
 import { ThemeProvider } from "theme-ui";
 import theme from "styles/theme";
 import "styles/index.css";
@@ -97,6 +98,10 @@ function MyApp({ Component, pageProps, layout }) {
               themeColor={layout.siteData.fbChatThemeColor}
               loggedInGreeting={layout.siteData.fbChatGreetingMessage}
               loggedOutGreeting={layout.siteData.fbChatGreetingMessage}
+            />
+            <Script
+              src="https://js.hs-scripts.com/21974823.js"
+              id="hs-script-loader"
             />
           </DefaultLayout>
         </ThemeProvider>

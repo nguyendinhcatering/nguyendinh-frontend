@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { Button, jsx } from "theme-ui";
 import { useRouter } from "next/router";

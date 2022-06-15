@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import React, { useEffect, useState } from "react";
 import { Box, Styled, Button, jsx } from "theme-ui";
@@ -103,7 +104,12 @@ const OrderDetail = ({ order, page }) => {
             </Box>
           </Card>
           <Box className="flex important:mt-4 md:space-x-4 flex-col md:flex-row items-stretch">
-            <Box sx={{ minWidth: ["full", "full", "1/3"], maxWidth: ["full", "full", "1/3"] }}>
+            <Box
+              sx={{
+                minWidth: ["full", "full", "1/3"],
+                maxWidth: ["full", "full", "1/3"],
+              }}
+            >
               <Card sx={{ height: "full" }}>
                 <Box className="p-4">
                   <Box>

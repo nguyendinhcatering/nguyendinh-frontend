@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import React, { useEffect, useRef, useState } from "react";
 import { CarouselProvider, Slider } from "pure-react-carousel";
