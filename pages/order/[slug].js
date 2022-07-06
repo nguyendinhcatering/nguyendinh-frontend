@@ -56,7 +56,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
         redirect: {
           destination: "/order",
         },
-        revalidate: 1,
       };
     }
 

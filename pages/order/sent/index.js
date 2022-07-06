@@ -72,7 +72,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
       props: {
         page,
       },
-      revalidate: 1,
     };
   }
 );
