@@ -16,7 +16,7 @@ import { wrapper } from "../../store";
 import { useDispatch } from "react-redux";
 import { clearOrder } from "../../store/order/actions";
 
-const OrderMenu = ({ page, presetType, foodPresets, sortedFoodItems }) => {
+const OrderMenu = ({ page, presetType, foodPresets, sortedFoodItems, slug }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const OrderMenu = ({ page, presetType, foodPresets, sortedFoodItems }) => {
     if (!router.query["keep-order"]) {
       dispatch(clearOrder());
     }
-  }, []);
+  }, [slug]);
 
   return (
     <Page page={page}>
@@ -86,6 +86,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
           page,
           presetType,
           sortedFoodItems,
+          slug,
         },
       };
     }
@@ -103,6 +104,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         page,
         presetType,
         foodPresets: processedPresets,
+        slug,
       },
     };
   }
